@@ -1,5 +1,6 @@
 services:
   web:
+    container_name: aplicacion_tomasmorono-nginx
     image: nginx:latest # Using the default Nginx image with custom configuration.
     volumes:
       # Mount the application code for live updates
@@ -12,13 +13,14 @@ services:
     environment:
       - NGINX_HOST=localhost
     networks:
-      - laravel-development
+      - tomasmorono-development
     depends_on:
       php-fpm:
         condition: service_started  # Wait for php-fpm to start
 
   php-fpm:
     # For the php-fpm service, we will create a custom image to install the necessary PHP extensions and setup proper permissions.
+    container_name: aplicacion_tomasmorono-php
     build:
       context: .
       dockerfile: ./docker/common/php-fpm/Dockerfile
@@ -40,13 +42,14 @@ services:
       # Mount the application code for live updates
       - ./:/var/www
     networks:
-      - laravel-development
+      - tomasmorono-development
     depends_on:
       postgres:
         condition: service_started  # Wait for postgres to start
 
   workspace:
    # For the workspace service, we will also create a custom image to install and setup all the necessary stuff.
+    container_name: aplicacion_tomasmorono-workspace
     build:
       context: .
       dockerfile: ./docker/development/workspace/Dockerfile
@@ -68,30 +71,31 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - laravel-development
+      - tomasmorono-development
 
   postgres:
+    container_name: aplicacion_tomasmorono-pgsql
     image: postgres:16
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     environment:
-      - POSTGRES_DB=app
-      - POSTGRES_USER=laravel
-      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=bookbag
+      - POSTGRES_USER=tomasmorono
+      - POSTGRES_PASSWORD=abc123.
     volumes:
-      - postgres-data-development:/var/lib/postgresql/data
+      - tomasmorono-data-development:/var/lib/postgresql/data
     networks:
-      - laravel-development
+      - tomasmorono-development
 
 # En caso de querer escalar la aplicación hacia un modelo de alta concurrencia
 # sería recomendable cachear en Redis en lugar de en la BBDD (habría que ajustar el .env)
 #  redis:
 #    image: redis:alpine
 #    networks:
-#      - laravel-development
+#      - tomasmorono-development
 
 networks:
-  laravel-development:
+  tomasmorono-development:
 
 volumes:
-  postgres-data-development:
+  tomasmorono-data-development:

@@ -1,20 +1,21 @@
 services:
   web:
+    container_name: aplicacion_tomasmorono-nginx
     build:
       context: .
       dockerfile: ./docker/production/nginx/Dockerfile
     restart: unless-stopped # Automatically restart unless the service is explicitly stopped
     volumes:
-      # Mount the 'laravel-storage-production' volume to '/var/www/storage' inside the container.
+      # Mount the 'tomasmorono-storage-production' volume to '/var/www/storage' inside the container.
       # -----------------------------------------------------------
       # This volume stores persistent data like uploaded files and cache.
       # The ':ro' option mounts it as read-only in the 'web' service because Nginx only needs to read these files.
       # The 'php-fpm' service mounts the same volume without ':ro' to allow write operations.
       # -----------------------------------------------------------
-      - laravel-storage-production:/var/www/storage:ro
-      - laravel-public-assets:/var/www/public/build:ro
+      - tomasmorono-storage-production:/var/www/storage:ro
+      - tomasmorono-public-assets:/var/www/public/build:ro
     networks:
-      - laravel-production
+      - tomasmorono-production
     ports:
       # Map port 80 inside the container to the port specified by 'NGINX_PORT' on the host machine.
       # -----------------------------------------------------------
@@ -34,12 +35,12 @@ services:
       target: production
     restart: unless-stopped
     volumes:
-      - laravel-public-assets:/var/www/public/build  # Mount built public assets to ensure the manifest.json and hashed files match between Nginx and PHP-FPM
-      - laravel-storage-production:/var/www/storage  # Mount the storage volume
+      - tomasmorono-public-assets:/var/www/public/build  # Mount built public assets to ensure the manifest.json and hashed files match between Nginx and PHP-FPM
+      - tomasmorono-storage-production:/var/www/storage  # Mount the storage volume
     env_file:
       - .env
     networks:
-      - laravel-production
+      - tomasmorono-production
     healthcheck:
       test: ["CMD-SHELL", "php-fpm-healthcheck || exit 1"]
       interval: 10s
@@ -53,6 +54,7 @@ services:
         condition: service_healthy
 
   postgres:
+    container_name: aplicacion_tomasmorono-pgsql
     image: postgres:16
     restart: unless-stopped
     user: postgres
@@ -63,9 +65,9 @@ services:
       - POSTGRES_USER=${POSTGRES_USERNAME:-laravel}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secret}
     volumes:
-      - postgres-data-production:/var/lib/postgresql/data
+      - tomasmorono-data-production:/var/lib/postgresql/data
     networks:
-      - laravel-production
+      - tomasmorono-production
     # Health check for PostgreSQL
     # -----------------------------------------------------------
     # Health checks allow Docker to determine if a service is operational.
@@ -78,21 +80,23 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    image: redis:alpine
-    restart: unless-stopped  # Automatically restart unless the service is explicitly stopped
-    networks:
-      - laravel-production
-    # Health check for Redis
-    # -----------------------------------------------------------
-    # Checks if Redis is responding to the 'PING' command.
-    # This ensures that the service is not only running but also operational.
-    # -----------------------------------------------------------
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+  # En caso de querer escalar la aplicación hacia un modelo de alta concurrencia
+  # sería recomendable cachear en Redis en lugar de en la BBDD (habría que ajustar el .env)
+#  redis:
+#    image: redis:alpine
+#    restart: unless-stopped  # Automatically restart unless the service is explicitly stopped
+#    networks:
+#      - tomasmorono-production
+#    # Health check for Redis
+#    # -----------------------------------------------------------
+#    # Checks if Redis is responding to the 'PING' command.
+#    # This ensures that the service is not only running but also operational.
+#    # -----------------------------------------------------------
+#    healthcheck:
+#      test: ["CMD", "redis-cli", "ping"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 3
 
 networks:
   # Attach the service to the 'laravel' network.
@@ -100,9 +104,9 @@ networks:
   # This custom network allows all services within it to communicate using their service names as hostnames.
   # For example, 'php-fpm' can connect to 'postgres' by using 'postgres' as the hostname.
   # -----------------------------------------------------------
-  laravel-production:
+  tomasmorono-production:
 
 volumes:
-  postgres-data-production:
-  laravel-storage-production:
-  laravel-public-assets:
+  tomasmorono-data-production:
+  tomasmorono-storage-production:
+  tomasmorono-public-assets:
