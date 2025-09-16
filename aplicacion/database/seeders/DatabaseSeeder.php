@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
-use App\Models\Edition;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +18,7 @@ class DatabaseSeeder extends Seeder
 //            UserSeeder::class,
 //        ]);
 
-        $this->call([RoleSeeder::class, BookSeeder::class]);
+        $this->call([RoleSeeder::class, BookSeeder::class, BookshelfTypeSeeder::class, BookshelfSeeder::class]);
 
         User::factory()->create([
             'name' => 'Tomás Moroño',
@@ -28,6 +27,6 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('admin');
 
         User::factory(9)->create();
-        Book::factory(50)->create();
+        Book::factory(49)->create();
     }
 }

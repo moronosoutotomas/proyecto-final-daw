@@ -10,17 +10,21 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('editions', function (Blueprint $table) {
+        Schema::create('bookshelves', function (Blueprint $table) {
             $table->id()->unique();
+            $table->foreignId('user_id')
+                ->constrained('users', 'id')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreignId('book_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->string('genre');
-            $table->longText('summary')->nullable();
-            $table->timestamp('publication_date')->nullable();
-            $table->integer('pages');
-            $table->string('cover_path')->nullable();
+            $table->unsignedBigInteger('type');
+            $table->foreign('type')
+                ->references('id')
+                ->on('bookshelf_type')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('editions');
+        Schema::dropIfExists('bookshelves');
     }
 };

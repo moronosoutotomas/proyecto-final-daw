@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Bookshelf;
 use Illuminate\Database\Seeder;
 
 class BookshelfSeeder extends Seeder
@@ -12,6 +12,11 @@ class BookshelfSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $bookshelf = new Bookshelf();
+        $bookshelf->user_id = '1';
+        $bookshelf->book_id = '1';
+        $bookshelf->type = '1';
+
+        $bookshelf->save();
     }
 }

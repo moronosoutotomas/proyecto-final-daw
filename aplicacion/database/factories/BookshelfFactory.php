@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Bookshelf;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bookshelf>
+ * @extends Factory<Bookshelf>
  */
 class BookshelfFactory extends Factory
 {

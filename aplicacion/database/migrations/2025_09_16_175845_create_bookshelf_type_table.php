@@ -11,16 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('bookshelf_type', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->id();
             $table->string('type');
-            $table->timestamps();
-        });
-
-        Schema::create('bookshelves', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->integer('user_id');
-            $table->integer('book_id');
-            $table->integer('bookshelf_type');
             $table->timestamps();
         });
     }
@@ -30,7 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookshelves');
         Schema::dropIfExists('bookshelf_type');
     }
 };
