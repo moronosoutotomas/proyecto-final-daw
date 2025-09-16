@@ -4,18 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->integer('isbn')->unique();
-            $table->string('title');
-            $table->string('author');
-            $table->timestamp('publication_date')->nullable();
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->id()->unique();
+            $table->integer('user_id');
+            $table->integer('book_id');
+            $table->integer('rating');
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('reviews');
     }
 };

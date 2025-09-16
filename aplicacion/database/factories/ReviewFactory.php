@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<Book>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
  */
-class BookFactory extends Factory
+class ReviewFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +17,7 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'isbn' => fake()->randomNumber(9, true),
-            'title' => fake()->sentence(4, false),
-            'author' => fake()->name(),
-            'publication_date' => fake()->dateTime(),
+            //
         ];
     }
 }
