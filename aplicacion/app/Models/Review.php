@@ -17,4 +17,10 @@ class Review extends Model
         'rating',
         'content',
     ];
+
+//    Relación inversa
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

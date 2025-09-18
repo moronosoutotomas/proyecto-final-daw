@@ -14,6 +14,12 @@ class Bookshelf extends Model
     protected $fillable = [
         'user_id',
         'book_id',
-        'type'
+        'bookshelf_type_id'
     ];
+
+    //    Relación inversa
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

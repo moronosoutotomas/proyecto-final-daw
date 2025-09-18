@@ -11,19 +11,17 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('bookshelves', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->id();
             $table->foreignId('user_id')
                 ->constrained('users', 'id')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('book_id')
-                ->constrained()
+                ->nullable()
+                ->constrained('books', 'id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->unsignedBigInteger('type');
-            $table->foreign('type')
-                ->references('id')
-                ->on('bookshelf_type')
+            $table->foreignId('bookshelf_type_id')
+                ->constrained('bookshelf_type', 'id')
                 ->onUpdate('cascade');
             $table->timestamps();
         });

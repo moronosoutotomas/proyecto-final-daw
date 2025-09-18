@@ -15,6 +15,11 @@ class Edition extends Model
         'book_id',
         'genre',
         'summary',
+        'edition',
+        'edition_date',
+        'cover_path',
         'pages',
+        'language',
+        'translator'
     ];
 }

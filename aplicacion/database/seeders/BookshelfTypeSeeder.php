@@ -13,13 +13,8 @@ class BookshelfTypeSeeder extends Seeder
     public function run(): void
     {
         $bookshelfType = new BookshelfType();
-        $bookshelfType->type = 'read';
-        $bookshelfType->save();
+        $bookshelfType->name = 'leídos';
 
-        $bookshelfType->type = 'reading';
-        $bookshelfType->save();
-
-        $bookshelfType->type = 'pending';
         $bookshelfType->save();
     }
 }

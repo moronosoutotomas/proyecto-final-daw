@@ -12,11 +12,11 @@ class BookshelfSeeder extends Seeder
      */
     public function run(): void
     {
-        $bookshelf = new Bookshelf();
-        $bookshelf->user_id = '1';
-        $bookshelf->book_id = '1';
-        $bookshelf->type = '1';
-
-        $bookshelf->save();
+//        $bookshelf = new Bookshelf();
+//        $bookshelf->user_id = 1;
+//        $bookshelf->book_id = 1;
+//        $bookshelf->bookshelf_type_id = 1;
+//
+//        $bookshelf->save();
     }
 }

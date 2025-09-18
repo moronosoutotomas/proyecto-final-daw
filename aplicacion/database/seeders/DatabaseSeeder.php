@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
 //            UserSeeder::class,
 //        ]);
 
-        $this->call([RoleSeeder::class, BookSeeder::class, BookshelfTypeSeeder::class, BookshelfSeeder::class]);
+        $this->call([RoleSeeder::class, BookSeeder::class, EditionSeeder::class, BookshelfSeeder::class]);
 
         User::factory()->create([
             'name' => 'Tomás Moroño',
             'email' => 'tomas@dominio.com',
             'password' => bcrypt('abc123.')
-        ])->assignRole('admin');
+        ])->assignRole('administrador');
 
         User::factory(9)->create();
         Book::factory(49)->create();

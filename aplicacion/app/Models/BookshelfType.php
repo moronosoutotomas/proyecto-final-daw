@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookshelfType extends Model
 {
-    protected $fillable = ['type'];
+    protected $fillable = [
+        'name'
+    ];
 }

@@ -11,16 +11,19 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('editions', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->id();
             $table->foreignId('book_id')
                 ->constrained()
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('genre');
             $table->longText('summary')->nullable();
-            $table->timestamp('publication_date')->nullable();
-            $table->integer('pages');
+            $table->string('edition');
+            $table->timestamp('edition_date')->nullable();
             $table->string('cover_path')->nullable();
+            $table->integer('pages')->nullable();
+            $table->string('language');
+            $table->string('translator')->nullable();
             $table->timestamps();
         });
     }

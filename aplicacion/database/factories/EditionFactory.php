@@ -18,11 +18,11 @@ class EditionFactory extends Factory
     public function definition(): array
     {
         return [
-            'genre' => fake()->word(),
-            'summary' => fake()->paragraph(),
-            'publication_date' => fake()->dateTime(),
-            'pages' => fake()->numberBetween(10, 1600),
-            'cover_path' => 'empty',
+//            'genre' => fake()->word(),
+//            'summary' => fake()->paragraph(),
+//            'publication_date' => fake()->dateTime(),
+//            'pages' => fake()->numberBetween(10, 1600),
+//            'cover_path' => 'empty',
         ];
     }
 }

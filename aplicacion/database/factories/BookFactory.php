@@ -22,6 +22,7 @@ class BookFactory extends Factory
             'title' => fake()->sentence(4, false),
             'author' => fake()->name(),
             'publication_date' => fake()->dateTime(),
+            'avg_rating' => fake()->numberBetween(0, 5)
         ];
     }
 }
