@@ -9,4 +9,6 @@ class BookshelfType extends Model
     protected $fillable = [
         'name'
     ];
+
+    protected $table = 'bookshelf_types';
 }

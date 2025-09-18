@@ -21,7 +21,7 @@ return new class extends Migration {
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('bookshelf_type_id')
-                ->constrained('bookshelf_type', 'id')
+                ->constrained('bookshelf_types', 'id')
                 ->onUpdate('cascade');
             $table->timestamps();
         });

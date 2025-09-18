@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(9)->create();
         Book::factory(49)->create();
+
+        $this->call([BookshelfTypeSeeder::class, BookshelfSeeder::class]);
     }
 }
