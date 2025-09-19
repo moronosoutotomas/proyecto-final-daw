@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de 10 libros por página por orden alfabético.
      */
     public function index()
     {
@@ -17,7 +17,7 @@ class BookController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario de CREACIÓN de un nuevo libro.
      */
     public function create()
     {
@@ -25,42 +25,47 @@ class BookController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena un libro en la base de datos.
      */
     public function store(Request $request)
     {
-        //
+        Book::create($request->all());
+        return redirect()->route('books.index');
     }
 
     /**
-     * Display the specified resource.
+     * Muestra un libro.
      */
-    public function show(string $id)
+    public function show(Book $book)
     {
-        //
+        return view('books.show', compact('book'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario de EDICIÓN de un nuevo libro.
      */
-    public function edit(string $id)
+    public function edit(Book $book)
     {
-        return view('books.edit');
+        return view('books.edit', compact('book'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza un libro ya existente en la base de datos.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        # TODO: revisar si funciona con la Request, sinó validar manualmente
+        $book->update($request->all());
+        $book->save();
+        return redirect()->route('books.show', $book);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Almacena un libro de la base de datos.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index');
     }
 }

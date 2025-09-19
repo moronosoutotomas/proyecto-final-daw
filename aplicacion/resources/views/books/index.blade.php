@@ -3,10 +3,10 @@
     <div class="mb-4 flex justify-between items-center">
         <flux:breadcrumbs>
             <flux:breadcrumbs.item :href="route('dashboard')">Dashboard</flux:breadcrumbs.item>
-            <flux:breadcrumbs.item>Books</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item>Libros</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <a href="" class="btn btn-blue text-xs">Nuevo book</a>
+        <a href="{{ route('books.create') }}" class="btn btn-blue text-xs">Nuevo libro</a>
     </div>
 
     <div class="relative overflow-x-auto mb-4 rounded-lg">
@@ -14,16 +14,22 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Id
+                    ISBN
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Title
+                    Título
                 </th>
                 <th scope="col" class="px-6 py-3" width="10px">
-                    Author
+                    Autor
                 </th>
                 <th scope="col" class="px-6 py-3" width="10px">
-                    Summary
+                    Fecha de publicación
+                </th>
+                <th scope="col" class="px-6 py-3" width="10px">
+                    Valoración
+                </th>
+                <th scope="col" class="px-6 py-3" width="10px">
+                    Acciones
                 </th>
             </tr>
             </thead>
@@ -31,7 +37,7 @@
             @foreach($books as $book)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $book->id }}
+                        {{ $book->isbn13 }}
                     </th>
                     <td class="px-6 py-4">
                         {{ $book->title }}
@@ -40,8 +46,14 @@
                         {{ $book->author }}
                     </td>
                     <td class="px-6 py-4">
+                        {{ $book->publication_date }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $book->avg_rating }}
+                    </td>
+                    <td class="px-6 py-4">
                         <div class="flex space-x-2">
-                            <a href="{{--{{ route('admin.posts.edit', $book) }}--}}" class="btn btn-blue text-xs">Editar</a>
+                            <a href="{{ route('books.edit', $book) }}" class="btn btn-blue text-xs">Editar</a>
 
                             <form class="delete-form" action=""
                                   method="post">

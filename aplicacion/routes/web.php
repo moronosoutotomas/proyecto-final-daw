@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::redirect('/', 'books')->name('home');
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+//Route::get('/books', [BookController::class, 'index'])->name('books.index');
+//Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+Route::resource('books', BookController::class);
+
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
