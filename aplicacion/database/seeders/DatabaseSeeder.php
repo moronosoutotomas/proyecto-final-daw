@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use App\Models\Edition;
+use App\Models\Review;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,12 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // OJO: este es distinto porque en UserSeeder tenemos un usuario que siempre será el mismo (para hacer login)
-//        $this->call([
-//            UserSeeder::class,
-//        ]);
-
-        $this->call([RoleSeeder::class, BookSeeder::class, EditionSeeder::class, BookshelfSeeder::class]);
+        $this->call([RoleSeeder::class, BookSeeder::class]);
 
         User::factory()->create([
             'name' => 'Tomás Moroño',
@@ -28,7 +25,12 @@ class DatabaseSeeder extends Seeder
 
         User::factory(9)->create();
         Book::factory(49)->create();
+        Edition::factory(20)->create();
+        Review::factory(20)->create();
 
-        $this->call([BookshelfTypeSeeder::class, BookshelfSeeder::class]);
+        $this->call([
+            BookshelfTypeSeeder::class,
+            BookshelfSeeder::class
+        ]);
     }
 }

@@ -32,5 +32,17 @@ class BookshelfTypeSeeder extends Seeder
         $bookshelfType->name = 'leídos';
 
         $bookshelfType->save();
+
+        $bookshelfType = new BookshelfType();
+        $bookshelfType->id = 2;
+        $bookshelfType->name = 'leyendo';
+
+        $bookshelfType->save();
+
+        $bookshelfType = new BookshelfType();
+        $bookshelfType->id = 3;
+        $bookshelfType->name = 'pendientes';
+
+        $bookshelfType->save();
     }
 }

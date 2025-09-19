@@ -13,7 +13,8 @@ class BookSeeder extends Seeder
     public function run(): void
     {
         $book = new Book();
-        $book->isbn = '978849989';
+        $book->isbn10 = '8499890946';
+        $book->isbn13 = '9788499890944';
         $book->title = '1984';
         $book->author = 'George Orwell';
         $book->publication_date = date('d-m-Y', '08061949');

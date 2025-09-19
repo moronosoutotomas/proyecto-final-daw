@@ -18,7 +18,8 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'isbn' => fake()->randomNumber(9, true),
+            'isbn10' => fake()->regexify('^[0-9]{10}$'),
+            'isbn13' => fake()->regexify('^[0-9]{13}$'),
             'title' => fake()->sentence(4, false),
             'author' => fake()->name(),
             'publication_date' => fake()->dateTime(),
