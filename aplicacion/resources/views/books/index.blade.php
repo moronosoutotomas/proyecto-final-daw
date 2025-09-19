@@ -1,4 +1,4 @@
-<x-layouts.public>
+<x-layouts.app>
 
     <div class="mb-4 flex justify-between items-center">
         <flux:breadcrumbs>
@@ -102,4 +102,4 @@
     @endpush
 
 
-</x-layouts.public>
+</x-layouts.app>

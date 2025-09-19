@@ -11,5 +11,5 @@
 }
 
 .card {
-    @apply bg-gray-700 px-6 py-8 shadow-lg rounded;
+    @apply bg-gray-900 px-6 py-8 shadow-lg rounded;
 }
