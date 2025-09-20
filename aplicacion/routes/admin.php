@@ -6,5 +6,5 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('users', UserController::class)->only(['index', 'edit', 'update']);
+Route::resource('users', UserController::class);
 Route::resource('roles', RoleController::class);

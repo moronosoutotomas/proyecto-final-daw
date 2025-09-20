@@ -6,9 +6,9 @@
             <flux:breadcrumbs.item>Usuarios</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        @can('create')
-            <a href="{{--{{ route('admin.users.create', $user) }}--}}" class="btn btn-blue text-xs">Nuevo usuario</a>
-        @endcan
+{{--        @can('create')--}}
+            <a href="{{ route('admin.users.create') }}" class="btn btn-blue text-xs">Nuevo usuario</a>
+{{--        @endcan--}}
     </div>
 
     <div class="relative overflow-x-auto mb-4 rounded-lg">
@@ -18,7 +18,7 @@
                    placeholder="Ingrese aqui un nombre o un email para filtrar...">
         @endcan
 
-        <table class="w-full">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead
                 class="text-center text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-lg">
             <tr>

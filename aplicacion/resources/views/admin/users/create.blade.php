@@ -3,25 +3,25 @@
     <flux:breadcrumbs class="mb-4">
         <flux:breadcrumbs.item>Dashboard</flux:breadcrumbs.item>
         <flux:breadcrumbs.item :href="route('admin.users.index')">Usuarios</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item>Editar</flux:breadcrumbs.item>
+        <flux:breadcrumbs.item>Nuevo</flux:breadcrumbs.item>
     </flux:breadcrumbs>
 
     <section>
         <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Editar usuario</h2>
-            <form action="{{ route('admin.users.update', $user) }}" method="post">
+            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Nuevo usuario</h2>
+            <form action="{{ route('admin.users.store') }}" method="post">
                 @csrf
-                @method('put')
+                @method('post')
 
                 <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
 
                     <div class="sm:col-span-2">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('name', $user->name) }}" placeholder="Escriba el nombre del usuario..." required="">
+                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="sm:col-span-2">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Correo electrónico</label>
-                        <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ old('email', $user->email) }}" placeholder="Escriba el correo del usuario..." required="">
+                        <input type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
                     </div>
                     <div class="w-full">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>

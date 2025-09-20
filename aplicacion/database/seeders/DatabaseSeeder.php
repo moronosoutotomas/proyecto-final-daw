@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([RoleSeeder::class, BookSeeder::class]);
+        $this->call([RoleSeeder::class, BookSeeder::class, EditionSeeder::class]);
 
         User::factory()->create([
             'name' => 'Tomás Moroño',
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory(9)->create();
         Book::factory(49)->create();
-        Edition::factory(20)->create();
+        Edition::factory(19)->create();
         Review::factory(20)->create();
 
         $this->call([
