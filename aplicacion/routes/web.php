@@ -9,15 +9,20 @@ use Livewire\Volt\Volt;
 
 # Rutas de libros
 //Route::redirect('/', 'books')->name('home');
-Route::redirect('/', 'dashboard')->name('home');
+Route::redirect('/', 'homepage')->name('homepage');
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 Route::resource('books', BookController::class);
 
+
+# Rutas varias (estáticas)
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
+
 # Resto de rutas de Laravel
-Route::view('dashboard', 'dashboard')
+Route::view('homepage', 'homepage')
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('homepage');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

@@ -2,7 +2,7 @@ window.string_to_slug = function (str, querySelector) {
     // Eliminar espacios al inicio y final
     str = str.replace(/^\s+|\s+$/g, '');
 
-    // Convertir todo a minúsculas
+    // Convertir a minúsculas
     str = str.toLowerCase();
 
     // Definir caracteres especiales y sus reemplazos

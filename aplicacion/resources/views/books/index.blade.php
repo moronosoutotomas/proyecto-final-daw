@@ -1,15 +1,12 @@
 <x-layouts.app>
 
-    <div class="mb-4 flex justify-between items-center">
-        <flux:breadcrumbs>
-            <flux:breadcrumbs.item :href="route('dashboard')">Dashboard</flux:breadcrumbs.item>
-            <flux:breadcrumbs.item>Libros</flux:breadcrumbs.item>
-        </flux:breadcrumbs>
+    @section('title', 'Contacto')
 
-        <a href="{{ route('books.create') }}" class="btn btn-blue text-xs">Nuevo libro</a>
+    <div class="m-4 flex justify-between items-center">
+        <a href="{{ route('books.create') }}" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">Nuevo libro</a>
     </div>
 
-    <div class="relative overflow-x-auto mb-4 rounded-lg">
+    <div class="mx-4 relative overflow-x-auto mb-4 rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -53,7 +50,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <div class="flex space-x-2">
-                            <a href="{{ route('books.edit', $book) }}" class="btn btn-blue text-xs">Editar</a>
+                            <a href="{{ route('books.edit', $book) }}" class="btn btn-amber text-xs">Editar</a>
 
                             <form class="delete-form" action=""
                                   method="post">
@@ -70,7 +67,7 @@
         </table>
     </div>
 
-    <div class="mt-4">
+    <div class="m-4">
         {{ $books->links() }}
     </div>
 
