@@ -61,7 +61,7 @@ class BookController extends Controller
     }
 
     /**
-     * Almacena un libro de la base de datos.
+     * Elimina un libro de la base de datos.
      */
     public function destroy(Book $book)
     {

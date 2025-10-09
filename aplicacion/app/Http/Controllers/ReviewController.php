@@ -2,65 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReviewRequest;
-use App\Http\Requests\UpdateReviewRequest;
 use App\Models\Review;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Almacena una nueva reseña en la base de datos.
      */
-    public function index()
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'book_id' => 'required|exists:books,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'content' => 'nullable|string|max:1000',
+        ]);
+
+        $validated['user_id'] = auth()->id();
+
+        Review::create($validated);
+
+        return redirect()->back()->with('success', 'Reseña publicada correctamente.');
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreReviewRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Review $review)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Review $review)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateReviewRequest $request, Review $review)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Elimina una reseña de la base de datos.
      */
     public function destroy(Review $review)
     {
-        //
+        // Verificar que el usuario sea el propietario de la reseña
+        if ($review->user_id !== auth()->id()) {
+            return redirect()->back()->with('error', 'No tienes permiso para eliminar esta reseña.');
+        }
+
+        $review->delete();
+
+        return redirect()->back()->with('success', 'Reseña eliminada correctamente.');
     }
 }

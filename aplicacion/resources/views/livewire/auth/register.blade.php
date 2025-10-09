@@ -29,6 +29,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         event(new Registered(($user = User::create($validated))));
 
+        // Asignar rol "lector" por defecto a los nuevos usuarios
+        $user->assignRole('lector');
+
         Auth::login($user);
 
         $this->redirectIntended(route('home', absolute: false), navigate: true);

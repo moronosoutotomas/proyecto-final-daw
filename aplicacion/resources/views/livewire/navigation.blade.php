@@ -6,10 +6,6 @@
                 <a href="{{ url('homepage') }}" class="flex items-center">
                     {{-- Logo --}}
                      <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
-{{--                    <div--}}
-{{--                        class="h-10 w-10 bg-amber-600 rounded-lg flex items-center justify-center text-white font-bold text-lg">--}}
-{{--                        B--}}
-{{--                    </div>--}}
                     <span class="ml-2 text-xl font-semibold text-gray-800">Bookbag</span>
                 </a>
             </div>

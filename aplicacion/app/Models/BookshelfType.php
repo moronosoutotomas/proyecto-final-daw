@@ -11,4 +11,12 @@ class BookshelfType extends Model
     ];
 
     protected $table = 'bookshelf_types';
+
+    /**
+     * Relaciones
+     */
+    public function bookshelves()
+    {
+        return $this->hasMany(Bookshelf::class);
+    }
 }

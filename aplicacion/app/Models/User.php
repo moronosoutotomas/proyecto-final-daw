@@ -61,18 +61,15 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function bookshelf()
+    /**
+     * Relaciones
+     */
+    public function bookshelves()
     {
-        return $this->hasOne(Bookshelf::class);
-
-//        pa sacar el user + sus estanterias habria que hacer esto (en algún lao, no aqui)
-//        $user = User::where('id', 1)
-//            ->with('bookshelf')
-//            ->first();
-//        return $user;
+        return $this->hasMany(Bookshelf::class);
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }

@@ -22,4 +22,12 @@ class Edition extends Model
         'language',
         'translator'
     ];
+
+    /**
+     * Relaciones
+     */
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

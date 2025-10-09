@@ -13,20 +13,28 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $role1 = Role::create(['name' => 'administrador']);
-        $role2 = Role::create(['name' => 'bibliotecario']);
-        $role3= Role::create(['name' => 'lector']);
-        $role4 = Role::create(['name' => 'invitado']);
+        // Crear roles
+        $administrador = Role::create(['name' => 'administrador']);
+        $bibliotecario = Role::create(['name' => 'bibliotecario']);
+        $lector = Role::create(['name' => 'lector']);
 
-        Permission::create(['name' => 'admin.home'])->syncRoles([$role1, $role2]);
+        // Permisos de administración (solo administrador)
+        Permission::create(['name' => 'admin.access'])->assignRole($administrador);
+        Permission::create(['name' => 'admin.users.manage'])->assignRole($administrador);
+        Permission::create(['name' => 'admin.roles.manage'])->assignRole($administrador);
 
-        Permission::create(['name' => 'admin.users.index'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.users.edit'])->syncRoles([$role1]);
-        Permission::create(['name' => 'admin.users.update'])->syncRoles([$role1]);
+        // Permisos de gestión de libros (administrador y bibliotecario)
+        Permission::create(['name' => 'books.create'])->syncRoles([$administrador, $bibliotecario]);
+        Permission::create(['name' => 'books.edit'])->syncRoles([$administrador, $bibliotecario]);
+        Permission::create(['name' => 'books.delete'])->syncRoles([$administrador, $bibliotecario]);
 
-        Permission::create(['name' => 'admin.books.index'])->syncRoles([$role1, $role2, $role3, $role4]);
-        Permission::create(['name' => 'admin.books.create'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'admin.books.edit'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'admin.books.destroy'])->syncRoles([$role1, $role2]);
+        // Permisos de gestión de ediciones (administrador y bibliotecario)
+        Permission::create(['name' => 'editions.create'])->syncRoles([$administrador, $bibliotecario]);
+        Permission::create(['name' => 'editions.edit'])->syncRoles([$administrador, $bibliotecario]);
+        Permission::create(['name' => 'editions.delete'])->syncRoles([$administrador, $bibliotecario]);
+
+        // Permisos de interacción (administrador, bibliotecario y lector)
+        Permission::create(['name' => 'reviews.create'])->syncRoles([$administrador, $bibliotecario, $lector]);
+        Permission::create(['name' => 'bookshelves.manage'])->syncRoles([$administrador, $bibliotecario, $lector]);
     }
 }
