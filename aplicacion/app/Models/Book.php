@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Book extends Model
 {
@@ -21,17 +23,17 @@ class Book extends Model
     /**
      * Relaciones
      */
-    public function reviews()
+    public function reviews(): HasMany|Book
     {
         return $this->hasMany(Review::class);
     }
 
-    public function editions()
+    public function editions(): HasMany|Book
     {
         return $this->hasMany(Edition::class);
     }
 
-    public function bookshelves()
+    public function bookshelves(): BelongsToMany
     {
         return $this->belongsToMany(Bookshelf::class, 'book_bookshelf');
     }

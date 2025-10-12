@@ -8,7 +8,7 @@ use Livewire\Volt\Volt;
 
 # Página principal de la aplicación
 Route::view('homepage', 'homepage')->name('home');
-//Route::redirect('/', 'homepage')->name('home');
+Route::redirect('/', 'homepage')->name('home');
 
 # Rutas públicas
 Route::get('/books', [BookController::class, 'index'])->name('books.index');

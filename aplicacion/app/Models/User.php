@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -16,7 +17,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
 
     /**
-     * The attributes that are mass assignable.
+     * Atributos sujetos a asignación masica.
      *
      * @var list<string>
      */
@@ -27,7 +28,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Atributos que deben ser ocultados en caso de serialización.
      *
      * @var list<string>
      */
@@ -37,7 +38,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Obtención de atributos que deben ser casteados.
      *
      * @return array<string, string>
      */
@@ -50,7 +51,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's initials
+     * Obtención de las iniciales del usuario
      */
     public function initials(): string
     {
@@ -64,12 +65,12 @@ class User extends Authenticatable
     /**
      * Relaciones
      */
-    public function bookshelves()
+    public function bookshelves(): User|HasMany
     {
         return $this->hasMany(Bookshelf::class);
     }
 
-    public function reviews()
+    public function reviews(): User|HasMany
     {
         return $this->hasMany(Review::class);
     }

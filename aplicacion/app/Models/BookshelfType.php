@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BookshelfType extends Model
 {
@@ -15,7 +16,7 @@ class BookshelfType extends Model
     /**
      * Relaciones
      */
-    public function bookshelves()
+    public function bookshelves(): BookshelfType|HasMany
     {
         return $this->hasMany(Bookshelf::class);
     }
