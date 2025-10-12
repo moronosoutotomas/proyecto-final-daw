@@ -6,17 +6,17 @@ use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-# La que será la página principal de la aplicación
-//Route::view('/', 'homepage')->name('homepage');
+# Página principal de la aplicación
+Route::view('homepage', 'homepage')->name('home');
+//Route::redirect('/', 'homepage')->name('home');
 
-# Rutas de libros
-Route::redirect('/', 'homepage')->name('home');
-
-// Rutas públicas de libros
+# Rutas públicas
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
 
-// Rutas de gestión de libros (solo administrador y bibliotecario)
+# Rutas de gestión de libros (solo administrador y bibliotecario)
 Route::middleware(['auth', 'role:administrador|bibliotecario'])->group(function () {
     Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
@@ -25,18 +25,9 @@ Route::middleware(['auth', 'role:administrador|bibliotecario'])->group(function 
     Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 });
 
-# Rutas varias (estáticas)
-Route::view('/about', 'about')->name('about');
-Route::view('/contact', 'contact')->name('contact');
-
-# Resto de rutas de Laravel
-Route::view('homepage', 'homepage')
-    ->middleware(['auth', 'verified'])
-    ->name('homepage');
-
-// Rutas para usuarios autenticados (lector, bibliotecario, administrador)
+# Rutas para usuarios autenticados (lector, bibliotecario, administrador)
 Route::middleware(['auth', 'role:lector|bibliotecario|administrador'])->group(function () {
-    # Rutas de reviews (crear y eliminar propias)
+    # Rutas de reviews
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
