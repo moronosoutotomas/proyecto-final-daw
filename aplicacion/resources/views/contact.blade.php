@@ -2,27 +2,27 @@
 
     @section('title', 'Contacto')
 
-    <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-4xl mx-auto">
             <!-- Encabezado -->
             <div class="text-center mb-12">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">Contáctanos</h1>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-400 mb-4">Contáctanos</h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                     ¿Tes algunha pregunta, suxerencia ou precisas ayuda? Estaremos encantades de axudarte.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Formulario de contacto -->
-                <div class="bg-white shadow rounded-lg p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Envíanos unha mensaxe</h2>
+                <!-- Formulario de contacto TODO: fondo rgb(104 80 107 / 10%) -->
+                <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-6">Envíanos unha mensaxe</h2>
 
                     <form action="#" method="POST" class="space-y-6">
                         @csrf
 
                         <!-- Nombre -->
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
                                 Nome completo *
                             </label>
                             <input
@@ -30,13 +30,13 @@
                                 id="name"
                                 name="name"
                                 required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:border-gray-700 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
                                 placeholder="Seu nome">
                         </div>
 
                         <!-- Email -->
                         <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
                                 Enderezo electrónico *
                             </label>
                             <input
@@ -44,20 +44,27 @@
                                 id="email"
                                 name="email"
                                 required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
                                 placeholder="seu@enderezo.com">
                         </div>
 
                         <!-- Asunto -->
+                        {{--
+                        TODO: text-pieces editor
+                        bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+
+w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300
+                        --}}
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="subject"
+                                   class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
                                 Asunto *
                             </label>
                             <select
                                 id="subject"
                                 name="subject"
                                 required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300">
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300">
                                 <option value="">Selecciona un asunto</option>
                                 <option value="support">Soporte técnico</option>
                                 <option value="suggestion">Suxerencia</option>
@@ -68,7 +75,8 @@
 
                         <!-- Mensaje -->
                         <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                            <label for="message"
+                                   class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
                                 Mensaxe *
                             </label>
                             <textarea
@@ -76,7 +84,7 @@
                                 name="message"
                                 rows="5"
                                 required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
                                 placeholder="Escribe a túa mensaxe aquí..."></textarea>
                         </div>
 
@@ -94,8 +102,9 @@
                 <!-- Información de contacto -->
                 <div class="space-y-6">
                     <!-- Información general -->
-                    <div class="bg-white shadow rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Información de contacto</h2>
+                    <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-4">Información de
+                            contacto</h2>
 
                         <div class="space-y-4">
                             <!-- Email -->
@@ -108,9 +117,9 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Email</h3>
-                                    <p class="text-sm text-gray-600">contacto@bookbag.com</p>
-                                    <p class="text-sm text-gray-600">soporte@bookbag.com</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-gray-400">Email</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">contacto@bookbag.com</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">soporte@bookbag.com</p>
                                 </div>
                             </div>
 
@@ -124,8 +133,8 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Teléfono</h3>
-                                    <p class="text-sm text-gray-600">+34 123 45 67 89</p>
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-gray-400">Teléfono</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">+34 123 45 67 89</p>
                                 </div>
                             </div>
 
@@ -141,8 +150,8 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Dirección</h3>
-                                    <p class="text-sm text-gray-600">
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-gray-400">Dirección</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         C/ Martínez Padín nº 10<br>
                                         Tui, Pontevedra 0800<br>
                                         España
@@ -160,8 +169,9 @@
                                     </svg>
                                 </div>
                                 <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-gray-900">Horario de atención</h3>
-                                    <p class="text-sm text-gray-600">
+                                    <h3 class="text-sm font-medium text-gray-900 dark:text-gray-400">Horario de
+                                        atención</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
                                         Lunes a Venres: 9:00 - 18:00<br>
                                         Sábados e domingos: Pechado
                                     </p>
@@ -171,25 +181,30 @@
                     </div>
 
                     <!-- FAQ rápida -->
-                    <div class="bg-white shadow rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-4">Preguntas frecuentes</h2>
+                    <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-4">Preguntas
+                            frecuentes</h2>
 
                         <div class="space-y-3">
                             <div>
-                                <h3 class="font-medium text-gray-900">¿Cómo me rexistro na plataforma?</h3>
-                                <p class="text-sm text-gray-600 mt-1">Fai clic en "Rexístrate" na esquina superior
+                                <h3 class="font-medium text-gray-900 dark:text-gray-400">¿Cómo me rexistro na
+                                    plataforma?</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Fai clic en "Rexístrate" na
+                                    esquina superior
                                     dereita e completa o formulario.</p>
                             </div>
 
                             <div>
-                                <h3 class="font-medium text-gray-900">¿É gratuita a plataforma?</h3>
-                                <p class="text-sm text-gray-600 mt-1">Sí, ofrecemos acceso gratuito a tódo-los nosos
+                                <h3 class="font-medium text-gray-900 dark:text-gray-400">¿É gratuita a plataforma?</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Sí, ofrecemos acceso gratuito a
+                                    tódo-los nosos
                                     libros e recursos.</p>
                             </div>
 
                             <div>
-                                <h3 class="font-medium text-gray-900">¿Podo suxerir libros?</h3>
-                                <p class="text-sm text-gray-600 mt-1">Evidentemente! Usa o formulario de contacto para
+                                <h3 class="font-medium text-gray-900 dark:text-gray-400">¿Podo suxerir libros?</h3>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Evidentemente! Usa o formulario
+                                    de contacto para
                                     enviárno-las túas suxerencias.</p>
                             </div>
                         </div>
