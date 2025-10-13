@@ -1,4 +1,4 @@
-<nav class="shadow-lg border-b border-gray-200">
+<nav class="shadow-lg border-b border-gray-200 dark:text-white dark:border-gray-700 dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo izquierda -->
@@ -6,7 +6,7 @@
                 <a href="{{ url('homepage') }}" class="flex items-center">
                     {{-- Logo --}}
                      <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
-                    <span class="ml-2 text-xl font-semibold text-gray-800">Bookbag</span>
+                    <span class="ml-2 text-xl font-semibold text-gray-800 dark:text-white">Bookbag</span>
                 </a>
             </div>
 
@@ -14,19 +14,19 @@
             <div class="hidden md:flex flex-1 justify-center">
                 <div class="flex space-x-8">
                     <a href="{{ url('homepage') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('homepage') ? 'text-amber-600 border-b-2 border-amber-600' : '' }}">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('homepage') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Inicio
                     </a>
                     <a href="{{ url('books') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }}">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">  
                         Libros
                     </a>
                     <a href="{{ url('about') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }}">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Sobre nós
                     </a>
                     <a href="{{ url('contact') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('contact') ? 'text-amber-600 border-b-2 border-amber-600' : '' }}">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('contact') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Contacto
                     </a>
                 </div>
@@ -36,11 +36,11 @@
             <div class="flex items-center space-x-4">
                 @guest
                     <a href="{{ route('login') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
                         Login
                     </a>
                     <a href="{{ route('register') }}"
-                       class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                       class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
                         Rexístrate
                     </a>
                 @endguest
@@ -48,7 +48,7 @@
                 @auth
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" @click.away="open = false"
-                                class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out">
+                                class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
                             <div class="h-8 w-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-semibold">
                                 {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                             </div>
@@ -65,22 +65,22 @@
                              x-transition:leave="transition ease-in duration-75"
                              x-transition:leave-start="transform opacity-100 scale-100"
                              x-transition:leave-end="transform opacity-0 scale-95"
-                             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+                             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
                              style="display: none;">
                             <div class="py-1">
                                 <a href="{{ route('settings.profile') }}" 
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150">
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150 dark:text-white">
                                     Mi perfil
                                 </a>
                                 <a href="{{ route('settings.password') }}" 
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150">
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150 dark:text-white">
                                     Cambiar contraseña
                                 </a>
                                 <div class="border-t border-gray-100"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" 
-                                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-150">
+                                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-150 dark:text-white">
                                         Cerrar sesión
                                     </button>
                                 </form>
@@ -93,7 +93,7 @@
             <!-- Menú móvil (hamburguesa) -->
             <div class="md:hidden">
                 <button type="button"
-                        class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-amber-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500"
+                            class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-amber-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 dark:bg-gray-900 dark:text-white dark:hover:text-amber-600 dark:hover:bg-gray-800"
                         aria-controls="mobile-menu"
                         aria-expanded="false">
                     <span class="sr-only">Abri-lo menú principal</span>
@@ -109,48 +109,48 @@
 
         <!-- Menú móvil (oculto por defecto) -->
         <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <a href="{{ url('/') }}"
                    class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('homepage') ? 'text-amber-600 bg-amber-50' : '' }}">
                     Inicio
                 </a>
                 <a href="{{ url('/books') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books*') ? 'text-amber-600 bg-amber-50' : '' }}">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Libros
                 </a>
                 <a href="{{ url('/about') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about*') ? 'text-amber-600 bg-amber-50' : '' }}">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Sobre nós
                 </a>
                 
                 <div class="border-t border-gray-200 pt-4 pb-3">
                     @guest
                         <a href="{{ route('login') }}"
-                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium">
+                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white">
                             Login
                         </a>
                         <a href="{{ route('register') }}"
-                           class="bg-amber-600 hover:bg-amber-700 text-white block px-3 py-2 rounded-md text-base font-medium mt-2 text-center">
+                           class="bg-amber-600 hover:bg-amber-700 text-white block px-3 py-2 rounded-md text-base font-medium mt-2 text-center dark:text-white">
                             Rexístrate
                         </a>
                     @endguest
 
                     @auth
-                        <div class="px-3 py-2 text-base font-medium text-gray-900">
+                        <div class="px-3 py-2 text-base font-medium text-gray-900 dark:text-white">
                             {{ auth()->user()->name }}
                         </div>
                         <a href="{{ route('settings.profile') }}"
-                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium">
+                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white">
                             Mi perfil
                         </a>
                         <a href="{{ route('settings.password') }}"
-                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium">
+                           class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white">
                             Cambiar contraseña
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="mt-2">
                             @csrf
                             <button type="submit"
-                                    class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium">
+                                    class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600 dark:hover:bg-red-900 dark:bg-red-900">
                                 Cerrar sesión
                             </button>
                         </form>

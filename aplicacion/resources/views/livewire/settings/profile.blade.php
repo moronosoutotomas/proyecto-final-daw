@@ -69,46 +69,65 @@ new class extends Component {
     }
 }; ?>
 
-<section class="w-full">
-    @include('partials.settings-heading')
-
-    <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
-        <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
+<x-settings.layout heading="Perfil" subheading="Actualiza tu nombre y dirección de correo electrónico">
+        <form wire:submit="updateProfileInformation" class="space-y-6">
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Nombre
+                </label>
+                <input wire:model="name" 
+                       type="text" 
+                       id="name"
+                       required 
+                       autofocus 
+                       autocomplete="name"
+                       class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+                @error('name') <span class="text-sm text-red-600 dark:text-red-400 mt-1">{{ $message }}</span> @enderror
+            </div>
 
             <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
+                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Correo electrónico
+                </label>
+                <input wire:model="email" 
+                       type="email" 
+                       id="email"
+                       required 
+                       autocomplete="email"
+                       class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+                @error('email') <span class="text-sm text-red-600 dark:text-red-400 mt-1">{{ $message }}</span> @enderror
 
                 @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail &&! auth()->user()->hasVerifiedEmail())
-                    <div>
-                        <flux:text class="mt-4">
-                            {{ __('Your email address is unverified.') }}
-
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
-                                {{ __('Click here to re-send the verification email.') }}
-                            </flux:link>
-                        </flux:text>
+                    <div class="mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md">
+                        <p class="text-sm text-yellow-800 dark:text-yellow-300">
+                            Tu correo electrónico no está verificado.
+                            <button type="button" wire:click.prevent="resendVerificationNotification" class="underline hover:text-yellow-900 dark:hover:text-yellow-200">
+                                Haz click aquí para reenviar el correo de verificación.
+                            </button>
+                        </p>
 
                         @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
-                                {{ __('A new verification link has been sent to your email address.') }}
-                            </flux:text>
+                            <p class="mt-2 text-sm font-medium text-green-600 dark:text-green-400">
+                                Se ha enviado un nuevo enlace de verificación a tu correo.
+                            </p>
                         @endif
                     </div>
                 @endif
             </div>
 
-            <div class="flex items-center gap-4">
-                <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
-                </div>
+            <div class="flex items-center gap-4 pt-4">
+                <button type="submit" 
+                        class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                    Guardar cambios
+                </button>
 
-                <x-action-message class="me-3" on="profile-updated">
-                    {{ __('Saved.') }}
+                <x-action-message class="text-sm text-green-600 dark:text-green-400 font-medium" on="profile-updated">
+                    Guardado correctamente.
                 </x-action-message>
             </div>
         </form>
 
-        <livewire:settings.delete-user-form />
+        <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <livewire:settings.delete-user-form />
+        </div>
     </x-settings.layout>
-</section>

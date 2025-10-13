@@ -37,42 +37,57 @@ new class extends Component {
     }
 }; ?>
 
-<section class="w-full">
-    @include('partials.settings-heading')
+<x-settings.layout heading="Cambiar contraseña" subheading="Asegúrate de usar una contraseña larga y segura para mantener tu cuenta protegida">
+        <form method="POST" wire:submit="updatePassword" class="space-y-6">
+            <div>
+                <label for="current_password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Contraseña actual
+                </label>
+                <input wire:model="current_password" 
+                       type="password" 
+                       id="current_password"
+                       required 
+                       autocomplete="current-password"
+                       class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+                @error('current_password') <span class="text-sm text-red-600 dark:text-red-400 mt-1 block">{{ $message }}</span> @enderror
+            </div>
 
-    <x-settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
-        <form method="POST" wire:submit="updatePassword" class="mt-6 space-y-6">
-            <flux:input
-                wire:model="current_password"
-                :label="__('Current password')"
-                type="password"
-                required
-                autocomplete="current-password"
-            />
-            <flux:input
-                wire:model="password"
-                :label="__('New password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
-            <flux:input
-                wire:model="password_confirmation"
-                :label="__('Confirm Password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Nueva contraseña
+                </label>
+                <input wire:model="password" 
+                       type="password" 
+                       id="password"
+                       required 
+                       autocomplete="new-password"
+                       class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+                @error('password') <span class="text-sm text-red-600 dark:text-red-400 mt-1 block">{{ $message }}</span> @enderror
+                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Mínimo 8 caracteres</p>
+            </div>
 
-            <div class="flex items-center gap-4">
-                <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
-                </div>
+            <div>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Confirmar nueva contraseña
+                </label>
+                <input wire:model="password_confirmation" 
+                       type="password" 
+                       id="password_confirmation"
+                       required 
+                       autocomplete="new-password"
+                       class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500" />
+                @error('password_confirmation') <span class="text-sm text-red-600 dark:text-red-400 mt-1 block">{{ $message }}</span> @enderror
+            </div>
 
-                <x-action-message class="me-3" on="password-updated">
-                    {{ __('Saved.') }}
+            <div class="flex items-center gap-4 pt-4">
+                <button type="submit" 
+                        class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                    Cambiar contraseña
+                </button>
+
+                <x-action-message class="text-sm text-green-600 dark:text-green-400 font-medium" on="password-updated">
+                    Contraseña actualizada.
                 </x-action-message>
             </div>
         </form>
     </x-settings.layout>
-</section>
