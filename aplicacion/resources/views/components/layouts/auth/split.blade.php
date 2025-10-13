@@ -15,13 +15,21 @@
                 </a>
 
                 @php
-                    [$message, $author] = str(Illuminate\Foundation\Inspiring::quotes()->random())->explode('-');
+                    $quotes = [
+                        ['quote' => 'Un libro abierto es un cerebro que habla; cerrado, un amigo que espera; olvidado, un alma que perdona; destruido, un corazón que llora.', 'author' => 'Proverbio hindú'],
+                        ['quote' => 'La lectura es a la mente lo que el ejercicio es al cuerpo.', 'author' => 'Joseph Addison'],
+                        ['quote' => 'Un libro es un regalo que puedes abrir una y otra vez.', 'author' => 'Garrison Keillor'],
+                        ['quote' => 'Los libros son amigos que nunca decepcionan.', 'author' => 'Thomas Carlyle'],
+                        ['quote' => 'Leer es como viajar sin la incomodidad del equipaje.', 'author' => 'Emilio Salgari'],
+                        ['quote' => 'Cuantos más libros lees, menos temas te serán ajenos.', 'author' => 'Carlos Ruiz Zafón'],
+                    ];
+                    $randomQuote = $quotes[array_rand($quotes)];
                 @endphp
 
                 <div class="relative z-20 mt-auto">
-                    <blockquote class="space-y-2">
-                        <flux:heading size="lg">&ldquo;{{ trim($message) }}&rdquo;</flux:heading>
-                        <footer><flux:heading>{{ trim($author) }}</flux:heading></footer>
+                    <blockquote class="space-y-3">
+                        <flux:heading size="lg" class="leading-relaxed">&ldquo;{{ $randomQuote['quote'] }}&rdquo;</flux:heading>
+                        <footer><flux:subheading class="text-zinc-400">{{ $randomQuote['author'] }}</flux:subheading></footer>
                     </blockquote>
                 </div>
             </div>
