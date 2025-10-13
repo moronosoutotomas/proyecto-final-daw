@@ -17,7 +17,7 @@ class BookSeeder extends Seeder
         $book->isbn13 = '9788499890944';
         $book->title = '1984';
         $book->author = 'George Orwell';
-        $book->publication_date = date('d-m-Y', '08061949');
+        $book->publication_date = '1949-06-08';
         $book->avg_rating = 5;
 
         $book->save();

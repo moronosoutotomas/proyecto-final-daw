@@ -15,24 +15,37 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([RoleSeeder::class, BookSeeder::class, EditionSeeder::class]);
+        // IMPORTANTE: BookshelfTypeSeeder debe ejecutarse antes de crea un usuario
+        // porque UserObserver creará estanterías automáticamente
+        $this->call([
+            RoleSeeder::class,
+            BookshelfTypeSeeder::class,
+            BookSeeder::class,
+            EditionSeeder::class
+        ]);
 
-        // Usuario administrador
+        // administrador
         User::factory()->create([
             'name' => 'Tomás Moroño',
             'email' => 'tomas@dominio.com',
             'password' => bcrypt('abc123.')
         ])->assignRole('administrador');
 
-        // Usuario bibliotecario
+        // bibliotecario
         User::factory()->create([
-            'name' => 'Bibliotecario User',
+            'name' => 'Bibliotecario Default',
             'email' => 'bibliotecario@dominio.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('abc123.')
         ])->assignRole('bibliotecario');
 
-        // Usuarios lectores (8 usuarios)
-        User::factory()->count(8)->create()->each(function ($user) {
+        // lector
+        User::factory()->create([
+            'name' => 'Lector Default',
+            'email' => 'lector@dominio.com',
+            'password' => bcrypt('abc123.')
+        ])->assignRole('lector');
+
+        User::factory()->count(7)->create()->each(function ($user) {
             $user->assignRole('lector');
         });
 
@@ -40,9 +53,7 @@ class DatabaseSeeder extends Seeder
         Edition::factory(19)->create();
         Review::factory(20)->create();
 
-        $this->call([
-            BookshelfTypeSeeder::class,
-            BookshelfSeeder::class
-        ]);
+        // BookshelfSeeder añade libros a las estanterías de los usuarios mock
+        $this->call([BookshelfSeeder::class]);
     }
 }

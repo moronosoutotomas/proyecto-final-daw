@@ -12,37 +12,19 @@ class BookshelfTypeSeeder extends Seeder
      */
     public function run(): void
     {
-//        BookshelfType::factory()->create([
-//            'id' => 1,
-//            'name' => 'leídos'
-//        ]);
-//
-//        BookshelfType::factory()->create([
-//            'id' => 2,
-//            'name' => 'leyendo'
-//        ]);
-//
-//        BookshelfType::factory()->create([
-//            'id' => 3,
-//            'name' => 'pendientes'
-//        ]);
+        BookshelfType::create([
+            'id' => 1,
+            'name' => 'leídos'
+        ]);
 
-        $bookshelfType = new BookshelfType();
-        $bookshelfType->id = 1;
-        $bookshelfType->name = 'leídos';
+        BookshelfType::create([
+            'id' => 2,
+            'name' => 'leyendo'
+        ]);
 
-        $bookshelfType->save();
-
-        $bookshelfType = new BookshelfType();
-        $bookshelfType->id = 2;
-        $bookshelfType->name = 'leyendo';
-
-        $bookshelfType->save();
-
-        $bookshelfType = new BookshelfType();
-        $bookshelfType->id = 3;
-        $bookshelfType->name = 'pendientes';
-
-        $bookshelfType->save();
+        BookshelfType::create([
+            'id' => 3,
+            'name' => 'pendientes'
+        ]);
     }
 }

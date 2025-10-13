@@ -14,15 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')
                 ->constrained('users', 'id')
-                ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('book_id')
-                ->nullable()
-                ->constrained('books', 'id')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreignId('bookshelf_type_id')
                 ->constrained('bookshelf_types', 'id')
                 ->onUpdate('cascade');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
