@@ -29,8 +29,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Book::create($request->all());
-        return redirect()->route('books.index');
+        $validated = $request->validate([
+            'isbn10' => 'nullable|string|min:10|max:10|unique:books,isbn10',
+            'isbn13' => 'nullable|string|min:13|max:13|unique:books,isbn13',
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publication_date' => 'nullable|date',
+        ]);
+
+        Book::create($validated);
+        
+        return redirect()->route('books.index')
+            ->with('success', 'Libro creado correctamente.');
     }
 
     /**
@@ -38,6 +48,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
+        $book->load(['reviews.user', 'editions', 'bookshelves']);
         return view('books.show', compact('book'));
     }
 
@@ -54,10 +65,18 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        # TODO: revisar si funciona con la Request, sinó validar manualmente
-        $book->update($request->all());
-        $book->save();
-        return redirect()->route('books.show', $book);
+        $validated = $request->validate([
+            'isbn10' => 'nullable|string|min:10|max:10|unique:books,isbn10,' . $book->id,
+            'isbn13' => 'nullable|string|min:13|max:13|unique:books,isbn13,' . $book->id,
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publication_date' => 'nullable|date',
+        ]);
+
+        $book->update($validated);
+        
+        return redirect()->route('books.show', $book)
+            ->with('success', 'Libro actualizado correctamente.');
     }
 
     /**
@@ -66,6 +85,7 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')
+            ->with('success', 'Libro eliminado correctamente.');
     }
 }
