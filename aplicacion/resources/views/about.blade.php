@@ -8,7 +8,7 @@
                 <h1 class="text-3xl font-bold mb-8">Sobre nós</h1>
             </div>
 
-            <div class="shadow rounded-lg p-6 dark:bg-amber-900/10">
+            <div class="shadow rounded-lg p-6 dark:bg-card">
                 <p class="dark:text-gray-400 mb-4">
                     Benvido á nosa plataforma. Esta aplicación naceu porque blablabla...
                 </p>

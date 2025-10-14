@@ -13,8 +13,8 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Formulario de contacto TODO: fondo rgb(104 80 107 / 10%) -->
-                <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                <!-- Formulario de contacto -->
+                <div class="shadow dark:shadow-gray-900 dark:text-gray-400 rounded-lg p-6 dark:bg-card">
                     <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-6">Envíanos unha mensaxe</h2>
 
                     <form action="#" method="POST" class="space-y-6">
@@ -49,12 +49,6 @@
                         </div>
 
                         <!-- Asunto -->
-                        {{--
-                        TODO: text-pieces editor
-                        bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
-
-w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300
-                        --}}
                         <div>
                             <label for="subject"
                                    class="block text-sm font-medium text-gray-700 dark:text-gray-400 mb-2">
@@ -64,7 +58,7 @@ w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 d
                                 id="subject"
                                 name="subject"
                                 required
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300">
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300 [&>option]:bg-white [&>option]:dark:bg-gray-800 [&>option]:text-gray-900 [&>option]:dark:text-gray-300">
                                 <option value="">Selecciona un asunto</option>
                                 <option value="support">Soporte técnico</option>
                                 <option value="suggestion">Suxerencia</option>
@@ -102,7 +96,7 @@ w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 d
                 <!-- Información de contacto -->
                 <div class="space-y-6">
                     <!-- Información general -->
-                    <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                    <div class="shadow dark:shadow-gray-900 dark:text-gray-400 rounded-lg p-6 dark:bg-card">
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-4">Información de
                             contacto</h2>
 
@@ -181,7 +175,7 @@ w-full px-3 py-2 border border-gray-300 rounded-md shadow dark:shadow-gray-900 d
                     </div>
 
                     <!-- FAQ rápida -->
-                    <div class="shadow dark:shadow-gray-900 dark:bg-amber-900/10 dark:text-gray-400 rounded-lg p-6">
+                        <div class="shadow dark:shadow-gray-900 dark:text-gray-400 rounded-lg p-6 dark:bg-card">
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-400 mb-4">Preguntas
                             frecuentes</h2>
 
