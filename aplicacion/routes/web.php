@@ -11,8 +11,6 @@ Route::view('homepage', 'homepage')->name('home');
 Route::redirect('/', 'homepage');
 
 # Rutas públicas
-Route::get('/books', [BookController::class, 'index'])->name('books.index');
-Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
 
@@ -24,6 +22,10 @@ Route::middleware(['auth', 'role:administrador|bibliotecario'])->group(function 
     Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
     Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
 });
+
+# Rutas públicas de libros (deben ir después de las específicas como /books/create)
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
 # Rutas para usuarios autenticados (lector, bibliotecario, administrador)
 Route::middleware(['auth', 'role:lector|bibliotecario|administrador'])->group(function () {
