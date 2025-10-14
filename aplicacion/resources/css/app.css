@@ -27,6 +27,8 @@
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
+    
+    --color-card-bg: rgba(104, 80, 107, 0.1);
 }
 
 @layer theme {
