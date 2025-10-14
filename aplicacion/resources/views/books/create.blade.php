@@ -1,46 +1,131 @@
 <x-layouts.app>
+    @section('title', 'Nuevo libro')
 
-    <flux:breadcrumbs class="mb-4">
-        <flux:breadcrumbs.item>Dashboard</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item :href="route('books.index')">Libros</flux:breadcrumbs.item>
-        <flux:breadcrumbs.item>Nuevo</flux:breadcrumbs.item>
-    </flux:breadcrumbs>
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Breadcrumbs -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                    <li><a href="{{ route('home') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Inicio</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li><a href="{{ route('books.index') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Libros</a></li>
+                    <li><span class="mx-2">/</span></li>
+                    <li class="text-gray-900 dark:text-white">Novo</li>
+                </ol>
+            </nav>
 
-    <section>
-        <div class="max-w-2xl px-4 py-8 mx-auto lg:py-16">
-            <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Nuevo libro</h2>
-            <form action="{{ route('books.store') }}" method="post">
-                @csrf
+            <!-- Form -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div class="px-6 py-8">
+                    <div class="mb-8">
+                        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Novo libro</h1>
+                        <p class="mt-2 text-gray-600 dark:text-gray-400">Engade un novo libro</p>
+                    </div>
 
-                <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
-                    <div class="sm:col-span-2">
-                        <label for="isbn10" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ISBN 10</label>
-                        <input type="text" name="isbn10" id="isbn10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-                    </div>
-                    <div class="w-full">
-                        <label for="isbn13" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ISBN 13</label>
-                        <input type="text" name="isbn13" id="isbn13" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-                    </div>
-                    <div class="w-full">
-                        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Título</label>
-                        <input type="text" name="title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-                    </div>
-                    <div class="w-full">
-                        <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Autor</label>
-                        <input type="text" name="author" id="author" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required="">
-                    </div>
+                    <form action="{{ route('books.store') }}" method="POST">
+                        @csrf
+
+                        <div class="space-y-6">
+                            <!-- ISBN Fields -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="isbn10" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        ISBN-10
+                                    </label>
+                                    <input type="text" 
+                                           name="isbn10" 
+                                           id="isbn10" 
+                                           value="{{ old('isbn10') }}"
+                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('isbn10') border-red-500 @enderror"
+                                           placeholder="978-84-376-0494-7">
+                                    @error('isbn10')
+                                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div>
+                                    <label for="isbn13" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                        ISBN-13
+                                    </label>
+                                    <input type="text" 
+                                           name="isbn13" 
+                                           id="isbn13" 
+                                           value="{{ old('isbn13') }}"
+                                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('isbn13') border-red-500 @enderror"
+                                           placeholder="978-84-376-0494-7">
+                                    @error('isbn13')
+                                        <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Title -->
+                            <div>
+                                <label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Título *
+                                </label>
+                                <input type="text" 
+                                       name="title" 
+                                       id="title" 
+                                       value="{{ old('title') }}"
+                                       required
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('title') border-red-500 @enderror"
+                                       placeholder="El título del libro">
+                                @error('title')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <!-- Author -->
+                            <div>
+                                <label for="author" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Autor *
+                                </label>
+                                <input type="text" 
+                                       name="author" 
+                                       id="author" 
+                                       value="{{ old('author') }}"
+                                       required
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('author') border-red-500 @enderror"
+                                       placeholder="Nombre del autor">
+                                @error('author')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <!-- Publication Date -->
+                            <div>
+                                <label for="publication_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Data de publicación
+                                </label>
+                                <input type="date" 
+                                       name="publication_date" 
+                                       id="publication_date" 
+                                       value="{{ old('publication_date') }}"
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('publication_date') border-red-500 @enderror">
+                                @error('publication_date')
+                                    <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="mt-8 flex justify-end space-x-3">
+                            <a href="{{ route('books.index') }}" 
+                               class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+                                Cancelar
+                            </a>
+                            <button type="submit" 
+                                    class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                Engadir
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <button type="submit" class="text-blue-600 inline-flex items-center hover:text-white border border-blue-600 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-900">
-                        Actualizar
-                    </button>
-                    <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        <svg class="w-5 h-5 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
-                        Cancelar
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
-    </section>
-
+    </div>
 </x-layouts.app>
