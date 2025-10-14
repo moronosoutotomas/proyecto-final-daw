@@ -2,12 +2,12 @@
 
     <div class="mb-4 flex justify-between items-center">
         <flux:breadcrumbs>
-            <flux:breadcrumbs.item :href="route('dashboard')">Dashboard</flux:breadcrumbs.item>
+            <flux:breadcrumbs.item :href="route('dashboard')">Inicio</flux:breadcrumbs.item>
             <flux:breadcrumbs.item>Usuarios</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
 {{--        @can('create')--}}
-            <a href="{{ route('admin.users.create') }}" class="btn btn-blue text-xs">Nuevo usuario</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-blue text-xs">Novo usuario</a>
 {{--        @endcan--}}
     </div>
 
@@ -15,7 +15,7 @@
         @can('filter')
             <input wire:model="search"
                    class="p-3 mb-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   placeholder="Ingrese aqui un nombre o un email para filtrar...">
+                   placeholder="Introduce un nome ou un email para filtrar...">
         @endcan
 
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -23,16 +23,16 @@
                 class="text-center text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-lg">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    Id
+                    ID
                 </th>
                 <th scope="col" class="text-left px-6 py-3">
-                    Name
+                    Nome
                 </th>
                 <th scope="col" class="text-left px-6 py-3">
                     Email
                 </th>
                 <th scope="col" class="px-6 py-3" width="10px">
-                    Edit
+                    Editar
                 </th>
             </tr>
             </thead>
@@ -49,8 +49,6 @@
                         {{ $user->email }}
                     </td>
                     <td class="px-6 py-4">
-                        {{--                        <x-button rounded="full" blue label="Edit"/>--}}
-                        {{--                        <x-button rounded="full" red label="Delete"/>--}}
                         <div class="flex space-x-2">
                             <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-blue text-xs">Editar</a>
 
@@ -83,12 +81,12 @@
 
                     Swal.fire({
                         title: "Estás seguro?",
-                        text: "No podrás revertir esto!",
+                        text: "Non poderás revertir isto!",
                         icon: "warning",
                         showCancelButton: true,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Sí, bórralo",
+                        confirmButtonText: "Sí, elimínao",
                         cancelButtonText: "Cancelar"
                     }).then((result) => {
                         if (result.isConfirmed) {
