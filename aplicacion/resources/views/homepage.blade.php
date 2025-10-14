@@ -16,7 +16,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ route('books.index') }}"
                        class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 transform hover:scale-105">
-                        Explorar Libros
+                        Explorar libros
                     </a>
                     <a href="{{ route('about') }}"
                        class="border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-medium transition duration-300">

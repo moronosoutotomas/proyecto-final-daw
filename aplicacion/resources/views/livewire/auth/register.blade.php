@@ -41,10 +41,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
 <div class="flex flex-col gap-6">
     <div class="flex flex-col space-y-2 text-center">
         <flux:heading size="xl" class="text-2xl font-semibold tracking-tight">
-            Crear cuenta
+            Crear conta
         </flux:heading>
         <flux:subheading class="text-sm text-zinc-600 dark:text-zinc-400">
-            Únete a nuestra comunidad de lectores
+            Únete á nosa comunidade de lectores
         </flux:subheading>
     </div>
 
@@ -55,12 +55,12 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Name -->
         <flux:input
             wire:model="name"
-            label="Nombre completo"
+            label="Nome completo"
             type="text"
             required
             autofocus
             autocomplete="name"
-            placeholder="Tu nombre completo"
+            placeholder="O teu nome completo"
         />
 
         <!-- Email Address -->
@@ -70,13 +70,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
             type="email"
             required
             autocomplete="email"
-            placeholder="correo@ejemplo.com"
+            placeholder="correo@exemplo.com"
         />
 
         <!-- Password -->
         <flux:input
             wire:model="password"
-            label="Contraseña"
+            label="Contrasinal"
             type="password"
             required
             autocomplete="new-password"
@@ -87,21 +87,21 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Confirm Password -->
         <flux:input
             wire:model="password_confirmation"
-            label="Confirmar contraseña"
+            label="Confirmar contrasinal"
             type="password"
             required
             autocomplete="new-password"
-            placeholder="Repite tu contraseña"
+            placeholder="Repite o teu contrasinal"
             viewable
         />
 
         <flux:button type="submit" variant="primary" class="w-full mt-2">
-            Registrarse
+            Rexistrarse
         </flux:button>
     </form>
 
     <div class="text-center text-sm text-zinc-600 dark:text-zinc-400">
-        ¿Ya tienes una cuenta?
+        Xa tes unha conta?
         <flux:link :href="route('login')" wire:navigate class="font-medium text-zinc-900 dark:text-zinc-100 hover:underline">
             Inicia sesión
         </flux:link>

@@ -69,19 +69,19 @@
                              style="display: none;">
                             <div class="py-1">
                                 <a href="{{ route('settings.profile') }}" 
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150 dark:text-white">
-                                    Mi perfil
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
+                                    O meu perfil
                                 </a>
                                 <a href="{{ route('settings.password') }}" 
-                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition duration-150 dark:text-white">
-                                    Cambiar contraseña
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
+                                    Cambiar contrasinal
                                 </a>
-                                <div class="border-t border-gray-100"></div>
+                                <div class="border-t border-gray-800"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" 
-                                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-150 dark:text-white">
-                                        Cerrar sesión
+                                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white">
+                                        Pechar sesión
                                     </button>
                                 </form>
                             </div>

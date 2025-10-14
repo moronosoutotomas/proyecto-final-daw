@@ -79,7 +79,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
             Iniciar sesión
         </flux:heading>
         <flux:subheading class="text-sm text-zinc-600 dark:text-zinc-400">
-            Accede a tu biblioteca personal
+            Accede á túa biblioteca persoal
         </flux:subheading>
     </div>
 
@@ -95,30 +95,30 @@ new #[Layout('components.layouts.auth')] class extends Component {
             required
             autofocus
             autocomplete="email"
-            placeholder="correo@ejemplo.com"
+            placeholder="correo@exemplo.com"
         />
 
         <!-- Password -->
         <div class="relative">
             <flux:input
                 wire:model="password"
-                label="Contraseña"
+                label="Contrasinal"
                 type="password"
                 required
                 autocomplete="current-password"
-                placeholder="Tu contraseña"
+                placeholder="O teu contrasinal"
                 viewable
             />
 
             @if (Route::has('password.request'))
                 <flux:link class="absolute end-0 top-0 text-sm font-medium hover:underline" :href="route('password.request')" wire:navigate>
-                    ¿Olvidaste tu contraseña?
+                    Esqueciches o contrasinal?
                 </flux:link>
             @endif
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" label="Recordarme" />
+        <flux:checkbox wire:model="remember" label="Lémbrame" />
 
         <flux:button variant="primary" type="submit" class="w-full mt-2">
             Iniciar sesión
@@ -127,9 +127,9 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     @if (Route::has('register'))
         <div class="text-center text-sm text-zinc-600 dark:text-zinc-400">
-            ¿No tienes una cuenta?
+            Non tes unha conta?
             <flux:link :href="route('register')" wire:navigate class="font-medium text-zinc-900 dark:text-zinc-100 hover:underline">
-                Regístrate
+                Rexístrate
             </flux:link>
         </div>
     @endif

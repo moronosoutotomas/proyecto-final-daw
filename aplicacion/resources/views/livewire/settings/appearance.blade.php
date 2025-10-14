@@ -22,11 +22,11 @@ new class extends Component {
     }
 }; ?>
 
-<x-settings.layout heading="Apariencia" subheading="Personaliza cómo se ve la aplicación">
+<x-settings.layout heading="Aparencia" subheading="Personaliza como se ve a aplicación">
     <form wire:submit="updateTheme" class="space-y-6">
         <div>
             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
-                Tema de la aplicación
+                Tema da aplicación
             </label>
             
             <div class="space-y-3">
@@ -42,7 +42,7 @@ new class extends Component {
                         </svg>
                         <div>
                             <span class="block text-sm font-medium text-gray-900 dark:text-white">Modo claro</span>
-                            <span class="block text-xs text-gray-500 dark:text-gray-400">Diseño con colores claros</span>
+                            <span class="block text-xs text-gray-500 dark:text-gray-400">Deseño con cores claras</span>
                         </div>
                     </div>
                 </label>
@@ -58,8 +58,8 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                         <div>
-                            <span class="block text-sm font-medium text-gray-900 dark:text-white">Modo oscuro</span>
-                            <span class="block text-xs text-gray-500 dark:text-gray-400">Diseño con colores oscuros</span>
+                            <span class="block text-sm font-medium text-gray-900 dark:text-white">Modo escuro</span>
+                            <span class="block text-xs text-gray-500 dark:text-gray-400">Deseño con cores escuras</span>
                         </div>
                     </div>
                 </label>
@@ -75,8 +75,8 @@ new class extends Component {
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                         <div>
-                            <span class="block text-sm font-medium text-gray-900 dark:text-white">Usar configuración del sistema</span>
-                            <span class="block text-xs text-gray-500 dark:text-gray-400">Se adapta a tu sistema operativo</span>
+                            <span class="block text-sm font-medium text-gray-900 dark:text-white">Usar configuración do sistema</span>
+                            <span class="block text-xs text-gray-500 dark:text-gray-400">Adáptase ao teu sistema operativo</span>
                         </div>
                     </div>
                 </label>
@@ -86,7 +86,7 @@ new class extends Component {
         <div class="flex items-center gap-4 pt-4">
             <button type="submit" 
                     class="px-6 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                Guardar preferencia
+                Gardar preferencia
             </button>
 
             <x-action-message class="text-sm text-green-600 dark:text-green-400 font-medium" on="theme-updated">
