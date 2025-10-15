@@ -1,7 +1,7 @@
 <x-layouts.app>
     @section('title', 'Libros')
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Flash Messages -->
             @if(session('success'))
@@ -28,7 +28,7 @@
                         <p class="mt-2 text-gray-600 dark:text-gray-400">Xestiona a túa colección de libros</p>
                     </div>
                     @can('books.create')
-                        <a href="{{ route('books.create') }}" 
+                        <a href="{{ route('books.create') }}"
                            class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -103,18 +103,18 @@
                                     @can('books.edit')
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <a href="{{ route('books.show', $book) }}" 
+                                            <a href="{{ route('books.show', $book) }}"
                                                class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
                                                 Ver
                                             </a>
-                                            <a href="{{ route('books.edit', $book) }}" 
+                                            <a href="{{ route('books.edit', $book) }}"
                                                class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
                                                 Editar
                                             </a>
                                             <form action="{{ route('books.destroy', $book) }}" method="POST" class="inline delete-form">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" 
+                                                <button type="submit"
                                                         class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
                                                     Eliminar
                                                 </button>
@@ -154,11 +154,11 @@
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const forms = document.querySelectorAll('.delete-form');
-                
+
                 forms.forEach(form => {
                     form.addEventListener('submit', (e) => {
                         e.preventDefault();
-                        
+
                         Swal.fire({
                             title: "¿Estás seguro?",
                             text: "Non podrás revertir esta acción",
