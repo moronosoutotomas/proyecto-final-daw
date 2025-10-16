@@ -18,7 +18,7 @@
                         Inicio
                     </a>
                     <a href="{{ url('books') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">  
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Libros
                     </a>
                     <a href="{{ url('about') }}"
@@ -58,7 +58,7 @@
                             </svg>
                         </button>
 
-                        <div x-show="open" 
+                        <div x-show="open"
                              x-transition:enter="transition ease-out duration-100"
                              x-transition:enter-start="transform opacity-0 scale-95"
                              x-transition:enter-end="transform opacity-100 scale-100"
@@ -68,18 +68,18 @@
                              class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
                              style="display: none;">
                             <div class="py-1">
-                                <a href="{{ route('settings.profile') }}" 
+                                <a href="{{ route('settings.profile') }}"
                                    class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
                                     O meu perfil
                                 </a>
-                                <a href="{{ route('settings.password') }}" 
+                                <a href="{{ route('settings.password') }}"
                                    class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
                                     Cambiar contrasinal
                                 </a>
-                                <div class="border-t border-gray-800"></div>
+                                <div class="border-t dark:border-gray-800"></div>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" 
+                                    <button type="submit"
                                             class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white">
                                         Pechar sesión
                                     </button>
@@ -122,7 +122,7 @@
                    class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Sobre nós
                 </a>
-                
+
                 <div class="border-t border-gray-200 pt-4 pb-3">
                     @guest
                         <a href="{{ route('login') }}"
@@ -141,17 +141,17 @@
                         </div>
                         <a href="{{ route('settings.profile') }}"
                            class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white">
-                            Mi perfil
+                            O meu perfil
                         </a>
                         <a href="{{ route('settings.password') }}"
                            class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white">
-                            Cambiar contraseña
+                            Cambialo contrasinal
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="mt-2">
                             @csrf
                             <button type="submit"
                                     class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600 dark:hover:bg-red-900 dark:bg-red-900">
-                                Cerrar sesión
+                                Pechar sesión
                             </button>
                         </form>
                     @endauth
