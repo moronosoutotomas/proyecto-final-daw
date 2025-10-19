@@ -4,7 +4,7 @@
 
 Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
 ```
-git clone "git@github.com:moronosoutotomas/proyecto-final-daw.git" bookbag
+git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" bookbag
 ```
 
 Entramos na carpeta onde foi clonado
@@ -24,16 +24,23 @@ cd ~/bookbag/aplicacion
 
 Lanzamos o compose de contenedores
 ```
-docker compose -f compose.dev.yaml up --build
+docker compose -f compose.dev.yaml up -d
 ```
 > Este proxecto dispón de 2 compose distintos, un para desarrollo que instalará certas ferramentas como Xdebug (i.e).
 > Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
 
-Instalamo-las dependencias e compilamo-las vistas 
+Accedemos ó contenedor PHP-FPM 
 ```
-docker exec -it aplicacion_tomasmorono-php composer install && npm install && npm run build
+docker exec -it aplicacion_tomasmorono-php bash # Acceso ó contenedor
 ```
 > OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre PHP-FPM
+
+Unha vez dentro do contenedor instalamo-las dependencias e compilamo-las vistas
+```
+composer install # Instalación dependencias backend
+npm i # Instalación dependencias frontend
+npm run build # Transpilación, construcción do /dist e minificación de código para producción
+```
 
 Xeramo-las keys de encriptación (propias de Laravel)
 ```
@@ -45,5 +52,5 @@ Corremo-las migracións e poblamo-las táboas con información de pega
 php artisan migrate:fresh --seed
 ```
 
-## Ubicación da app
-Por defecto será [localhost](http://localhost) (sin SSL)
+## Listo! A ubicación da aplicación será localhost
+Por defecto será [localhost](http://localhost) sin SSL
