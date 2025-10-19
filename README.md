@@ -4,7 +4,7 @@
 
 Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
 ```
-git clone "https://github.com/dockersamples/laravel-docker-examples" bookbag
+git clone "git@github.com:moronosoutotomas/proyecto-final-daw.git" bookbag
 ```
 
 Entramos na carpeta onde foi clonado
