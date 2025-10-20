@@ -34,6 +34,7 @@ Route::middleware(['auth', 'role:lector|bibliotecario|administrador'])->group(fu
     Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
     # Rutas de bookshelves
+    Route::get('/bookshelves', [BookshelfController::class, 'index'])->name('bookshelves.index');
     Route::post('/bookshelves/{bookshelf}/books', [BookshelfController::class, 'addBook'])->name('bookshelves.addBook');
     Route::delete('/bookshelves/{bookshelf}/books/{book}', [BookshelfController::class, 'removeBook'])->name('bookshelves.removeBook');
 

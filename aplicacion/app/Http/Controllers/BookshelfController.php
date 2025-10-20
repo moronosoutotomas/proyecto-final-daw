@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 class BookshelfController extends Controller
 {
     /**
+     * Muestra las estanterías del usuario autenticado.
+     */
+    public function index()
+    {
+        $bookshelves = auth()->user()->bookshelves()->with(['bookshelfType', 'books'])->get();
+        
+        return view('bookshelves.index', compact('bookshelves'));
+    }
+
+    /**
      * Añade un libro a una estantería del usuario.
      */
     public function addBook(Request $request, Bookshelf $bookshelf)

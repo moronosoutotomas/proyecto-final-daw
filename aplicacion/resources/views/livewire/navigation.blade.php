@@ -5,7 +5,7 @@
             <div class="flex-shrink-0">
                 <a href="{{ url('homepage') }}" class="flex items-center">
                     {{-- Logo --}}
-                     <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
+                    <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
                     <span class="ml-2 text-xl font-semibold text-gray-800 dark:text-white">Bookbag</span>
                 </a>
             </div>
@@ -21,6 +21,12 @@
                        class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Libros
                     </a>
+                    @can('bookshelves.addBook')
+                        <a href="{{ url('bookshelves') }}"
+                           class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                            Estanterías
+                        </a>
+                    @endcan
                     <a href="{{ url('about') }}"
                        class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Sobre nós
@@ -49,12 +55,16 @@
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open" @click.away="open = false"
                                 class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
-                            <div class="h-8 w-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-semibold">
+                            <div
+                                class="h-8 w-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-semibold">
                                 {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
                             </div>
                             <span>{{ auth()->user()->name }}</span>
-                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path fill-rule="evenodd"
+                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"/>
                             </svg>
                         </button>
 
@@ -93,7 +103,7 @@
             <!-- Menú móvil (hamburguesa) -->
             <div class="md:hidden">
                 <button type="button"
-                            class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-amber-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 dark:bg-gray-900 dark:text-white dark:hover:text-amber-600 dark:hover:bg-gray-800"
+                        class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-amber-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 dark:bg-gray-900 dark:text-white dark:hover:text-amber-600 dark:hover:bg-gray-800"
                         aria-controls="mobile-menu"
                         aria-expanded="false">
                     <span class="sr-only">Abri-lo menú principal</span>
@@ -109,7 +119,8 @@
 
         <!-- Menú móvil (oculto por defecto) -->
         <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+            <div
+                class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <a href="{{ url('/') }}"
                    class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('homepage') ? 'text-amber-600 bg-amber-50' : '' }}">
                     Inicio
@@ -117,6 +128,16 @@
                 <a href="{{ url('/books') }}"
                    class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Libros
+                </a>
+                @can('bookshelves.addBook')
+                    <a href="{{ url('/bookshelves') }}"
+                       class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('bookshelves') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                        Estanterías
+                    </a>
+                @endcan
+                <a href="{{ url('/contact') }}"
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('contact') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                    Contacto
                 </a>
                 <a href="{{ url('/about') }}"
                    class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
@@ -150,7 +171,7 @@
                         <form method="POST" action="{{ route('logout') }}" class="mt-2">
                             @csrf
                             <button type="submit"
-                                    class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600 dark:hover:bg-red-900 dark:bg-red-900">
+                                    class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600 dark:text-red-600">
                                 Pechar sesión
                             </button>
                         </form>

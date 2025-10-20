@@ -150,8 +150,8 @@
                                 <div class="ml-3">
                                     <h3 class="text-sm font-medium text-gray-900 dark:text-white">Dirección</h3>
                                     <p class="text-sm text-gray-400">
-                                        C/ Martínez Padín nº 10<br>
-                                        Tui, Pontevedra 0800<br>
+                                        C/ Alcalde Lavadores nº 10<br>
+                                        Vigo, Pontevedra 36210<br>
                                         España
                                     </p>
                                 </div>
