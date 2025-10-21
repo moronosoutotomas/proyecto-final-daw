@@ -13,9 +13,7 @@ cd bookbag
 ```
 
 Copiámolo contenido do .env.example no .env e cubrimo-los campos ca información que nos facilitase o vendor
-```
-neste caso temos o .env orixinal con tódala información xa de base por comodidade aínda que nun caso real nunca sería así
-```
+> neste caso temos o .env orixinal con tódala información xa de base por comodidade aínda que nun caso real nunca sería así
 
 Entramos en ./bookbag/aplicacion
 ```
@@ -39,7 +37,7 @@ Unha vez dentro do contenedor instalamo-las dependencias e compilamo-las vistas
 ```
 composer install # Instalación dependencias backend
 npm i # Instalación dependencias frontend
-npm run build # Transpilación, construcción do /dist e minificación de código para producción
+npm run build # Transpilación, construcción do /dist e minificación de código
 ```
 
 Xeramo-las keys de encriptación (propias de Laravel)
