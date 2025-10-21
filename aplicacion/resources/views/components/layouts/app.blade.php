@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="bg-gray-50 border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+<html lang="es" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,16 +14,14 @@
 @livewire('navigation')
 
 <main>
-    {{--    @yield('content')--}}
     {{ $slot }}
 </main>
-
 </body>
-<!-- Footer si lo necesitas -->
-<footer class="mt-12">
-    <div class="max-w-7xl mx-auto py-6 px-4">
+
+<footer class="bg-gray-50 border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+    <div class="max-w-7xl mx-auto py-14 px-4">
         <p class="text-center text-gray-500 text-sm">
-            &copy; {{ date('Y') }} Bookbag. Todos los derechos reservados.
+            Bookbag &copy; {{ date('Y') }} - Tódo-los dereitos reservados.
         </p>
     </div>
 </footer>
