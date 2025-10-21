@@ -1,10 +1,11 @@
 <x-layouts.app>
     @section('title', 'Mis Estanterías')
 
-    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div
+        class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 bg-gray-50 border-gray-200 text-gray-900 dark:border-gray-700 dark:text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <!-- Flash Messages -->
-            @if(session('success'))
+            {{--@if(session('success'))
                 <div class="mb-6 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-4 py-3 rounded-lg flex items-center justify-between">
                     <div class="flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -50,12 +51,13 @@
                         </svg>
                     </button>
                 </div>
-            @endif
+            @endif--}}
 
             <!-- Breadcrumbs -->
             <nav class="mb-8">
                 <ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
-                    <li><a href="{{ route('home') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Inicio</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Inicio</a>
+                    </li>
                     <li><span class="mx-2">/</span></li>
                     <li class="text-gray-900 dark:text-white">Mis Estanterías</li>
                 </ol>
@@ -64,87 +66,72 @@
             <!-- Header -->
             <div class="flex justify-between items-center mb-8">
                 <div>
-                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Mis Estanterías</h1>
-                    <p class="mt-2 text-gray-600 dark:text-gray-400">Gestiona tus colecciones de libros</p>
+                    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Estanterías</h1>
+                    <p class="mt-2 text-gray-600 dark:text-gray-400">Xestiona as túas estanterías</p>
                 </div>
             </div>
 
-            <!-- Bookshelves Grid -->
-            @if($bookshelves->count() > 0)
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach($bookshelves as $bookshelf)
-                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
-                            <div class="p-6">
-                                <div class="flex items-center justify-between mb-4">
-                                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $bookshelf->name }}</h3>
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($bookshelves as $bookshelf)
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $bookshelf->name }}</h3>
+                                <span
+                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200">
                                         {{ $bookshelf->bookshelfType->name ?? 'Sin tipo' }}
                                     </span>
-                                </div>
-                                
-                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                                    {{ $bookshelf->books->count() }} {{ $bookshelf->books->count() === 1 ? 'libro' : 'libros' }}
-                                </p>
+                            </div>
 
-                                <!-- Books Preview -->
-                                @if($bookshelf->books->count() > 0)
-                                    <div class="space-y-2 mb-4">
-                                        @foreach($bookshelf->books->take(3) as $book)
-                                            <div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                                                <svg class="w-4 h-4 mr-2 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                                <span class="truncate">{{ $book->title }}</span>
-                                            </div>
-                                        @endforeach
-                                        @if($bookshelf->books->count() > 3)
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">
-                                                y {{ $bookshelf->books->count() - 3 }} más...
-                                            </p>
-                                        @endif
-                                    </div>
-                                @else
-                                    <div class="text-center py-4">
-                                        <svg class="mx-auto h-8 w-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                        </svg>
-                                        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Estantería vacía</p>
-                                    </div>
-                                @endif
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                                {{ $bookshelf->books->count() }} {{ $bookshelf->books->count() === 1 ? 'libro' : 'libros' }}
+                            </p>
 
-                                <!-- Actions -->
-                                <div class="flex space-x-2">
-                                    <a href="{{ route('books.index') }}" 
-                                       class="flex-1 inline-flex items-center justify-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                                        </svg>
-                                        Añadir libros
-                                    </a>
+                            <!-- Preview -->
+                            @if($bookshelf->books->count() > 0)
+                                <div class="space-y-2 mb-4">
+                                    @foreach($bookshelf->books->take(3) as $book)
+                                        <div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+                                            <svg class="w-4 h-4 mr-2 text-amber-500" fill="currentColor"
+                                                 viewBox="0 0 20 20">
+                                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="truncate">{{ $book->title }}</span>
+                                        </div>
+                                    @endforeach
+                                    @if($bookshelf->books->count() > 3)
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                                            y {{ $bookshelf->books->count() - 3 }} más...
+                                        </p>
+                                    @endif
                                 </div>
+                            @else
+                                <div class="text-center py-4">
+                                    <svg class="mx-auto h-8 w-8 text-gray-400 dark:text-gray-500" fill="none"
+                                         stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                    </svg>
+                                    <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Estantería vacía</p>
+                                </div>
+                            @endif
+
+                            <!-- Actions -->
+                            <div class="flex space-x-2">
+                                <a href="{{ route('books.index') }}"
+                                   class="flex-1 inline-flex items-center justify-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                                    </svg>
+                                    Añadir libros
+                                </a>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-            @else
-                <!-- Empty State -->
-                <div class="text-center py-12">
-                    <svg class="mx-auto h-24 w-24 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-                    </svg>
-                    <h3 class="mt-4 text-lg font-medium text-gray-900 dark:text-white">No tienes estanterías</h3>
-                    <p class="mt-2 text-gray-500 dark:text-gray-400">Crea tu primera estantería para organizar tus libros favoritos.</p>
-                    <div class="mt-6">
-                        <a href="{{ route('books.index') }}" 
-                           class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                            </svg>
-                            Explorar libros
-                        </a>
                     </div>
-                </div>
-            @endif
+                @endforeach
+            </div>
         </div>
     </div>
 </x-layouts.app>
