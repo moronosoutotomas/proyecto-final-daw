@@ -3,7 +3,7 @@
     @section('title', 'Sobre nós')
 
     <div
-        class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+        class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 bg-gray-50 border-gray-200 text-gray-900 dark:border-gray-700 dark:text-white">
         <div class="max-w-3xl mx-auto">
             <div class="text-center">
                 <h1 class="text-3xl font-bold mb-8">Sobre nós</h1>
