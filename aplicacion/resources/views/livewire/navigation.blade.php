@@ -1,16 +1,14 @@
 <nav class="shadow-lg border-b border-gray-200 dark:text-white dark:border-gray-700 dark:bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <!-- Logo izquierda -->
+            <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="{{ url('homepage') }}" class="flex items-center">
-                    <!-- Logo -->
                     <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
                     <span class="ml-2 text-xl font-semibold text-gray-800 dark:text-white">Bookbag</span>
                 </a>
             </div>
 
-            <!-- Enlaces centrados -->
             <div class="hidden md:flex flex-1 justify-center">
                 <div class="flex space-x-8">
                     <a href="{{ url('homepage') }}"
@@ -21,12 +19,29 @@
                        class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Libros
                     </a>
+
+                    {{-- Sección lectores --}}
                     @can('bookshelves.manage')
                         <a href="{{ url('bookshelves') }}"
                            class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                             Estanterías
                         </a>
                     @endcan
+
+                    {{-- Sección administradores --}}
+                    @can('admin.users.manage')
+                        <a href="{{ url('admin/users') }}"
+                           class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                            Xestión de usuarios
+                        </a>
+                    @endcan
+                    @can('admin.users.manage')
+                        <a href="{{ url('admin/roles') }}"
+                           class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                            Roles
+                        </a>
+                    @endcan
+
                     <a href="{{ url('about') }}"
                        class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Sobre nós
@@ -38,7 +53,7 @@
                 </div>
             </div>
 
-            <!-- Botones derecha -->
+            <!-- Botones perfil -->
             <div class="flex items-center space-x-4">
                 @guest
                     <a href="{{ route('login') }}"
@@ -68,6 +83,7 @@
                             </svg>
                         </button>
 
+                        {{-- Animación con Alpine.js --}}
                         <div x-show="open"
                              x-transition:enter="transition ease-out duration-100"
                              x-transition:enter-start="transform opacity-0 scale-95"
@@ -96,6 +112,7 @@
                                 </form>
                             </div>
                         </div>
+
                     </div>
                 @endauth
             </div>
@@ -120,27 +137,42 @@
         <!-- Menú móvil (oculto por defecto) -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div
-                class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+                class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
                 <a href="{{ url('/') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('homepage') ? 'text-amber-600 bg-amber-50' : '' }}">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('homepage') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                     Inicio
                 </a>
                 <a href="{{ url('/books') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('books') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                     Libros
                 </a>
+                {{-- Sección lectores --}}
                 @can('bookshelves.manage')
                     <a href="{{ url('/bookshelves') }}"
-                       class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('bookshelves') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                       class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Estanterías
                     </a>
                 @endcan
+                {{-- Sección administradores --}}
+                @can('bookshelves.manage')
+                    <a href="{{ url('/admin/users') }}"
+                       class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                        Xestión de usuarios
+                    </a>
+                @endcan
+                @can('bookshelves.manage')
+                    <a href="{{ url('/admin/users') }}"
+                       class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                        Roles
+                    </a>
+                @endcan
+
                 <a href="{{ url('/contact') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('contact') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('contact') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                     Contacto
                 </a>
                 <a href="{{ url('/about') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                     Sobre nós
                 </a>
 
