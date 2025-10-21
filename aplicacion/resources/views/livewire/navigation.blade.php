@@ -4,7 +4,7 @@
             <!-- Logo izquierda -->
             <div class="flex-shrink-0">
                 <a href="{{ url('homepage') }}" class="flex items-center">
-                    {{-- Logo --}}
+                    <!-- Logo -->
                     <img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
                     <span class="ml-2 text-xl font-semibold text-gray-800 dark:text-white">Bookbag</span>
                 </a>
@@ -18,10 +18,10 @@
                         Inicio
                     </a>
                     <a href="{{ url('books') }}"
-                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books*') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+                       class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                         Libros
                     </a>
-                    @can('bookshelves.addBook')
+                    @can('bookshelves.manage')
                         <a href="{{ url('bookshelves') }}"
                            class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
                             Estanterías
@@ -126,10 +126,10 @@
                     Inicio
                 </a>
                 <a href="{{ url('/books') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('books') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Libros
                 </a>
-                @can('bookshelves.addBook')
+                @can('bookshelves.manage')
                     <a href="{{ url('/bookshelves') }}"
                        class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('bookshelves') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                         Estanterías
@@ -140,7 +140,7 @@
                     Contacto
                 </a>
                 <a href="{{ url('/about') }}"
-                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about*') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
+                   class="text-gray-700 hover:text-amber-600 block px-3 py-2 rounded-md text-base font-medium {{ request()->is('about') ? 'text-amber-600 bg-amber-50' : '' }} dark:text-white">
                     Sobre nós
                 </a>
 
