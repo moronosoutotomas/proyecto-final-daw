@@ -15,19 +15,19 @@ class UserObserver
         Bookshelf::create([
             'user_id' => $user->id,
             'bookshelf_type_id' => 1,
-            'name' => 'Leídos'
+            'name' => 'Lidos'
         ]);
 
         Bookshelf::create([
             'user_id' => $user->id,
             'bookshelf_type_id' => 2,
-            'name' => 'Leyendo'
+            'name' => 'Lendo'
         ]);
 
         Bookshelf::create([
             'user_id' => $user->id,
             'bookshelf_type_id' => 3,
-            'name' => 'Pendientes'
+            'name' => 'Pendentes'
         ]);
     }
 }
