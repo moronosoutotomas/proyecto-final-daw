@@ -29,9 +29,9 @@ docker compose -f compose.dev.yaml up -d
 
 Accedemos ó contenedor PHP-FPM 
 ```
-docker exec -it aplicacion_tomasmorono-php bash # Acceso ó contenedor
+docker exec -it aplicacion_tomasmorono-workspace bash # Acceso ó contenedor
 ```
-> OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre PHP-FPM
+> OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
 
 Unha vez dentro do contenedor instalamo-las dependencias e compilamo-las vistas
 ```
