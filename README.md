@@ -27,13 +27,7 @@ docker compose -f compose.dev.yaml up -d
 > Este proxecto dispón de 2 compose distintos, un para desarrollo que instalará certas ferramentas como Xdebug (i.e).
 > Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
 
-Accedemos ó contenedor PHP-FPM 
-```
-docker exec -it aplicacion_tomasmorono-workspace bash # Acceso ó contenedor
-```
-> OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
-
-Unha vez dentro do contenedor instalamo-las dependencias e compilamo-las vistas
+Instalamo-las dependencias e compilamo-las vistas
 ```
 composer install # Instalación dependencias backend
 npm i # Instalación dependencias frontend
@@ -45,10 +39,23 @@ Xeramo-las keys de encriptación (propias de Laravel)
 php artisan key:generate
 ```
 
-Corremo-las migracións e poblamo-las táboas con información de pega
+Accedemos ó contenedor "workspace"
+```
+docker exec -it aplicacion_tomasmorono-workspace bash # Acceso ó contenedor
+```
+> OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
+
+Unha vez dentro, corremo-las migracións e poblamo-las táboas con información de pega
 ```
 php artisan migrate:fresh --seed
 ```
 
 ## Listo! A ubicación da aplicación será localhost
 Por defecto será [localhost](http://localhost) sin SSL
+
+---
+## Limpieza
+```
+sh cleanup.sh
+```
+> Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados.
