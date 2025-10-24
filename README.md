@@ -12,7 +12,7 @@ Entramos na carpeta onde foi clonado
 cd bookbag
 ```
 
-Copiámolo contenido do .env.example no .env e cubrimo-los campos ca información que nos facilitase o vendor
+Copiámolo contenido do .env.example no .env e cubrimo-los campos ca información que nos facilitase o vendor e cambiámo-lo UID e GID (abaixo de todo, por defecto 1000 e 1000)
 > neste caso temos o .env orixinal con tódala información xa de base por comodidade aínda que nun caso real nunca sería así
 
 Entramos en ./bookbag/aplicacion
@@ -58,4 +58,4 @@ Por defecto será [localhost](http://localhost) sin SSL
 ```
 sh cleanup.sh
 ```
-> Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados.
+> Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `docker system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados parcial ou totalmente.
