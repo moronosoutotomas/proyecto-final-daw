@@ -1,4 +1,0 @@
-- Implementar un Makefile con los comandos principales y algún script (para el setup por ejemplo, o para las migraciones)
-
-- Plantilla AdminLTE (starred en Github) tiene un montón de componentes interesantes que ojear si alguno no lo tiene WireUI,
-como por ejemplo un FilePreview, pero esto requiere usar Bootstrap y el proyecto usará principalmente Tailwind
