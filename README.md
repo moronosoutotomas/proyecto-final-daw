@@ -24,7 +24,7 @@ Lanzamos o compose de contenedores
 ```
 docker compose -f compose.dev.yaml up -d
 ```
-> Este proxecto dispón de 2 compose distintos, un para desarrollo que instalará certas ferramentas como Xdebug (i.e).
+> Este proxecto dispón de 2 compose distintos, un para desenvolvemento que instalará certas ferramentas como Xdebug (i.e).
 > Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
 
 Instalamo-las dependencias e compilamo-las vistas
