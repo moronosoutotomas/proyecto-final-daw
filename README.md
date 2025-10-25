@@ -7,6 +7,11 @@ Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
 git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" bookbag
 ```
 
+Por algún motivo é preciso dar permisos ó proxecto en par de evitar problemas de firewall
+```
+chmod -R 777 bookbag
+```
+
 Entramos na carpeta onde foi clonado
 ```
 cd bookbag
