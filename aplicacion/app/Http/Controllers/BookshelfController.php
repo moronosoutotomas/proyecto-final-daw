@@ -14,7 +14,7 @@ class BookshelfController extends Controller
     public function index()
     {
         $bookshelves = auth()->user()->bookshelves()->with(['bookshelfType', 'books'])->get();
-        
+
         return view('bookshelves.index', compact('bookshelves'));
     }
 
@@ -28,6 +28,7 @@ class BookshelfController extends Controller
             return redirect()->back()->with('error', 'No tienes permiso para modificar esta estantería.');
         }
 
+        // Mas sabe el diablo por viejo que por diablo
         $validated = $request->validate([
             'book_id' => 'required|exists:books,id',
         ]);

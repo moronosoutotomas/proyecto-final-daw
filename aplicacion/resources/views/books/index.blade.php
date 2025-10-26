@@ -38,10 +38,7 @@
                     @can('books.create')
                         <a href="{{ route('books.create') }}"
                            class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                            </svg>
+                            <flux:icon.plus-circle/>
                             Novo libro
                         </a>
                     @endcan
@@ -75,12 +72,10 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                                 Valoración
                             </th>
-                            @can('books.edit')
-                                <th scope="col"
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                    Accións
-                                </th>
-                            @endcan
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                Accións
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
@@ -107,30 +102,41 @@
 
                                                 {{-- TODO: cambiar cuando se pueble la DB con fake reviews --}}
                                                 @for($i = 1; $i <= 5; $i++)
-                                                    <svg
-                                                        class="w-4 h-4 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                                    </svg>
+                                                    <flux:icon.star
+                                                        class="w-4 h-4 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"/>
                                                 @endfor
                                             </div>
-                                            <span
-                                                class="ml-1 text-sm text-gray-500 dark:text-gray-400">{{ $book->avg_rating }}</span>
+                                            {{--<span
+                                                class="ml-1 text-sm text-gray-500 dark:text-gray-400">
+                                                {{ $book->avg_rating }}
+                                            </span>--}}
                                         </div>
                                     @else
                                         <span class="text-sm text-gray-400 dark:text-gray-500">Sin valorar</span>
                                     @endif
                                 </td>
-                                @can('books.edit')
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <a href="{{ route('books.show', $book) }}"
-                                               class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
-                                                Ver
-                                            </a>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <a href="{{ route('books.show', $book) }}"
+                                           class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
+                                            <flux:icon.eye/>
+                                            Ver
+                                        </a>
+                                        @can('bookshelves.manage')
+                                            <form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
+                                                  class="inline">
+                                                @csrf
+                                                <button type="submit"
+                                                        class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                                                    <flux:icon.plus-circle/>
+                                                    Pendentes
+                                                </button>
+                                            </form>
+                                        @endcan
+                                        @can('books.edit')
                                             <a href="{{ route('books.edit', $book) }}"
                                                class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                                                <flux:icon.pencil-square/>
                                                 Editar
                                             </a>
                                             <form action="{{ route('books.destroy', $book) }}" method="POST"
@@ -139,26 +145,26 @@
                                                 @method('DELETE')
                                                 <button type="submit"
                                                         class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
+                                                    <flux:icon.trash/>
                                                     Eliminar
                                                 </button>
                                             </form>
-                                        </div>
-                                    </td>
-                                @endcan
+                                        @endcan
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="6" class="px-6 py-12 text-center">
                                     <div class="text-gray-500 dark:text-gray-400">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" fill="none"
-                                             stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                        </svg>
-                                        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">Non hai
-                                            libros</h3>
-                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Engade o teu primeiro
-                                            libro.</p>
+                                        <flux:icon.book-open
+                                            class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500"/>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Non hai libros
+                                        </h3>
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                                            Engade o teu primeiro libro.
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
