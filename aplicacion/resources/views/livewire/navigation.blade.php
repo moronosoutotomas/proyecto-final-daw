@@ -24,7 +24,7 @@
                     @can('bookshelves.manage')
                         <a href="{{ url('bookshelves') }}"
                            class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
-                            Estanterías
+                            Andeis
                         </a>
                     @endcan
 
@@ -150,7 +150,7 @@
                 @can('bookshelves.manage')
                     <a href="{{ url('/bookshelves') }}"
                        class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
-                        Estanterías
+                        Andeis
                     </a>
                 @endcan
                 {{-- Sección administradores --}}
