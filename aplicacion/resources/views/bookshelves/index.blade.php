@@ -84,20 +84,29 @@
                             <!-- Preview -->
                             @if($bookshelf->books->count() > 0)
                                 <div class="space-y-2 mb-4">
-                                    @foreach($bookshelf->books->take(3) as $book)
+                                    @foreach($bookshelf->books as $book)
                                         <div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
-                                            <svg class="w-4 h-4 mr-2 text-amber-500" fill="currentColor"
-                                                 viewBox="0 0 20 20">
-                                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                            </svg>
-                                            <span class="truncate">{{ $book->title }}</span>
+                                            @if($bookshelf->id === 1)
+                                                <flux:icon.clock
+                                                    variant="solid"
+                                                    class="w-4 h-4 mr-2 text-amber-500"
+                                                />
+                                            @elseif($bookshelf->id === 2)
+                                                <flux:icon.magnifying-glass
+                                                    variant="solid"
+                                                    class="w-4 h-4 mr-2 text-amber-500"
+                                                />
+                                            @else
+                                                <flux:icon.bookmark
+                                                    variant="solid"
+                                                    class="w-4 h-4 mr-2 text-amber-500"
+                                                />
+                                            @endif
+                                            <span class="truncate">
+                                                {{ $book->title }}
+                                            </span>
                                         </div>
                                     @endforeach
-                                    @if($bookshelf->books->count() > 3)
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">
-                                            e {{ $bookshelf->books->count() - 3 }} máis...
-                                        </p>
-                                    @endif
                                 </div>
                             @else
                                 <div class="text-center py-4">
@@ -107,13 +116,13 @@
                             @endif
 
                             <!-- Actions -->
-                            <div class="flex space-x-2">
+                            {{--<div class="flex space-x-2">
                                 <a href="{{ route('books.index') }}"
                                    class="flex-1 inline-flex items-center justify-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
                                     <flux:icon.plus-circle/>
                                     Engadir libros
                                 </a>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 @endforeach

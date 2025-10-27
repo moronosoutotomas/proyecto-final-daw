@@ -43,6 +43,26 @@ class BookshelfController extends Controller
         return redirect()->back()->with('success', 'Libro añadido a la estantería correctamente.');
     }
 
+//    TODO: Versión vieja para añadir libros a estanterías
+//    public function addBookToBookshelf($bookshelfID, $bookID)
+//    {
+//        $user = Auth::user();
+//
+//        $bookshelf = Bookshelf::where('id', $bookshelfID)
+//            ->where('user_id', $user->id)
+//            ->firstOrFail();
+//
+//        $book = Book::findOrFail($bookID);
+//
+//        if ($bookshelf->books()->where('book_id', $book->id)->exists()) {
+//            return back()->with('info', "Lo siento, ese libro ya existe en esta estantería.");
+//        }
+//
+//        $bookshelf->books()->attach($book->id);
+//
+//        return back()->with('success', "Libro agregado correctamente.");
+//    }
+
     /**
      * Elimina un libro de una estantería del usuario.
      */
