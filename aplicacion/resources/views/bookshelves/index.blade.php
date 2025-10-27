@@ -105,6 +105,15 @@
                                             <span class="truncate">
                                                 {{ $book->title }}
                                             </span>
+                                                <form action="{{ route('bookshelves.removeBook', [$bookshelf, $book]) }}" method="POST"
+                                                      class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                            class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                                                        <flux:icon.trash/>
+                                                    </button>
+                                                </form>
                                         </div>
                                     @endforeach
                                 </div>
