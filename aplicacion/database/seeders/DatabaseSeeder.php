@@ -27,21 +27,21 @@ class DatabaseSeeder extends Seeder
         // administrador
         User::factory()->create([
             'name' => 'Tomás Moroño',
-            'email' => 'tomas@dominio.com',
+            'email' => 'tomas@bookbag.com',
             'password' => bcrypt('abc123.')
         ])->assignRole('administrador');
 
         // bibliotecario
         User::factory()->create([
             'name' => 'Bibliotecario Default',
-            'email' => 'bibliotecario@dominio.com',
+            'email' => 'bibliotecario@bookbag.com',
             'password' => bcrypt('abc123.')
         ])->assignRole('bibliotecario');
 
         // lector
         User::factory()->create([
             'name' => 'Lector Default',
-            'email' => 'lector@dominio.com',
+            'email' => 'lector@bookbag.com',
             'password' => bcrypt('abc123.')
         ])->assignRole('lector');
 

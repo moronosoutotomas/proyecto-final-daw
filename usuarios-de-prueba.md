@@ -1,18 +1,18 @@
 ## Administrador
 ```
-tomas@dominio.com #usuario
+tomas@bookbag.com #usuario
 abc123. #contrasinal
 ```
 
 ## Bibliotecario
 ```
-bibliotecario@dominio.com #usuario
+bibliotecario@bookbag.com #usuario
 abc123. #contrasinal
 ```
 
 ## Lector
 ```
-lector@dominio.com #usuario
+lector@bookbag.com #usuario
 abc123. #contrasinal
 ```
 
