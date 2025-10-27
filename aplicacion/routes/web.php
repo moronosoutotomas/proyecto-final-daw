@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookshelfController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -13,14 +14,17 @@ Route::redirect('/', 'homepage');
 # Rutas públicas
 Route::view('/about', 'about')->name('about');
 Route::view('/contact', 'contact')->name('contact');
+Route::resource('contact', ContactController::class)->only(['create', 'store']);
 
 # Rutas de gestión de libros (solo administrador y bibliotecario)
 Route::middleware(['auth', 'role:administrador|bibliotecario'])->group(function () {
-    Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    /*Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
     Route::post('/books', [BookController::class, 'store'])->name('books.store');
     Route::get('/books/{book}/edit', [BookController::class, 'edit'])->name('books.edit');
     Route::put('/books/{book}', [BookController::class, 'update'])->name('books.update');
-    Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');
+    Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('books.destroy');*/
+    Route::resource('books', BookController::class)->except(['index', 'show']);
+
 });
 
 # Rutas públicas de libros (deben ir después de las específicas como /books/create)
