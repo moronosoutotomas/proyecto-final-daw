@@ -9,17 +9,18 @@
                 <h1 class="text-3xl font-bold mb-8">Sobre nós</h1>
             </div>
 
-            <div class="shadow rounded-lg p-6 bg-gray-50 dark:bg-gray-800">
-                <h1>O motivo</h1>
+            <div
+                class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <h1 class="text-xl font-bold">Por e para qué</h1>
                 <p class="dark:text-gray-400 mb-4">
                     Inicialmente pretende ser unha aplicación web mediante a cal aproba-lo módulo de
                     proxecto de DAW, pode que nun futuro vaia mais aló e vaia engadindo algunha cousiña, pouco a
                     pouco, nos meus ratos libres.
                 </p>
 
-                <h1>Cando?</h1>
+                <h1 class="text-xl font-bold mt-12">Cando</h1>
                 <p class="dark:text-gray-400 mb-4">
-                    Comecei a construíla alá por 2025, en xullo.
+                    Comecei a construíla en xullo de 2025 e espero rematala antes de decembro deste mesmo ano.
                 </p>
             </div>
         </div>

@@ -16,7 +16,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Formulario de contacto -->
                 <div
-                    class="shadow dark:shadow-gray-900 dark:text-gray-400 rounded-lg p-6 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                    class="border shadow dark:shadow-gray-900 dark:text-gray-400 rounded-lg p-6 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                     <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-6">Envíanos unha mensaxe</h2>
 
                     <form action="#" method="POST" class="space-y-6">
@@ -99,7 +99,7 @@
                 <div class="space-y-6">
                     <!-- Información general -->
                     <div
-                        class="shadow dark:shadow-gray-900 dark:text-white rounded-lg p-6  bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                        class="border shadow dark:shadow-gray-900 dark:text-white rounded-lg p-6  bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                         <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                             Información de contacto
                         </h2>
@@ -180,7 +180,7 @@
 
                     <!-- FAQ rápida -->
                     <div
-                        class="shadow dark:shadow-gray-900 rounded-lg p-6  bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
+                        class="border shadow dark:shadow-gray-900 rounded-lg p-6  bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                         <h2 class="text-xl font-semibold text-gray-800  dark:text-white mb-4">
                             FAQ - Preguntas frecuentes
                         </h2>
