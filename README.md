@@ -55,6 +55,11 @@ Unha vez dentro, corremo-las migracións e poblamo-las táboas con información 
 php artisan migrate:fresh --seed
 ```
 
+Corremos a transpilación, construcción do /dist e minificación de código e xa estaría
+```
+npm run build
+```
+
 ## Listo! A ubicación da aplicación será localhost
 Por defecto será [localhost](http://localhost) sin SSL
 
