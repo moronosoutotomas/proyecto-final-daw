@@ -9,6 +9,7 @@
     <link rel="apple-touch-icon" href="/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 @livewire('navigation')
@@ -16,7 +17,8 @@
 <main>
     {{ $slot }}
 </main>
-</body>
+
+@stack('js')
 
 <footer class="bg-gray-50 border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
     <div class="max-w-7xl mx-auto py-14 px-4">
@@ -25,4 +27,5 @@
         </p>
     </div>
 </footer>
+</body>
 </html>

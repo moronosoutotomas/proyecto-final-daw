@@ -8,11 +8,53 @@ use Illuminate\Http\Request;
 class BookController extends Controller
 {
     /**
-     * Muestra un listado de 10 libros por página por orden alfabético.
+     * Muestra un listado de 10 libros por página con filtros de búsqueda.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::paginate(10);
+        $query = Book::query();
+
+        // Filtro de búsqueda por texto
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('isbn13', 'like', "%{$search}%");
+            });
+        }
+
+        // Filtro por autor
+        if ($request->filled('author')) {
+            $query->where('author', 'like', "%{$request->author}%");
+        }
+
+        // Filtro por valoración mínima
+        if ($request->filled('rating')) {
+            $query->where('avg_rating', '>=', $request->rating);
+        }
+
+        // Ordenamiento
+        $order = $request->get('order', 'title');
+        switch ($order) {
+            case 'title':
+                $query->orderBy('title', 'asc');
+                break;
+            case 'author':
+                $query->orderBy('author', 'asc');
+                break;
+            case 'publication_date':
+                $query->orderBy('publication_date', 'desc');
+                break;
+            case 'rating':
+                $query->orderBy('avg_rating', 'desc');
+                break;
+            default:
+                $query->orderBy('title', 'asc');
+        }
+
+        $books = $query->paginate(10)->withQueryString();
+        
         return view('books.index', compact('books'));
     }
 
