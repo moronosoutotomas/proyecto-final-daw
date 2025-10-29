@@ -1,5 +1,5 @@
 @php use Carbon\Carbon; @endphp
-<x-layouts.app>
+<x-layouts.app xmlns:livewire="http://www.w3.org/1999/html">
     @section('title', 'Libros')
 
     <div
@@ -10,20 +10,40 @@
                 <div
                     class="mb-6 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-4 py-3 rounded-lg flex items-center justify-between">
                     <div class="flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                  clip-rule="evenodd"/>
-                        </svg>
+                        <flux:icon.check-circle variant="solid" class="w-5 h-5 mr-2"/>
                         <span>{{ session('success') }}</span>
                     </div>
                     <button onclick="this.parentElement.remove()"
                             class="text-green-800 dark:text-green-200 hover:text-green-600 dark:hover:text-green-400">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                  clip-rule="evenodd"/>
-                        </svg>
+                        <flux:icon.x-mark variant="solid" class="w-4 h-4"/>
+                    </button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div
+                    class="mb-6 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-800 dark:text-red-200 px-4 py-3 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <flux:icon.check-circle variant="solid" class="w-5 h-5 mr-2"/>
+                        <span>{{ session('error') }}</span>
+                    </div>
+                    <button onclick="this.parentElement.remove()"
+                            class="text-red-800 dark:text-red-200 hover:text-red-600 dark:hover:text-red-400">
+                        <flux:icon.x-mark variant="solid" class="w-4 h-4"/>
+                    </button>
+                </div>
+            @endif
+
+            @if(session('info'))
+                <div
+                    class="mb-6 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-200 px-4 py-3 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center">
+                        <flux:icon.check-circle variant="solid" class="w-5 h-5 mr-2"/>
+                        <span>{{ session('info') }}</span>
+                    </div>
+                    <button onclick="this.parentElement.remove()"
+                            class="text-blue-800 dark:text-blue-200 hover:text-blue-600 dark:hover:text-blue-400">
+                        <flux:icon.x-mark variant="solid" class="w-4 h-4"/>
                     </button>
                 </div>
             @endif
@@ -43,6 +63,12 @@
                         </a>
                     @endcan
                 </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+                <livewire:search-bar />
             </div>
 
             <!-- Books Table -->
@@ -99,17 +125,11 @@
                                     @if($book->avg_rating)
                                         <div class="flex items-center">
                                             <div class="flex text-amber-400">
-
-                                                {{-- TODO: cambiar cuando se pueble la DB con fake reviews --}}
                                                 @for($i = 1; $i <= 5; $i++)
                                                     <flux:icon.star
                                                         class="w-4 h-4 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"/>
                                                 @endfor
                                             </div>
-                                            {{--<span
-                                                class="ml-1 text-sm text-gray-500 dark:text-gray-400">
-                                                {{ $book->avg_rating }}
-                                            </span>--}}
                                         </div>
                                     @else
                                         <span class="text-sm text-gray-400 dark:text-gray-500">Sin valorar</span>
