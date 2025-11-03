@@ -59,7 +59,7 @@
 						<a href="{{ route('books.create') }}"
 							 class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
 							<flux:icon.plus-circle/>
-							Novo libro
+							<span class="mx-1">Novo libro</span>
 						</a>
 					@endcan
 				</div>
@@ -111,17 +111,21 @@
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">
 									{{ $book->isbn13 }}
 								</td>
+
 								<td class="px-6 py-4">
 									<div class="text-sm font-medium text-gray-900 dark:text-white">
 										{{ $book->title }}
 									</div>
 								</td>
+
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
 									{{ Str::limit($book->author, 30) }}
 								</td>
+
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
 									{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : '-' }}
 								</td>
+
 								<td class="px-6 py-4 whitespace-nowrap">
 									@if($book->avg_rating)
 										<div class="flex items-center">
@@ -136,13 +140,15 @@
 										<span class="text-sm text-gray-400 dark:text-gray-500">Sin valorar</span>
 									@endif
 								</td>
+
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 									<div class="flex space-x-2">
 										<a href="{{ route('books.show', $book) }}"
 											 class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
 											<flux:icon.eye/>
-											Ver
+											<!--Ver-->
 										</a>
+
 										@can('bookshelves.manage')
 											<form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
 														class="inline">
@@ -150,16 +156,18 @@
 												<button type="submit"
 																class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 													<flux:icon.plus-circle/>
-													Pendentes
+													<!--Pendentes-->
 												</button>
 											</form>
 										@endcan
+
 										@can('books.edit')
 											<a href="{{ route('books.edit', $book) }}"
 												 class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 												<flux:icon.pencil-square/>
-												Editar
+												<!--Editar-->
 											</a>
+
 											<form action="{{ route('books.destroy', $book) }}" method="POST"
 														class="inline delete-form">
 												@csrf
@@ -167,7 +175,7 @@
 												<button type="submit"
 																class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
 													<flux:icon.trash/>
-													Eliminar
+													<!--Eliminar-->
 												</button>
 											</form>
 										@endcan

@@ -60,8 +60,9 @@
 		<div class="flex gap-2">
 			<button
 				type="submit"
-				class="px-4 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-all text-sm font-medium"
+				class="flex space-x-2 items-center px-4 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-all text-sm font-medium"
 			>
+				<flux:icon.magnifying-glass/>
 				Buscar
 			</button>
 
