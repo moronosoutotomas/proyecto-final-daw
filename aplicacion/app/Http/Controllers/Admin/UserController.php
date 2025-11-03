@@ -15,10 +15,10 @@ class UserController extends Controller
         #$this->middleware('can:admin.users.index');
 
         # Asi solo aplica a la ruta index
-//        $this->middleware('can:admin.users.index')->only('index');
+				// $this->middleware('can:admin.users.index')->only('index');
 
         # Y asi lo aplicariamos a varios metodos que usen una misma ruta
-//        $this->middleware('can:admin.users.edit')->only('edit', 'update');
+				// $this->middleware('can:admin.users.edit')->only('edit', 'update');
     }
 
     /**
