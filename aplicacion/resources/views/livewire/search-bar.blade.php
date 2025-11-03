@@ -20,11 +20,6 @@
 				onchange="this.form.submit()"
 			>
 				<option value="">Todos os autores</option>
-				{{--				@foreach($authors as $a)--}}
-				{{--					<option value="{{ $a }}" {{ request('author') == $a ? 'selected' : '' }}>--}}
-				{{--						{{ Str::limit($a, 40) }}--}}
-				{{--					</option>--}}
-				{{--				@endforeach--}}
 			</select>
 		</div>
 
@@ -44,11 +39,6 @@
 						ou máis
 					</option>
 				@endfor
-
-				{{--				<option value="4" {{ request('rating') == 4 ? 'selected' : '' }}>⭐⭐⭐⭐ ou máis</option>--}}
-				{{--				<option value="3" {{ request('rating') == 3 ? 'selected' : '' }}>⭐⭐⭐ ou máis</option>--}}
-				{{--				<option value="2" {{ request('rating') == 2 ? 'selected' : '' }}>⭐⭐ ou máis</option>--}}
-				{{--				<option value="1" {{ request('rating') == 1 ? 'selected' : '' }}>⭐ ou máis</option>--}}
 			</select>
 		</div>
 

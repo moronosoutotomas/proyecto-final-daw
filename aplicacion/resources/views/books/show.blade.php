@@ -83,7 +83,6 @@
                                             </svg>
                                         @endfor
                                     </div>
-                                    <span class="ml-2 text-sm text-gray-500 dark:text-gray-400">{{ $book->avg_rating }}/5</span>
                                 </div>
                             @endif
                         </div>
