@@ -14,40 +14,57 @@ class BookController extends Controller
 	{
 		$query = Book::query();
 
-		// Filtro de búsqueda por texto
-		if ($request->filled('search')) {
-			$search = $request->search;
-			$query->where(function ($q) use ($search) {
-				$q->where('title', 'like', "%{$search}%")
-					->orWhere('author', 'like', "%{$search}%")
-					->orWhere('isbn13', 'like', "%{$search}%");
-			});
+		// filtro de busqueda por texto independientemente del campo,
+		// busca "algo" como lo introducido por el user
+//		if ($request->filled('search')) {
+//			$search = $request->search;
+//			$query->where(function ($q) use ($search) {
+//				$q->where('title', 'like', "%{$search}%")
+//					->orWhere('author', 'like', "%{$search}%")
+//					->orWhere('isbn13', 'like', "%{$search}%");
+//			});
+//		}
+
+		// filtro por isbn13 (es el que estoy listando, podria hacerse tb con el de 10 char)
+		if ($request->filled('isbn13')) {
+			$query->where('isbn13', 'like', "%$request->isbn13%");
 		}
 
-		// Filtro por autor
+		// filtro por titulo
+		if ($request->filled('title')) {
+			$query->where('title', 'like', "%$request->title%");
+		}
+
+		// filtro por autor
 		if ($request->filled('author')) {
-			$query->where('author', 'like', "%{$request->author}%");
+			$query->where('author', 'like', "%$request->author%");
 		}
 
-		// Filtro por valoración mínima
+		// filtro por valoracion minima
 		if ($request->filled('rating')) {
 			$query->where('avg_rating', '>=', $request->rating);
 		}
 
-		// Ordenamiento
-		$order = $request->get('order', 'title');
+		// ordenamiento y sentido
+		$order = $request->get('order');
+		$sort = $request->get('sort');
+
 		switch ($order) {
+			case 'isbn13':
+				$query->orderBy('isbn13', $sort);
+				break;
 			case 'title':
-				$query->orderBy('title');
+				$query->orderBy('title', $sort);
 				break;
 			case 'author':
-				$query->orderBy('author');
+				$query->orderBy('author', $sort);
 				break;
-			case 'publication_date':
-				$query->orderBy('publication_date');
-				break;
+			// TODO: quedaria chulo un calendar con un range para esto
+//			case 'publication_date':
+//				$query->orderBy('publication_date');
+//				break;
 			case 'rating':
-				$query->orderBy('avg_rating');
+				$query->orderBy('avg_rating', $sort);
 				break;
 			default:
 				$query->orderBy('title');
