@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -108,7 +109,9 @@ class BookController extends Controller
 	public function show(Book $book)
 	{
 		$book->load(['reviews.user', 'editions', 'bookshelves']);
-		return view('books.show', compact('book'));
+		$reviews = Review::all()->where('book_id', '=', $book);
+
+		return view('books.show', compact('book', 'reviews'));
 	}
 
 	/**

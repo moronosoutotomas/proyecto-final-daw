@@ -5,7 +5,7 @@
 	<div
 		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-			<!-- Flash Messages -->
+			<!-- TODO: limpiar boilerplate flash messages -->
 			@if(session('success'))
 				<div
 					class="mb-6 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 text-green-800 dark:text-green-200 px-4 py-3 rounded-lg flex items-center justify-between">
@@ -48,7 +48,7 @@
 				</div>
 			@endif
 
-			<!-- Header -->
+			<!-- header -->
 			<div class="mb-8">
 				<div class="flex justify-between items-center">
 					<div>
@@ -65,14 +65,14 @@
 				</div>
 			</div>
 
-			<!-- Search Bar -->
+			<!-- searchbar -->
 			<div
 				class="mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
 			>
 				<livewire:search-bar/>
 			</div>
 
-			<!-- Books Table -->
+			<!-- tabla -->
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="overflow-x-auto">
@@ -80,41 +80,44 @@
 						<thead class="bg-gray-50 dark:bg-gray-700">
 						<tr>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
 								ISBN
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-								Título
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+								TÍTULO
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-								Autor
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+								AUTOR
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-								Publicación
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+								PUBLICACIÓN
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-								Valoración
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+								VALORACIÓN
 							</th>
+
+							@role('bibliotecario|lector')
 							<th scope="col"
-									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-								Accións
+									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+								ACCIÓNS
 							</th>
+							@endrole
 						</tr>
 						</thead>
 						<tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
 						@forelse($books as $book)
 							<tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">
-									<a href="" class="hover:underline">{{ $book->isbn13 }}</a>
+									<a href="/books/{{ $book->id }}" class="hover:underline">{{ $book->isbn13 }}</a>
 								</td>
 
 								<td class="px-6 py-4">
 									<div class="text-sm font-medium text-gray-900 dark:text-white">
-										<a href="" class="hover:underline">{{ $book->title }}</a>
+										<a href="/books/{{ $book->id }}" class="hover:underline">{{ $book->title }}</a>
 									</div>
 								</td>
 
@@ -141,31 +144,25 @@
 									@endif
 								</td>
 
+								@role('bibliotecario|lector')
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-									<div class="flex justify-between">
-										{{-- ver --}}
-										{{--										<a href="{{ route('books.show', $book) }}"--}}
-										{{--											 class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">--}}
-										{{--											<flux:icon.eye/>--}}
-										{{--										</a>--}}
-
+									<div class="flex justify-between items-center">
 										{{-- añadir --}}
+										{{--<form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
+													class="inline">
+											@csrf
+											<button type="submit"
+															class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+												<flux:icon.plus-circle/>
+											</button>
+										</form>--}}
+
+										{{-- TODO --}}
+										{{-- https://v2.bladewindui.com/component/dropmenu --}}
 										@can('bookshelves.manage')
-											<form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
-														class="inline">
-												@csrf
-												<button type="submit"
-																class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-													<flux:icon.plus-circle/>
-												</button>
-											</form>
-
-
-											{{-- TODO --}}
-											{{-- https://v2.bladewindui.com/component/dropmenu --}}
 											<div class="relative" x-data="{ open: false }">
 												<button @click="open = !open" @click.away="open = false"
-																class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium duration-300 ease-in-out text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+																class="flex items-center space-x-2 px-2 py-2 rounded-md text-sm font-medium duration-300 ease-in-out text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 													<flux:icon.plus-circle/>
 												</button>
 
@@ -180,19 +177,32 @@
 														 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
 														 style="display: none;">
 													<div class="py-1">
-														<a href="{{ route('settings.profile') }}"
-															 class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
+														{{--<a href="{{ route('bookshelves.addBook', $book, 1) }}"
+															 class="block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
 															Lidos
-														</a>
-														<a href="{{ route('settings.password') }}"
-															 class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
-															Lendo
-														</a>
-														<div class="border-t dark:border-gray-800"></div>
-														<form method="POST" action="{{ route('logout') }}">
+														</a>--}}
+														<form method="POST" action="{{ route('bookshelves.addBook', 1, $book) }}">
 															@csrf
 															<button type="submit"
-																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white">
+																			class="block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
+																Lidos
+															</button>
+														</form>
+														{{--<a href="{{ route('bookshelves.addBook', $book, 2) }}"
+															 class="block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
+															Lendo
+														</a>--}}
+														<form method="POST" action="{{ route('bookshelves.addBook', 2, $book) }}">
+															@csrf
+															<button type="submit"
+																			class="block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
+																Lendo
+															</button>
+														</form>
+														<form method="POST" action="{{ route('bookshelves.addBook', 3, $book) }}">
+															@csrf
+															<button type="submit"
+																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
 																Pendentes
 															</button>
 														</form>
@@ -204,7 +214,7 @@
 										@can('books.edit')
 											{{-- editar --}}
 											<a href="{{ route('books.edit', $book) }}"
-												 class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+												 class="px-2 py-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 												<flux:icon.pencil-square/>
 											</a>
 
@@ -214,13 +224,14 @@
 												@csrf
 												@method('DELETE')
 												<button type="submit"
-																class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
+																class="px-2 py-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
 													<flux:icon.trash/>
 												</button>
 											</form>
 										@endcan
 									</div>
 								</td>
+								@endrole
 							</tr>
 						@empty
 							<tr>
@@ -243,7 +254,7 @@
 				</div>
 			</div>
 
-			<!-- Pagination -->
+			<!-- paginacion -->
 			@if($books->hasPages())
 				<div class="mt-6">
 					{{ $books->links() }}
