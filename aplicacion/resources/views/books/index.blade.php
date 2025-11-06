@@ -100,7 +100,7 @@
 								Valoración
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
 								Accións
 							</th>
 						</tr>
@@ -109,12 +109,12 @@
 						@forelse($books as $book)
 							<tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">
-									{{ $book->isbn13 }}
+									<a href="" class="hover:underline">{{ $book->isbn13 }}</a>
 								</td>
 
 								<td class="px-6 py-4">
 									<div class="text-sm font-medium text-gray-900 dark:text-white">
-										{{ $book->title }}
+										<a href="" class="hover:underline">{{ $book->title }}</a>
 									</div>
 								</td>
 
@@ -142,13 +142,14 @@
 								</td>
 
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-									<div class="flex space-x-2">
-										<a href="{{ route('books.show', $book) }}"
-											 class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">
-											<flux:icon.eye/>
-											<!--Ver-->
-										</a>
+									<div class="flex justify-between">
+										{{-- ver --}}
+										{{--										<a href="{{ route('books.show', $book) }}"--}}
+										{{--											 class="text-amber-600 hover:text-amber-900 dark:text-amber-400 dark:hover:text-amber-300 transition-colors">--}}
+										{{--											<flux:icon.eye/>--}}
+										{{--										</a>--}}
 
+										{{-- añadir --}}
 										@can('bookshelves.manage')
 											<form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
 														class="inline">
@@ -156,18 +157,58 @@
 												<button type="submit"
 																class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 													<flux:icon.plus-circle/>
-													<!--Pendentes-->
 												</button>
 											</form>
+
+
+											{{-- TODO --}}
+											{{-- https://v2.bladewindui.com/component/dropmenu --}}
+											<div class="relative" x-data="{ open: false }">
+												<button @click="open = !open" @click.away="open = false"
+																class="flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium duration-300 ease-in-out text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+													<flux:icon.plus-circle/>
+												</button>
+
+												{{-- Animación con Alpine.js --}}
+												<div x-show="open"
+														 x-transition:enter="transition ease-out duration-100"
+														 x-transition:enter-start="transform opacity-0 scale-95"
+														 x-transition:enter-end="transform opacity-100 scale-100"
+														 x-transition:leave="transition ease-in duration-75"
+														 x-transition:leave-start="transform opacity-100 scale-100"
+														 x-transition:leave-end="transform opacity-0 scale-95"
+														 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
+														 style="display: none;">
+													<div class="py-1">
+														<a href="{{ route('settings.profile') }}"
+															 class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
+															Lidos
+														</a>
+														<a href="{{ route('settings.password') }}"
+															 class="block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">
+															Lendo
+														</a>
+														<div class="border-t dark:border-gray-800"></div>
+														<form method="POST" action="{{ route('logout') }}">
+															@csrf
+															<button type="submit"
+																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white">
+																Pendentes
+															</button>
+														</form>
+													</div>
+												</div>
+											</div>
 										@endcan
 
 										@can('books.edit')
+											{{-- editar --}}
 											<a href="{{ route('books.edit', $book) }}"
 												 class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 												<flux:icon.pencil-square/>
-												<!--Editar-->
 											</a>
 
+											{{-- eliminar --}}
 											<form action="{{ route('books.destroy', $book) }}" method="POST"
 														class="inline delete-form">
 												@csrf
@@ -175,7 +216,6 @@
 												<button type="submit"
 																class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
 													<flux:icon.trash/>
-													<!--Eliminar-->
 												</button>
 											</form>
 										@endcan
@@ -212,32 +252,4 @@
 		</div>
 	</div>
 
-	@push('js')
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				const forms = document.querySelectorAll('.delete-form');
-
-				forms.forEach(form => {
-					form.addEventListener('submit', (e) => {
-						e.preventDefault();
-
-						Swal.fire({
-							title: "¿Estás seguro?",
-							text: "Non podrás revertir esta acción",
-							icon: "warning",
-							showCancelButton: true,
-							confirmButtonColor: "#d33",
-							cancelButtonColor: "#3085d6",
-							confirmButtonText: "Sí, eliminar",
-							cancelButtonText: "Cancelar"
-						}).then((result) => {
-							if (result.isConfirmed) {
-								form.submit();
-							}
-						});
-					});
-				});
-			});
-		</script>
-	@endpush
 </x-layouts.app>
