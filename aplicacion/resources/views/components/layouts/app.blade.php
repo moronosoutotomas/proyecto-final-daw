@@ -52,6 +52,8 @@
 			});
 		});
 	});
+
+	// TODO: toggle modal form para reseñas
 </script>
 </body>
 </html>
