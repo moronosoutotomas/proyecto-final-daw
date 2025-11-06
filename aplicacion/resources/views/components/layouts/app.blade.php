@@ -18,8 +18,6 @@
 	{{ $slot }}
 </main>
 
-@stack('js')
-
 <footer class="bg-gray-50 border-gray-200 text-gray-900 dark:bg-gray-900 dark:border-gray-700 dark:text-white">
 	<div class="max-w-7xl mx-auto py-14 px-4">
 		<p class="text-center text-gray-500 text-sm">
@@ -27,5 +25,33 @@
 		</p>
 	</div>
 </footer>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		const forms = document.querySelectorAll('.delete-form');
+
+		forms.forEach(form => {
+			form.addEventListener('submit', (e) => {
+				e.preventDefault();
+
+				Swal.fire({
+					title: "¿Estás seguro?",
+					theme: 'auto',
+					text: "Non podrás revertir esta acción",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#d33",
+					cancelButtonColor: "#3085d6",
+					confirmButtonText: "Sí, eliminar",
+					cancelButtonText: "Cancelar"
+				}).then((result) => {
+					if (result.isConfirmed) {
+						form.submit();
+					}
+				});
+			});
+		});
+	});
+</script>
 </body>
 </html>
