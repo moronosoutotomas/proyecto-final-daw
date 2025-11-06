@@ -26,18 +26,17 @@ cd bookbag/aplicacion
 ```
 
 Lanzamos o compose de contenedores
+> Este proxecto dispón de 2 compose distintos, un para desenvolvemento que instalará certas ferramentas como Xdebug (i.e).
+> Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
 ```
 docker compose -f compose.dev.yaml up -d
 ```
-> Este proxecto dispón de 2 compose distintos, un para desenvolvemento que instalará certas ferramentas como Xdebug (i.e).
-> Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
 
 Accedemos ó contenedor "workspace"
+> Si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
 ```
 docker exec -it aplicacion_tomasmorono-workspace bash # Acceso ó contenedor
 ```
-> OLLO: si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
-
 Unha vez dentro, instalamo-las dependencias e compilamo-las vistas
 ```
 composer install # Instalación dependencias backend
@@ -65,7 +64,7 @@ Por defecto será [localhost](http://localhost) sin SSL
 
 ---
 ## Limpieza
+> Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `docker system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados parcial ou totalmente.
 ```
 sudo sh cleanup.sh
 ```
-> Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `docker system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados parcial ou totalmente.
