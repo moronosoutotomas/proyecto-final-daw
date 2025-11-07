@@ -22,16 +22,16 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Mostrar un listado de usuarios.
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id')->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostrar el formulario de creación de un usuario.
      */
     public function create()
     {
@@ -39,7 +39,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacenar un usuario en la base de datos.
      */
     public function store(Request $request)
     {
@@ -56,7 +56,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostrar el formulario de edición de un usuario.
      */
     public function edit(User $user)
     {
@@ -65,16 +65,30 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar un usuario de la base de datos.
      */
     public function update(Request $request, User $user)
     {
-        $user->roles()->sync($request->roles);
-        return redirect()->route('admin.users.edit', $user)->with('info', 'Se asignaron dichos roles correctamente.');
+					// Estaría bien una fn para modificar solamente los roles
+//        $user->roles()->sync($request->roles);
+//        return redirect()->route('admin.users.edit', $user)->with('info', 'Asignáronse ditos roles correctamente.');
+
+			$validated = $request->validate([
+//				'isbn10' => 'nullable|string|min:10|max:10|unique:books,isbn10,' . $book->id,
+//				'isbn13' => 'nullable|string|min:13|max:13|unique:books,isbn13,' . $book->id,
+//				'title' => 'required|string|max:255',
+//				'author' => 'required|string|max:255',
+//				'publication_date' => 'nullable|date',
+			]);
+
+			$book->update($validated);
+
+			return redirect()->route('books.show', $book)
+				->with('success', 'Libro actualizado correctamente.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar un usuario de la base de datos.
      */
     public function destroy(User $user)
     {

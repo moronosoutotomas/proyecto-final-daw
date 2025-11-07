@@ -34,6 +34,10 @@
 							</th>
 							<th scope="col"
 									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Membro dende
+							</th>
+							<th scope="col"
+									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
 								Accións
 							</th>
 						</tr>
@@ -47,15 +51,41 @@
 								</td>
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
 									<span>
-											{{ ucfirst($user->name) }}
+											{{ $user->name }}
 									</span>
 								</td>
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
 									<span>
-											{{ ucfirst($user->email) }}
+											{{ $user->email }}
 									</span>
 								</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+									<span>
+											{{ date_format($user->created_at, 'j M Y') }}
+									</span>
+								</td>
+								@role('administrador')
+								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+									<div class="flex justify-center items-center">
+										{{-- editar --}}
+										<a href="{{ route('admin.users.edit', $user) }}"
+											 class="px-2 py-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+											<flux:icon.pencil-square/>
+										</a>
 
+										{{-- eliminar --}}
+										<form action="{{ route('admin.users.destroy', $user) }}" method="POST"
+													class="inline delete-form">
+											@csrf
+											@method('DELETE')
+											<button type="submit"
+															class="px-2 py-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
+												<flux:icon.trash/>
+											</button>
+										</form>
+									</div>
+								</td>
+								@endrole
 							</tr>
 						@endforeach
 						</tbody>
@@ -64,6 +94,12 @@
 				</div>
 			</div>
 
+			<!-- paginacion -->
+			@if($users->hasPages())
+				<div class="mt-6">
+					{{ $users->links() }}
+				</div>
+			@endif
 		</div>
 	</div>
 </x-layouts.app>
