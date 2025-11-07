@@ -147,15 +147,6 @@
 								@role('bibliotecario|lector')
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
 									<div class="flex justify-between items-center">
-										{{-- añadir --}}
-										{{--<form action="{{ route('bookshelves.addBook', $book) }}" method="POST"
-													class="inline">
-											@csrf
-											<button type="submit"
-															class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-												<flux:icon.plus-circle/>
-											</button>
-										</form>--}}
 
 										{{-- TODO --}}
 										{{-- https://v2.bladewindui.com/component/dropmenu --}}
@@ -177,29 +168,22 @@
 														 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
 														 style="display: none;">
 													<div class="py-1">
-														{{--<a href="{{ route('bookshelves.addBook', $book, 1) }}"
-															 class="block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
-															Lidos
-														</a>--}}
-														<form method="POST" action="{{ route('bookshelves.addBook', 1, $book) }}">
+														<?php $lidos = 1; $lendo = 2; $pendentes = 3; ?>
+														<form method="POST" action="{{ route('bookshelves.addBook', $lidos, $book) }}">
 															@csrf
 															<button type="submit"
-																			class="block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
+																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
 																Lidos
 															</button>
 														</form>
-														{{--<a href="{{ route('bookshelves.addBook', $book, 2) }}"
-															 class="block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
-															Lendo
-														</a>--}}
-														<form method="POST" action="{{ route('bookshelves.addBook', 2, $book) }}">
+														<form method="POST" action="{{ route('bookshelves.addBook', $lendo, $book) }}">
 															@csrf
 															<button type="submit"
-																			class="block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
+																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
 																Lendo
 															</button>
 														</form>
-														<form method="POST" action="{{ route('bookshelves.addBook', 3, $book) }}">
+														<form method="POST" action="{{ route('bookshelves.addBook', $pendentes, $book) }}">
 															@csrf
 															<button type="submit"
 																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">

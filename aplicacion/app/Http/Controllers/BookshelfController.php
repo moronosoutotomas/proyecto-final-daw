@@ -45,7 +45,7 @@ class BookshelfController extends Controller
 //    }
 
 //    TODO: Versión vieja para añadir libros a estanterías
-    public function addBook($bookshelfID, $bookID)
+    public function addBook(int $bookshelfID, Book $book)
     {
         $user = Auth::user();
 
@@ -53,7 +53,7 @@ class BookshelfController extends Controller
             ->where('user_id', $user->id)
             ->firstOrFail();
 
-        $book = Book::findOrFail($bookID);
+        $book = Book::findOrFail($book);
 
         if ($bookshelf->books()->where('book_id', $book->id)->exists()) {
             return back()->with('info', "Lo siento, ese libro ya existe en esta estantería.");
