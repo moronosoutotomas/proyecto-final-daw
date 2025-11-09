@@ -68,7 +68,7 @@ class BookController extends Controller
 				$query->orderBy('avg_rating', $sort);
 				break;
 			default:
-				$query->orderBy('title');
+				$query->orderBy('id');
 		}
 
 		$books = $query->paginate(10)->withQueryString();
