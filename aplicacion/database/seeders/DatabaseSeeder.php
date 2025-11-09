@@ -56,8 +56,8 @@ class DatabaseSeeder extends Seeder
 			$user->assignRole('lector');
 		});
 
-		Book::factory(49)->create();
-		Edition::factory(19)->create();
+		Book::factory(40)->create();
+		//Edition::factory(19)->create();
 		Review::factory(20)->create();
 
 		// BookshelfSeeder añade libros a las estanterías de los usuarios mock

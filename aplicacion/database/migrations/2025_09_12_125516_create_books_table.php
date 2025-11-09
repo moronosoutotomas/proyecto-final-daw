@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('author');
             $table->timestamp('publication_date')->nullable();
             $table->integer('avg_rating')->nullable();
+						$table->string('cover')->nullable();
             $table->timestamps();
         });
     }

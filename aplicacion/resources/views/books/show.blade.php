@@ -1,4 +1,14 @@
-@php use Carbon\Carbon; @endphp
+@php
+	use Carbon\Carbon;
+ 	use Illuminate\Support\Facades\Http;
+
+	// chapucilla para probar el wrap de guzzle que usa laravel
+	//$url = "https://covers.openlibrary.org/b/isbn/$book->isbn13-L.jpg";
+	//$url = "https://covers.openlibrary.org/b/isbn/{{ $book->isbn13  }}-L.jpg";
+	//$response = Http::get($url);
+	//$book->cover = $response;
+
+@endphp
 <x-layouts.app>
 	@section('title', $book->title)
 
@@ -54,17 +64,20 @@
 				</ol>
 			</nav>
 
+			<!-- title/cover libro -->
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
 					<div class="flex justify-between items-start mb-6">
-						<div class="flex-1">
-							<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-								{{ $book->title }}
-							</h1>
-							<p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
-								por {{ $book->author }}
-							</p>
+						<div class="flex-1 ">
+							<div>
+								<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+									{{ $book->title }}
+								</h1>
+								<p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
+									por {{ $book->author }}
+								</p>
+							</div>
 
 							<!-- valoracion -->
 							@if($book->avg_rating)
@@ -84,7 +97,8 @@
 						</div>
 
 						@can('books.edit')
-							<div class="flex space-x-2">
+							<div class="flex flex-col space-y-2">
+								<img src="{{ $book->cover }}" alt="portada de {{ $book->title }}">
 								<a href="{{ route('books.edit', $book) }}"
 									 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
 									<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
