@@ -23,7 +23,6 @@ class BookSeeder extends Seeder
 		$book1->author = 'George Orwell';
 		$book1->publication_date = '1949-06-08';
 		$book1->avg_rating = 5;
-		$book1->cover = "https://covers.openlibrary.org/b/isbn/$book1->isbn13-L.jpg";
 		$book1->save();
 
 		// rebelion en la granja
@@ -34,7 +33,6 @@ class BookSeeder extends Seeder
 		$book2->author = 'George Orwell';
 		$book2->publication_date = '1945-08-17';
 		$book2->avg_rating = 5;
-		$book2->cover = "https://covers.openlibrary.org/b/isbn/$book1->isbn13-L.jpg";
 		$book2->save();
 
 		// el libro de la selva
@@ -45,18 +43,16 @@ class BookSeeder extends Seeder
 		$book3->author = 'Rudyard Kipling';
 		$book3->publication_date = '1894-01-01';
 		$book3->avg_rating = 4;
-		$book3->cover = "https://covers.openlibrary.org/b/isbn/$book3->isbn13-L.jpg";
 		$book3->save();
 
 		// el quijote
 		$book4 = new Book();
-		$book4->isbn10 = '8420412147';
-		$book4->isbn13 = '9788420412146';
+		$book4->isbn10 = '849559403X';
+		$book4->isbn13 = '9781587266171';
 		$book4->title = 'El ingenioso hidalgo Don Quijote de la Mancha';
 		$book4->author = 'Miguel de Cervantes Saavedra';
 		$book4->publication_date = '1605-01-01';
 		$book4->avg_rating = 4;
-		$book4->cover = "https://covers.openlibrary.org/b/isbn/$book4->isbn13-L.jpg";
 		$book4->save();
 
 		// la sombra del viento
@@ -67,18 +63,16 @@ class BookSeeder extends Seeder
 		$book5->author = 'Carlos Ruiz Zafón';
 		$book5->publication_date = '2001-01-01';
 		$book5->avg_rating = 4;
-		$book5->cover = "https://covers.openlibrary.org/b/isbn/$book5->isbn13-L.jpg";
 		$book5->save();
 
 		// el hombre invisible
 		$book6 = new Book();
 		$book6->isbn10 = '0198702671';
-		$book6->isbn13 = '9798859928002';
+		$book6->isbn13 = '0198702671';
 		$book6->title = 'El hombre invisible';
 		$book6->author = 'H.G. Wells';
 		$book6->publication_date = '2017-09-01';
 		$book6->avg_rating = 4;
-		$book6->cover = "https://covers.openlibrary.org/b/isbn/$book6->isbn13-L.jpg";
 		$book6->save();
 
 		// la maquina del tiempo
@@ -89,7 +83,6 @@ class BookSeeder extends Seeder
 		$book7->author = 'H.G. Wells';
 		$book7->publication_date = '2021-01-01';
 		$book7->avg_rating = 4;
-		$book7->cover = "https://covers.openlibrary.org/b/isbn/$book7->isbn13-L.jpg";
 		$book7->save();
 
 		// el corsario negro
@@ -100,7 +93,6 @@ class BookSeeder extends Seeder
 		$book8->author = 'Emilio Salgari';
 		$book8->publication_date = '2021-04-29';
 		$book8->avg_rating = 4;
-		$book8->cover = "https://covers.openlibrary.org/b/isbn/$book8->isbn13-L.jpg";
 		$book8->save();
 
 		// jim boton y lucas el maquinista
@@ -111,7 +103,6 @@ class BookSeeder extends Seeder
 		$book9->author = 'Michael Ende';
 		$book9->publication_date = '2009-01-20';
 		$book9->avg_rating = 5;
-		$book9->cover = "https://covers.openlibrary.org/b/isbn/$book9->isbn13-L.jpg";
 		$book9->save();
 
 		// como entrenar a tu dragon
@@ -122,7 +113,6 @@ class BookSeeder extends Seeder
 		$book10->author = 'Cressida Cowell';
 		$book10->publication_date = '2005-06-16';
 		$book10->avg_rating = 5;
-		$book10->cover = "https://covers.openlibrary.org/b/isbn/$book10->isbn13-L.jpg";
 		$book10->save();
 	}
 }
