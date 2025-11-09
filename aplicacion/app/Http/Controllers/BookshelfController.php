@@ -49,15 +49,15 @@ class BookshelfController extends Controller
     {
         $user = Auth::user();
 
-        $bookshelf = Bookshelf::where('id', $bookshelfID)
-            ->where('user_id', $user->id)
-            ->firstOrFail();
+//        $bookshelf = Bookshelf::where('id', $bookshelfID)
+//            ->where('user_id', $user->id);
+			$bookshelf = Bookshelf::find($bookshelfID);
 
-        $book = Book::findOrFail($book);
-
-        if ($bookshelf->books()->where('book_id', $book->id)->exists()) {
-            return back()->with('info', "Lo siento, ese libro ya existe en esta estantería.");
-        }
+//        $book = Book::findOrFail($book);
+//
+//        if ($bookshelf->books()->where('book_id', $book->id)->exists()) {
+//            return back()->with('info', "Lo siento, ese libro ya existe en esta estantería.");
+//        }
 
         $bookshelf->books()->attach($book->id);
 
