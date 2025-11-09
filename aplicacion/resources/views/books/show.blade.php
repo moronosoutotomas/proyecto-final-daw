@@ -2,11 +2,12 @@
 	use Carbon\Carbon;
  	use Illuminate\Support\Facades\Http;
 
-	// chapucilla para probar el wrap de guzzle que usa laravel
+	// chapucilla para probar el wrap de guzzle que usa laravel,
+	// si no hay foto devuelve 404 y si devuelve 404 usa otra por olid en lugar de isbn13
+	// base url: https://covers.openlibrary.org/b/$key/$value-$size.jpg
+
 	//$url = "https://covers.openlibrary.org/b/isbn/$book->isbn13-L.jpg";
-	//$url = "https://covers.openlibrary.org/b/isbn/{{ $book->isbn13  }}-L.jpg";
 	//$response = Http::get($url);
-	//$book->cover = $response;
 
 @endphp
 <x-layouts.app>
@@ -64,7 +65,7 @@
 				</ol>
 			</nav>
 
-			<!-- title/cover libro -->
+			<!-- title libro -->
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
@@ -96,9 +97,10 @@
 							@endif
 						</div>
 
-						@can('books.edit')
-							<div class="flex flex-col space-y-2">
-								<img src="{{ $book->cover }}" alt="portada de {{ $book->title }}">
+						<!-- cover -->
+						<div class="flex flex-col space-y-4">
+							<img src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-M.jpg" alt="portada de {{ $book->title }}">
+							@can('books.edit')
 								<a href="{{ route('books.edit', $book) }}"
 									 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
 									<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,8 +109,8 @@
 									</svg>
 									Editar
 								</a>
-							</div>
-						@endcan
+							@endcan
+						</div>
 					</div>
 
 					<!-- info grid -->

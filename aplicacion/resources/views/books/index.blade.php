@@ -116,13 +116,18 @@
 								</td>
 
 								<td class="px-6 py-4">
-									<div class="text-sm font-medium text-gray-900 dark:text-white">
+									<div class="flex items-center text-sm font-medium text-gray-900 dark:text-white">
+										<img
+											class="w-8 h-8"
+											src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-S.jpg"
+											alt="portada de {{ $book->title }}"
+										>
 										<a href="/books/{{ $book->id }}" class="hover:underline">{{ $book->title }}</a>
 									</div>
 								</td>
 
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-									{{ Str::limit($book->author, 30) }}
+									{{ $book->author, 30 }}
 								</td>
 
 								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
