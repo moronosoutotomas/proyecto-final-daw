@@ -122,7 +122,7 @@
 											src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-S.jpg"
 											alt="portada de {{ $book->title }}"
 										>
-										<a href="/books/{{ $book->id }}" class="hover:underline">{{ $book->title }}</a>
+										<a href="/books/{{ $book->id }}" class="hover:underline ps-2">{{ $book->title }}</a>
 									</div>
 								</td>
 
