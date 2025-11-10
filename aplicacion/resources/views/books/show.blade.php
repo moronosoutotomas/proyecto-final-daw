@@ -1,14 +1,5 @@
 @php
 	use Carbon\Carbon;
- 	use Illuminate\Support\Facades\Http;
-
-	// chapucilla para probar el wrap de guzzle que usa laravel,
-	// si no hay foto devuelve 404 y si devuelve 404 usa otra por olid en lugar de isbn13
-	// base url: https://covers.openlibrary.org/b/$key/$value-$size.jpg
-
-	//$url = "https://covers.openlibrary.org/b/isbn/$book->isbn13-L.jpg";
-	//$response = Http::get($url);
-
 @endphp
 <x-layouts.app>
 	@section('title', $book->title)
@@ -86,12 +77,8 @@
 								<div class="flex items-center mb-4">
 									<div class="flex text-amber-400">
 										@for($i = 1; $i <= 5; $i++)
-											<svg
-												class="w-5 h-5 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"
-												viewBox="0 0 20 20">
-												<path
-													d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-											</svg>
+											<flux:icon.star
+												class="w-4 h-4 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"/>
 										@endfor
 									</div>
 								</div>
@@ -166,7 +153,9 @@
 						<!-- cover -->
 						<div class="flex flex-col space-y-4">
 							<img src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-M.jpg"
-									 alt="portada de {{ $book->title }}">
+									 alt="portada de {{ $book->title }}"
+									 class="shadow-lg rounded-lg dark:shadow-white/10"
+							>
 							@can('books.edit')
 								<a href="{{ route('books.edit', $book) }}"
 									 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -193,23 +182,70 @@
 									</button>
 								@endcan
 							</div>
-							<div
-								class="text-gray-900 dark:text-white px-4 py-4 border-b border-gray-200 dark:border-gray-700 overflow-hidden">
-								<h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-									Encantoume
-								</h3>
-								<div class="flex items-center">
-									<div class="flex text-amber-400">
-										@for($i = 1; $i <= 5; $i++)
-											<flux:icon.star
-												class="w-4 h-4 {{ $i <= $book->avg_rating ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"/>
-										@endfor
+
+							<article>
+								<!-- usuario -->
+								<div class="flex items-center mb-4">
+									<div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+										<svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
+												 xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+														clip-rule="evenodd"></path>
+										</svg>
+									</div>
+
+									<div class="ms-2 font-medium dark:text-white">
+										<p>
+											Tipo de incógnito
+											<time
+												datetime="2014-08-16 19:00"
+												class="block text-sm text-gray-500 dark:text-gray-400">
+												Registrado desde Agosto 2025
+											</time>
+										</p>
 									</div>
 								</div>
 
-								<p class="mt-2">Quedei totalmente pasmado as 320 e pico páxinas, recomendadísimo!</p>
+								<!-- valoracion -->
+								<div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+									@if($book->avg_rating)
+										<div class="flex text-amber-400">
+											@for($i = 1; $i <= 5; $i++)
+												<flux:icon.star
+													class="w-4 h-4 {{ $i <= 4 ? 'fill-current' : 'text-gray-300 dark:text-gray-600' }}"/>
+											@endfor
+										</div>
+									@endif
+									<h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">Muy fino</h3>
+								</div>
+								<footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
+									<p>
+										<time datetime="2025-03-03 19:00">March 3, 2025</time>
+									</p>
+								</footer>
 
-							</div>
+								<p class="mb-2 text-gray-500 dark:text-gray-400">
+									É a terceira vez que o leo e non será a derradeira. Encántame este libro. Doadísimo de ler,
+									entretido, apaixoante e moi recomendado. Hai que lelo unha vez na vida polo menos!
+								</p>
+
+								<aside>
+									<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">A 19 personas les ha parecido útil</p>
+									<div class="flex items-center mt-3">
+										<a href="#"
+											 class="px-2 py-1.5 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+											Útil
+										</a>
+
+										<a href="#"
+											 class="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600">
+											Denunciar abuso
+										</a>
+									</div>
+								</aside>
+							</article>
+
+
 						</div>
 					@endauth
 
