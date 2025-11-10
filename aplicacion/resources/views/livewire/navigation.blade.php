@@ -15,13 +15,14 @@
 						 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('homepage') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 						Inicio
 					</a>
+
 					<a href="{{ url('books') }}"
 						 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('books') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 						Libros
 					</a>
 
 					{{-- Sección lectores --}}
-					@can('bookshelves.manage')
+					@can('bookshelves.access')
 						<a href="{{ url('bookshelves') }}"
 							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 							Andeis
@@ -29,18 +30,17 @@
 					@endcan
 
 					{{-- Sección administradores --}}
-					@can('admin.users.manage')
+					@role('administrador')
 						<a href="{{ url('admin/users') }}"
 							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 							Usuarios
 						</a>
-					@endcan
-					@can('admin.users.manage')
+
 						<a href="{{ url('admin/roles') }}"
 							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 							Roles
 						</a>
-					@endcan
+					@endrole
 
 					<a href="{{ url('about') }}"
 						 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('about') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
