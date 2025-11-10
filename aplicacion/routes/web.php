@@ -40,7 +40,7 @@ Route::middleware(['auth', 'role:lector|bibliotecario|administrador'])->group(fu
 	# Rutas de bookshelves
 	# MENSAJE A QUIEN CORRIGE: Realmente podría tener aqui un ::resource de estanterias sin complicarme ya que a priori no usare
 	# post/delete para las propias estanterias, pero quise dejarlo abierto a que una funcion premium permita
-	# un crud propio de estanterias por usuario dando mas juego a esta funcion como tal y para ello mejor
+	# un crud propio de estanterias por usuario dando mas juego a esta funcion como tal, y para ello, mejor
 	# adelantar acontecimientos y dejarlo asi, aunque de primeras quede raro
 	Route::get('/bookshelves', [BookshelfController::class, 'index'])->name('bookshelves.index');
 	Route::post('/bookshelves/{bookshelf}/books', [BookshelfController::class, 'addBook'])->name('bookshelves.addBook');
