@@ -85,33 +85,33 @@
 							@if($bookshelf->books->count() > 0)
 								<div class="space-y-2 mb-4">
 									@foreach($bookshelf->books as $book)
-										<div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
+										<div class="group flex items-center text-sm text-gray-700 dark:text-gray-300">
 											@if($bookshelf->id === 1)
 												<flux:icon.clock
-													variant="solid"
+													variant="outline"
 													class="w-4 h-4 mr-2 text-amber-500"
 												/>
 											@elseif($bookshelf->id === 2)
 												<flux:icon.magnifying-glass
-													variant="solid"
+													variant="outline"
 													class="w-4 h-4 mr-2 text-amber-500"
 												/>
 											@else
 												<flux:icon.bookmark
-													variant="solid"
+													variant="outline"
 													class="w-4 h-4 mr-2 text-amber-500"
 												/>
 											@endif
 											<span class="truncate">
-                                                {{ $book->title }}
-                                            </span>
+                        {{ $book->title }}
+                      </span>
 											<form action="{{ route('bookshelves.removeBook', [$bookshelf, $book]) }}" method="POST"
-														class="inline delete-form">
+														class="inline delete-form opacity-0 group-hover:opacity-100">
 												@csrf
 												@method('DELETE')
 												<button type="submit"
 																class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-													<flux:icon.trash class=""/>
+													<flux:icon.trash class="w-4 h-4"/>
 												</button>
 											</form>
 										</div>

@@ -3,7 +3,8 @@
 	@section('title', 'Libros')
 
 	<div
-		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900">
+		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900"
+	>
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 			<!-- TODO: limpiar boilerplate flash messages -->
 			@if(session('success'))
@@ -173,22 +174,24 @@
 														 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
 														 style="display: none;">
 													<div class="py-1">
-														<?php $lidos = 1; $lendo = 2; $pendentes = 3; ?>
-														<form method="POST" action="{{ route('bookshelves.addBook', $lidos, $book) }}">
+														<form method="POST"
+																	action="{{ route('bookshelves.addBook', ['bookshelf' => $bookshelves->where('bookshelf_type_id', 1)->first(), 'book' => $book]) }}">
 															@csrf
 															<button type="submit"
 																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-green-600 transition duration-150 dark:text-white">
 																Lidos
 															</button>
 														</form>
-														<form method="POST" action="{{ route('bookshelves.addBook', $lendo, $book) }}">
+														<form method="POST"
+																	action="{{ route('bookshelves.addBook', ['bookshelf' => $bookshelves->where('bookshelf_type_id', 2)->first(), 'book' => $book]) }}">
 															@csrf
 															<button type="submit"
 																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-blue-600 transition duration-150 dark:text-white">
 																Lendo
 															</button>
 														</form>
-														<form method="POST" action="{{ route('bookshelves.addBook', $pendentes, $book) }}">
+														<form method="POST"
+																	action="{{ route('bookshelves.addBook', ['bookshelf' => $bookshelves->where('bookshelf_type_id', 3)->first(), 'book' => $book]) }}">
 															@csrf
 															<button type="submit"
 																			class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-amber-600 transition duration-150 dark:text-white">

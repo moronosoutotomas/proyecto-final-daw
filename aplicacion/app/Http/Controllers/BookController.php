@@ -73,7 +73,12 @@ class BookController extends Controller
 
 		$books = $query->paginate(10)->withQueryString();
 
-		return view('books.index', compact('books'));
+		// cogemos las estanterias del auth user para la fn de añadir libros
+		$bookshelves = $request->user()
+		? $request->user()->bookshelves()->with('bookshelfType')->get()
+		: collect();
+
+		return view('books.index', compact('books', 'bookshelves'));
 	}
 
 	/**
