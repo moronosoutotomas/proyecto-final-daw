@@ -88,7 +88,7 @@
 							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 								<div>
 									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-										Información del libro
+										Información do libro
 									</h3>
 									<dl class="space-y-3">
 										<div>
@@ -112,7 +112,7 @@
 												Data de publicación
 											</dt>
 											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
-												{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : 'No disponible' }}
+												{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : 'Non dispoñible' }}
 											</dd>
 										</div>
 										<div>
@@ -200,7 +200,7 @@
 											<time
 												datetime="2014-08-16 19:00"
 												class="block text-sm text-gray-500 dark:text-gray-400">
-												Registrado desde Agosto 2025
+												Rexistrado desde Agosto 2025
 											</time>
 										</p>
 									</div>
@@ -220,7 +220,7 @@
 								</div>
 								<footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
 									<p>
-										<time datetime="2025-03-03 19:00">March 3, 2025</time>
+										<time datetime="2025-03-03 19:00">Marzo 3, 2025</time>
 									</p>
 								</footer>
 
@@ -230,7 +230,7 @@
 								</p>
 
 								<aside>
-									<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">A 19 personas les ha parecido útil</p>
+									<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">A 19 persoas parecéulles útil</p>
 									<div class="flex items-center mt-3">
 										<a href="#"
 											 class="px-2 py-1.5 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
@@ -244,8 +244,6 @@
 									</div>
 								</aside>
 							</article>
-
-
 						</div>
 					@endauth
 

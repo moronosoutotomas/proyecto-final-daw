@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
     /**
-     * Almacena una nueva reseña en la base de datos.
+     * Almacena unha nova reseña na base de datos.
      */
     public function store(Request $request)
     {
@@ -26,13 +26,13 @@ class ReviewController extends Controller
     }
 
     /**
-     * Elimina una reseña de la base de datos.
+     * Elimina unha reseña da base de datos.
      */
     public function destroy(Review $review)
     {
         // Verificar que el usuario sea el propietario de la reseña
         if ($review->user_id !== auth()->id()) {
-            return redirect()->back()->with('error', 'No tienes permiso para eliminar esta reseña.');
+            return redirect()->back()->with('error', 'Non tes permiso para eliminar esta reseña.');
         }
 
         $review->delete();

@@ -113,17 +113,21 @@
 						@forelse($books as $book)
 							<tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-900 dark:text-white">
-									<a href="/books/{{ $book->id }}" class="hover:underline">{{ $book->isbn13 }}</a>
+									<a href="/books/{{ $book->id }}" class="hover:underline">
+										{{ $book->isbn13 }}
+									</a>
 								</td>
 
 								<td class="px-6 py-4">
 									<div class="flex items-center text-sm font-medium text-gray-900 dark:text-white">
 										<img
-											class="w-8 h-8"
+											class="w-10 h-10 rounded-md"
 											src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-S.jpg"
 											alt="portada de {{ $book->title }}"
 										>
-										<a href="/books/{{ $book->id }}" class="hover:underline ps-2">{{ $book->title }}</a>
+										<a href="/books/{{ $book->id }}" class="hover:underline ps-2">
+											{{ $book->title }}
+										</a>
 									</div>
 								</td>
 
@@ -146,7 +150,7 @@
 											</div>
 										</div>
 									@else
-										<span class="text-sm text-gray-400 dark:text-gray-500">Sin valorar</span>
+										<span class="text-sm text-gray-400 dark:text-gray-500">Sen valorar</span>
 									@endif
 								</td>
 

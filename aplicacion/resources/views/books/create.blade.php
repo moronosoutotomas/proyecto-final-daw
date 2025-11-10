@@ -1,5 +1,5 @@
 <x-layouts.app>
-	@section('title', 'Nuevo libro')
+	@section('title', 'Novo libro')
 
 	<div
 		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900"
@@ -12,7 +12,7 @@
 					<li><span class="mx-2">/</span></li>
 					<li><a href="{{ route('books.index') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Libros</a></li>
 					<li><span class="mx-2">/</span></li>
-					<li class="text-gray-900 dark:text-white">Novo</li>
+					<li class="text-gray-900 dark:text-white">Novo libro</li>
 				</ol>
 			</nav>
 
@@ -73,7 +73,7 @@
 											 value="{{ old('title') }}"
 											 required
 											 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('title') border-red-500 @enderror"
-											 placeholder="El título del libro">
+											 placeholder="O título do libro">
 								@error('title')
 								<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
 								@enderror
@@ -90,7 +90,7 @@
 											 value="{{ old('author') }}"
 											 required
 											 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('author') border-red-500 @enderror"
-											 placeholder="Nombre del autor">
+											 placeholder="O nome do autor">
 								@error('author')
 								<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
 								@enderror

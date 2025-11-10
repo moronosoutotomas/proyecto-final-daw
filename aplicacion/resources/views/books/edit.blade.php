@@ -24,7 +24,7 @@
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
 					<div class="mb-8">
-						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Editar libro</h1>
+						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Edita-lo libro</h1>
 						<p class="mt-2 text-gray-600 dark:text-gray-400">Actualiza-lo libro</p>
 					</div>
 
@@ -77,7 +77,7 @@
 											 value="{{ old('title', $book->title) }}"
 											 required
 											 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('title') border-red-500 @enderror"
-											 placeholder="El título del libro">
+											 placeholder="O título do libro">
 								@error('title')
 								<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
 								@enderror
@@ -94,7 +94,7 @@
 											 value="{{ old('author', $book->author) }}"
 											 required
 											 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-amber-500 focus:border-amber-500 dark:bg-gray-700 dark:text-white @error('author') border-red-500 @enderror"
-											 placeholder="Nombre del autor">
+											 placeholder="O nome do autor">
 								@error('author')
 								<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
 								@enderror

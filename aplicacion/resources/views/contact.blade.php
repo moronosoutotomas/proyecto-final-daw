@@ -7,7 +7,7 @@
 		<div class="max-w-4xl mx-auto">
 			<!-- encabezado -->
 			<div class="text-center mb-12">
-				<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Contáctanos</h1>
+				<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Contácta connosco</h1>
 				<p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
 					¿Tes algunha pregunta, suxerencia ou precisas ayuda? Estaremos encantades de axudarte.
 				</p>
@@ -81,7 +81,7 @@
 								rows="5"
 								required
 								class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
-								placeholder="Escribe a túa mensaxe aquí..."></textarea>
+								placeholder="Escriba a súa mensaxe aquí..."></textarea>
 						</div>
 
 						<!-- boton enviar -->
@@ -134,7 +134,7 @@
 									<flux:icon.map-pin class="h-6 w-6 text-amber-600" fill="none" viewBox="0 0 24 24"/>
 								</div>
 								<div class="ml-3">
-									<h3 class="text-sm font-medium text-gray-900 dark:text-white">Dirección</h3>
+									<h3 class="text-sm font-medium text-gray-900 dark:text-white">Enderezo</h3>
 									<p class="text-sm text-gray-400">
 										C/ Alcalde Lavadores nº 10<br>
 										Vigo, Pontevedra 36210<br>
