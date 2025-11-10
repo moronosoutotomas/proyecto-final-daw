@@ -24,9 +24,65 @@ class UserController extends Controller
 	/**
 	 * Mostrar un listado de usuarios.
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$users = User::orderBy('id')->paginate(10);
+		$query = User::query();
+
+		// filtro de busqueda por texto independientemente del campo,
+		// busca "algo" como lo introducido por el user
+		if ($request->filled('search')) {
+			$search = $request->search;
+			$query->where(function ($q) use ($search) {
+				$q->where('name', 'like', "%$search%")
+					->orWhere('email', 'like', "%$search%")
+					->orWhere('role', 'like', "%$search%");
+			});
+		}
+
+		// filtro por name
+//		if ($request->filled('name')) {
+//			$query->where('name', 'like', "%$request->name%");
+//		}
+
+		// filtro por email
+//		if ($request->filled('email')) {
+//			$query->where('email', 'like', "%$request->email%");
+//		}
+
+		// filtro por rol
+//		if ($request->filled('role')) {
+//			$query->where('role', 'like', "%$request->role%");
+//		}
+
+		// filtro por fecha de registro minima
+		if ($request->filled('created_at')) {
+			$query->where('created_at', '>=', $request->created_at);
+		}
+
+		// filtro por fecha de registro maxima
+		if ($request->filled('created_at')) {
+			$query->where('created_at', '<=', $request->created_at);
+		}
+
+		// ordenamiento y sentido
+		$order = $request->get('order');
+		$sort = $request->get('sort');
+
+		switch ($order) {
+			case 'name':
+				$query->orderBy('name', $sort);
+				break;
+			case 'email':
+				$query->orderBy('email', $sort);
+				break;
+			case 'role':
+				$query->orderBy('role', $sort);
+				break;
+			default:
+				$query->orderBy('id');
+		}
+
+		$users = $query->paginate(10)->withQueryString();
 		return view('admin.users.index', compact('users'));
 	}
 
