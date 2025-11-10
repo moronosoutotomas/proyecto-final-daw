@@ -34,6 +34,10 @@
 							</th>
 							<th scope="col"
 									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Rol
+							</th>
+							<th scope="col"
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
 								Membro dende
 							</th>
 							<th scope="col"
@@ -49,17 +53,23 @@
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
 									{{ $user->id }}
 								</td>
-								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white capitalize">
 									<span>
 											{{ $user->name }}
 									</span>
 								</td>
-								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white lowercase">
 									<span>
 											{{ $user->email }}
 									</span>
 								</td>
-								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white capitalize">
+									<span
+										class="inline-flex items-center px-2 py-0.5 rounded font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300">
+                        {{ $user->getRoleNames()->first() }}
+									</span>
+								</td>
+								<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white lowercase">
 									<span>
 											{{ date_format($user->created_at, 'j M Y') }}
 									</span>
