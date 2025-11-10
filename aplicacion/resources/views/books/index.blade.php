@@ -81,30 +81,30 @@
 						<thead class="bg-gray-50 dark:bg-gray-700">
 						<tr>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
 								ISBN
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-								TÍTULO
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Título
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-								AUTOR
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Autor
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-								PUBLICACIÓN
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Publicación
 							</th>
 							<th scope="col"
-									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-								VALORACIÓN
+									class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Valoración
 							</th>
 
 							@role('bibliotecario|lector')
 							<th scope="col"
-									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-								ACCIÓNS
+									class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+								Accións
 							</th>
 							@endrole
 						</tr>

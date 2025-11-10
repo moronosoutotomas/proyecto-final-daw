@@ -127,7 +127,7 @@
 								</div>
 
 								<div>
-									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Estadísticas</h3>
+									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Estatísticas</h3>
 									<dl class="space-y-3">
 										<div>
 											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -139,7 +139,7 @@
 										</div>
 										<div>
 											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-												En estanterías
+												En andeis
 											</dt>
 											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
 												0
@@ -200,7 +200,7 @@
 											<time
 												datetime="2014-08-16 19:00"
 												class="block text-sm text-gray-500 dark:text-gray-400">
-												Rexistrado desde Agosto 2025
+												dende agosto 2025
 											</time>
 										</p>
 									</div>
