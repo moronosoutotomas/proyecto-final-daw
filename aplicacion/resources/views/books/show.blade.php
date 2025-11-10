@@ -65,12 +65,13 @@
 				</ol>
 			</nav>
 
-			<!-- title libro -->
+			<!-- datos libro -->
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
 					<div class="flex justify-between items-start mb-6">
 						<div class="flex-1 ">
+							<!-- title libro -->
 							<div>
 								<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
 									{{ $book->title }}
@@ -95,11 +96,77 @@
 									</div>
 								</div>
 							@endif
+
+							<!-- info grid -->
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+								<div>
+									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+										Información del libro
+									</h3>
+									<dl class="space-y-3">
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												ISBN-10
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
+												{{ $book->isbn10 ?: 'Non disponible' }}
+											</dd>
+										</div>
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												ISBN-13
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
+												{{ $book->isbn13 ?: 'Non disponible' }}
+											</dd>
+										</div>
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												Data de publicación
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+												{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : 'No disponible' }}
+											</dd>
+										</div>
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												Número de reseñas
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+												0
+											</dd>
+										</div>
+									</dl>
+								</div>
+
+								<div>
+									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Estadísticas</h3>
+									<dl class="space-y-3">
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												Edicións dispoñibles
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+												0
+											</dd>
+										</div>
+										<div>
+											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+												En estanterías
+											</dt>
+											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+												0
+											</dd>
+										</div>
+									</dl>
+								</div>
+							</div>
 						</div>
 
 						<!-- cover -->
 						<div class="flex flex-col space-y-4">
-							<img src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-M.jpg" alt="portada de {{ $book->title }}">
+							<img src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-M.jpg"
+									 alt="portada de {{ $book->title }}">
 							@can('books.edit')
 								<a href="{{ route('books.edit', $book) }}"
 									 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
@@ -110,71 +177,6 @@
 									Editar
 								</a>
 							@endcan
-						</div>
-					</div>
-
-					<!-- info grid -->
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-						<div>
-							<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-								Información del libro
-							</h3>
-							<dl class="space-y-3">
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										ISBN-10
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
-										{{ $book->isbn10 ?: 'Non disponible' }}
-									</dd>
-								</div>
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										ISBN-13
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
-										{{ $book->isbn13 ?: 'Non disponible' }}
-									</dd>
-								</div>
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										Data de publicación
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white">
-										{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : 'No disponible' }}
-									</dd>
-								</div>
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										Número de reseñas
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white">
-										0
-									</dd>
-								</div>
-							</dl>
-						</div>
-
-						<div>
-							<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Estadísticas</h3>
-							<dl class="space-y-3">
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										Edicións dispoñibles
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white">
-										0
-									</dd>
-								</div>
-								<div>
-									<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
-										En estanterías
-									</dt>
-									<dd class="mt-1 text-sm text-gray-900 dark:text-white">
-										0
-									</dd>
-								</div>
-							</dl>
 						</div>
 					</div>
 
