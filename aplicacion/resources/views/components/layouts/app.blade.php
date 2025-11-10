@@ -35,9 +35,9 @@
 				e.preventDefault();
 
 				Swal.fire({
-					title: "¿Estás seguro?",
+					title: "Estás seguro?",
 					theme: 'auto',
-					text: "Non podrás revertir esta acción",
+					text: "Esta acción é irreversível",
 					icon: "warning",
 					showCancelButton: true,
 					confirmButtonColor: "#d33",
