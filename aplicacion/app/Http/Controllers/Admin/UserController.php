@@ -56,11 +56,11 @@ class UserController extends Controller
 		}
 
 		// ordenamiento y sentido
-		$order = $request->get('order', 'name');
+		$order = $request->get('order', 'id');
 		$sort = $request->get('sort', 'asc');
 
 		if (!in_array($order, ['name', 'email', 'role', 'created_at'], true)) {
-			$order = 'name';
+			$order = 'id';
 		}
 
 		if (!in_array($sort, ['asc', 'desc'], true)) {
@@ -74,7 +74,7 @@ class UserController extends Controller
 					FROM model_has_roles mr
 						INNER JOIN roles ON roles.id = mr.role_id
 					WHERE mr.model_type = ?
-					AND mr.model_id = users.id
+						AND mr.model_id = users.id
 					LIMIT 1
 				) {$sort}", [User::class]
 			);
