@@ -1,6 +1,6 @@
-<div class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
-    <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
-</div>
-<div class="ms-1 grid flex-1 text-start text-sm">
-    <span class="mb-0.5 truncate leading-tight font-semibold">Laravel Starter Kit</span>
+<div class="flex-shrink-0">
+	<a href="{{ url('homepage') }}" class="flex items-center">
+		<img src="{{ asset('./logo.png') }}" alt="Logo" class="h-14 w-auto dark:shadow-white/10">
+		<span class="ms-1 text-lg font-semibold text-gray-800 dark:text-white">Bookbag</span>
+	</a>
 </div>

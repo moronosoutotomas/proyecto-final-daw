@@ -1,13 +1,8 @@
 <nav class="shadow-lg border-b border-gray-200 dark:text-white dark:border-gray-700 dark:bg-gray-900">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="flex justify-between items-center h-16">
-			<!-- Logo -->
-			<div class="flex-shrink-0">
-				<a href="{{ url('homepage') }}" class="flex items-center">
-					<img src="{{ asset('./logo.png') }}" alt="Logo" class="h-10 w-auto">
-					<span class="ml-2 text-xl font-semibold text-gray-800 dark:text-white">Bookbag</span>
-				</a>
-			</div>
+			<!-- logo -->
+			<x-app-logo/>
 
 			<div class="hidden md:flex flex-1 justify-center">
 				<div class="flex space-x-8">
@@ -31,15 +26,15 @@
 
 					{{-- Sección administradores --}}
 					@role('administrador')
-						<a href="{{ url('admin/users') }}"
-							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
-							Usuarios
-						</a>
+					<a href="{{ url('admin/users') }}"
+						 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+						Usuarios
+					</a>
 
-						<a href="{{ url('admin/roles') }}"
-							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
-							Roles
-						</a>
+					<a href="{{ url('admin/roles') }}"
+						 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
+						Roles
+					</a>
 					@endrole
 
 					<a href="{{ url('about') }}"
@@ -54,7 +49,7 @@
 			</div>
 
 			<!-- Botones perfil -->
-			<div class="flex items-center space-x-4">
+			<div class="hidden md:flex items-center space-x-4">
 				@guest
 					<a href="{{ route('login') }}"
 						 class="text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
@@ -75,12 +70,7 @@
 								{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
 							</div>
 							<span>{{ auth()->user()->name }}</span>
-							<svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-									 fill="currentColor">
-								<path fill-rule="evenodd"
-											d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-											clip-rule="evenodd"/>
-							</svg>
+							<flux:icon.chevron-down variant="solid" class="w-4 h-4"/>
 						</button>
 
 						{{-- Animación con Alpine.js --}}
@@ -166,6 +156,7 @@
 					</a>
 				@endcan
 
+				{{-- Estáticas --}}
 				<a href="{{ url('/contact') }}"
 					 class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('contact') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 					Contacto
@@ -202,7 +193,7 @@
 						<form method="POST" action="{{ route('logout') }}" class="mt-2">
 							@csrf
 							<button type="submit"
-											class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600 dark:text-red-600">
+											class="w-full text-left text-gray-700 hover:text-red-600 block px-3 py-2 rounded-md text-base font-medium dark:text-white dark:hover:text-red-600">
 								Pechar sesión
 							</button>
 						</form>
