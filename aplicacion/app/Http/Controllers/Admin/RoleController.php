@@ -7,12 +7,12 @@ use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
-    /**
-     * Listado de roles (fines administrativos).
-     */
-    public function index()
-    {
-        $roles = Role::with('permissions')->get();
-        return view('admin.roles.index', compact('roles'));
-    }
+	/**
+	 * Listado de roles (fines administrativos).
+	 */
+	public function index()
+	{
+		$roles = Role::with('permissions')->get();
+		return view('admin.roles.index', compact('roles'));
+	}
 }

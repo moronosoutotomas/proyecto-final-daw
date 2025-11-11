@@ -75,8 +75,8 @@ class BookController extends Controller
 
 		// cogemos las estanterias del auth user para la fn de añadir libros
 		$bookshelves = $request->user()
-		? $request->user()->bookshelves()->with('bookshelfType')->get()
-		: collect();
+			? $request->user()->bookshelves()->with('bookshelfType')->get()
+			: collect();
 
 		return view('books.index', compact('books', 'bookshelves'));
 	}

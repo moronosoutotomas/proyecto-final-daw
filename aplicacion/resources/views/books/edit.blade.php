@@ -5,7 +5,7 @@
 		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900"
 	>
 		<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-			<!-- Breadcrumbs -->
+			<!-- breadcrumbs -->
 			<nav class="mb-8">
 				<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
 					<li><a href="{{ route('home') }}" class="hover:text-gray-700 dark:hover:text-gray-300">Inicio</a></li>
@@ -19,13 +19,13 @@
 				</ol>
 			</nav>
 
-			<!-- Form -->
+			<!-- form -->
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
 					<div class="mb-8">
-						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Edita-lo libro</h1>
-						<p class="mt-2 text-gray-600 dark:text-gray-400">Actualiza-lo libro</p>
+						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Editar libro</h1>
+						<p class="mt-2 text-gray-600 dark:text-gray-400">Actualiza a información dun libro</p>
 					</div>
 
 					<form action="{{ route('books.update', $book) }}" method="POST">
@@ -33,7 +33,7 @@
 						@method('PUT')
 
 						<div class="space-y-6">
-							<!-- ISBN Fields -->
+							<!-- isbn -->
 							<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 								<div>
 									<label for="isbn10" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -66,7 +66,7 @@
 								</div>
 							</div>
 
-							<!-- Title -->
+							<!-- title -->
 							<div>
 								<label for="title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
 									Título *
@@ -83,7 +83,7 @@
 								@enderror
 							</div>
 
-							<!-- Author -->
+							<!-- author -->
 							<div>
 								<label for="author" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
 									Autor *
@@ -100,7 +100,7 @@
 								@enderror
 							</div>
 
-							<!-- Publication Date -->
+							<!-- fecha -->
 							<div>
 								<label for="publication_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
 									Data de publicación
@@ -116,7 +116,7 @@
 							</div>
 						</div>
 
-						<!-- Actions -->
+						<!-- actions -->
 						<div class="mt-8 flex justify-between">
 							<a href="{{ route('books.show', $book) }}"
 								 class="inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">

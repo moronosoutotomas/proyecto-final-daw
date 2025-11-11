@@ -7,6 +7,6 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:administrador'])->group(function () {
-    Route::resource('users', UserController::class);
-    Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
+	Route::resource('users', UserController::class);
+	Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
 });

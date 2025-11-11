@@ -26,64 +26,65 @@ class UserController extends Controller
 	 */
 	public function index(Request $request)
 	{
-		$query = User::query();
+		$query = User::query()->with('roles');
 
-		// filtro de busqueda por texto independientemente del campo,
-		// busca "algo" como lo introducido por el user
-		if ($request->filled('search')) {
-			$search = $request->search;
-			$query->where(function ($q) use ($search) {
-				$q->where('name', 'like', "%$search%")
-					->orWhere('email', 'like', "%$search%")
-					->orWhere('role', 'like', "%$search%");
+		// filtro por name
+		if ($request->filled('name')) {
+			$query->where('name', 'like', "%{$request->name}%");
+		}
+
+		// filtro por email
+		if ($request->filled('email')) {
+			$query->where('email', 'like', "%{$request->email}%");
+		}
+
+		// filtro por rol
+		if ($request->filled('role')) {
+			$query->whereHas('roles', function ($roleQuery) use ($request) {
+				$roleQuery->where('name', $request->role);
 			});
 		}
 
-		// filtro por name
-//		if ($request->filled('name')) {
-//			$query->where('name', 'like', "%$request->name%");
-//		}
-
-		// filtro por email
-//		if ($request->filled('email')) {
-//			$query->where('email', 'like', "%$request->email%");
-//		}
-
-		// filtro por rol
-//		if ($request->filled('role')) {
-//			$query->where('role', 'like', "%$request->role%");
-//		}
-
 		// filtro por fecha de registro minima
-		if ($request->filled('created_at')) {
-			$query->where('created_at', '>=', $request->created_at);
+		if ($request->filled('min_date')) {
+			$query->where('created_at', '>=', $request->min_date);
 		}
 
 		// filtro por fecha de registro maxima
-		if ($request->filled('created_at')) {
-			$query->where('created_at', '<=', $request->created_at);
+		if ($request->filled('max_date')) {
+			$query->where('created_at', '<=', $request->max_date);
 		}
 
 		// ordenamiento y sentido
-		$order = $request->get('order');
-		$sort = $request->get('sort');
+		$order = $request->get('order', 'name');
+		$sort = $request->get('sort', 'asc');
 
-		switch ($order) {
-			case 'name':
-				$query->orderBy('name', $sort);
-				break;
-			case 'email':
-				$query->orderBy('email', $sort);
-				break;
-			case 'role':
-				$query->orderBy('role', $sort);
-				break;
-			default:
-				$query->orderBy('id');
+		if (!in_array($order, ['name', 'email', 'role', 'created_at'], true)) {
+			$order = 'name';
 		}
 
+		if (!in_array($sort, ['asc', 'desc'], true)) {
+			$sort = 'asc';
+		}
+
+		if ($order === 'role') {
+			$query->orderByRaw(
+				"(
+					SELECT roles.name
+					FROM model_has_roles mr
+						INNER JOIN roles ON roles.id = mr.role_id
+					WHERE mr.model_type = ?
+					AND mr.model_id = users.id
+					LIMIT 1
+				) {$sort}", [User::class]
+			);
+		} else {
+			$query->orderBy($order, $sort);
+		}
+
+		$roles = Role::all();
 		$users = $query->paginate(10)->withQueryString();
-		return view('admin.users.index', compact('users'));
+		return view('admin.users.index', compact('users', 'roles'));
 	}
 
 	/**

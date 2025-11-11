@@ -7,53 +7,53 @@ use Livewire\Volt\Component;
 
 new #[Layout('components.layouts.auth')]
 class extends Component {
-    public string $password = '';
+	public string $password = '';
 
-    /**
-     * Confirm the current user's password.
-     */
-    public function confirmPassword(): void
-    {
-        $this->validate([
-            'password' => ['required', 'string'],
-        ]);
+	/**
+	 * Confirm the current user's password.
+	 */
+	public function confirmPassword(): void
+	{
+		$this->validate([
+			'password' => ['required', 'string'],
+		]);
 
-        if (!Auth::guard('web')->validate([
-            'email' => Auth::user()->email,
-            'password' => $this->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
-        }
+		if (!Auth::guard('web')->validate([
+			'email' => Auth::user()->email,
+			'password' => $this->password,
+		])) {
+			throw ValidationException::withMessages([
+				'password' => __('auth.password'),
+			]);
+		}
 
-        session(['auth.password_confirmed_at' => time()]);
+		session(['auth.password_confirmed_at' => time()]);
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    }
+		$this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+	}
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header
-        :title="__('Confirmar contrasinal')"
-        :description="__('Esta é un área segura da aplicación. Por favor confirma a túa contrasinal antes de continuar.')"
-    />
+	<x-auth-header
+		:title="__('Confirmar contrasinal')"
+		:description="__('Esta é un área segura da aplicación. Por favor confirma a túa contrasinal antes de continuar.')"
+	/>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')"/>
+	<!-- Session Status -->
+	<x-auth-session-status class="text-center" :status="session('status')"/>
 
-    <form method="POST" wire:submit="confirmPassword" class="flex flex-col gap-6">
-        <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Contrasinal')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('********')"
-            viewable
-        />
+	<form method="POST" wire:submit="confirmPassword" class="flex flex-col gap-6">
+		<!-- Password -->
+		<flux:input
+			wire:model="password"
+			:label="__('Contrasinal')"
+			type="password"
+			required
+			autocomplete="new-password"
+			:placeholder="__('********')"
+			viewable
+		/>
 
-        <flux:button variant="primary" type="submit" class="w-full">{{ __('Confirmar') }}</flux:button>
-    </form>
+		<flux:button variant="primary" type="submit" class="w-full">{{ __('Confirmar') }}</flux:button>
+	</form>
 </div>

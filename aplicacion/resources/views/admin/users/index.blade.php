@@ -11,6 +11,13 @@
 						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Usuarios</h1>
 						<p class="mt-2 text-gray-600 dark:text-gray-400">Xestión de usuarios do sistema</p>
 					</div>
+					@can('admin.users.manage')
+						<a href="{{ route('admin.users.create') }}"
+							 class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+							<flux:icon.plus-circle/>
+							<span class="mx-1">Novo usuario</span>
+						</a>
+					@endcan
 				</div>
 			</div>
 
@@ -18,7 +25,7 @@
 			<div
 				class="mb-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
 			>
-				<livewire:dynamic-search-bar  />
+				<livewire:users-search-bar/>
 			</div>
 
 			<!-- tabla -->

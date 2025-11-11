@@ -1,8 +1,8 @@
 <?php
 
 use App\Models\User;
-use Livewire\Volt\Volt as LivewireVolt;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Livewire\Volt\Volt as LivewireVolt;
 
 uses(RefreshDatabase::class);
 

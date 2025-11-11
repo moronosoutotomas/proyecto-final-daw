@@ -7,9 +7,9 @@
 		<div class="max-w-4xl mx-auto">
 			<!-- encabezado -->
 			<div class="text-center mb-12">
-				<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Contácta connosco</h1>
+				<h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Contacta connosco</h1>
 				<p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-					¿Tes algunha pregunta, suxerencia ou precisas ayuda? Estaremos encantades de axudarte.
+					Tes algunha pregunta, suxerencia ou precisas ayuda? Estaremos encantades de axudarte.
 				</p>
 			</div>
 
@@ -33,7 +33,7 @@
 								name="name"
 								required
 								class="w-full px-3 py-2 border border-gray-300 rounded-md dark:bg-amber-900/10 dark:border-gray-700 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
-								placeholder="Seu nome">
+								placeholder="O seu nome">
 						</div>
 
 						<!-- email -->
@@ -47,7 +47,7 @@
 								name="email"
 								required
 								class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300"
-								placeholder="seu@enderezo.com">
+								placeholder="oseu@enderezo.com">
 						</div>
 
 						<!-- asunto -->
@@ -61,7 +61,7 @@
 								name="subject"
 								required
 								class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 bg-white dark:bg-amber-900/10 dark:text-gray-400-sm focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition duration-300 [&>option]:bg-white [&>option]:dark:bg-gray-800 [&>option]:text-gray-900 [&>option]:dark:text-gray-300">
-								<option value="">Selecciona un asunto</option>
+								<option value="">Seleccione un asunto</option>
 								<option value="support">Soporte técnico</option>
 								<option value="suggestion">Suxerencia</option>
 								<option value="partnership">Colaboración</option>

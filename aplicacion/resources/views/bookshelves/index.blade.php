@@ -47,7 +47,7 @@
 				</div>
 			@endif
 
-			<!-- Breadcrumbs -->
+			<!-- breadcrumb -->
 			<nav class="mb-8">
 				<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
 					<li>
@@ -58,7 +58,7 @@
 				</ol>
 			</nav>
 
-			<!-- Header -->
+			<!-- header -->
 			<div class="flex justify-between items-center mb-8">
 				<div>
 					<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Andeis</h1>
@@ -81,7 +81,7 @@
 								{{ $bookshelf->books->count() }} {{ $bookshelf->books->count() === 1 ? 'libro' : 'libros' }}
 							</p>
 
-							<!-- Preview -->
+							<!-- preview -->
 							@if($bookshelf->books->count() > 0)
 								<div class="space-y-2 mb-4">
 									@foreach($bookshelf->books as $book)
@@ -124,7 +124,8 @@
 								</div>
 							@endif
 
-							<!-- Actions -->
+							<!-- actions -->
+							<!-- TODO: estaria chulo meter una modal aqui que permitiese añadir un array de libros de una tacada -->
 							{{--<div class="flex space-x-2">
 									<a href="{{ route('books.index') }}"
 										 class="flex-1 inline-flex items-center justify-center px-3 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">

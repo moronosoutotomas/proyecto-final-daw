@@ -42,7 +42,7 @@ services:
     networks:
       - tomasmorono-production
     healthcheck:
-      test: ["CMD-SHELL", "php-fpm-healthcheck || exit 1"]
+      test: [ "CMD-SHELL", "php-fpm-healthcheck || exit 1" ]
       interval: 10s
       timeout: 5s
       retries: 3

@@ -9,26 +9,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Review extends Model
 {
-    /** @use HasFactory<ReviewFactory> */
-    use HasFactory;
+	/** @use HasFactory<ReviewFactory> */
+	use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'book_id',
-        'rating',
-        'content',
-    ];
+	protected $fillable = [
+		'user_id',
+		'book_id',
+		'rating',
+		'content',
+	];
 
-    /**
-     * Relaciones
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
+	/**
+	 * Relaciones
+	 */
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 
-    public function book(): BelongsTo
-    {
-        return $this->belongsTo(Book::class);
-    }
+	public function book(): BelongsTo
+	{
+		return $this->belongsTo(Book::class);
+	}
 }
