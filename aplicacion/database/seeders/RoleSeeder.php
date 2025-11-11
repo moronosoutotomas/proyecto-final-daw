@@ -31,7 +31,7 @@ class RoleSeeder extends Seeder
 		// Permisos de interacción (administrador, bibliotecario y lector)
 		Permission::create(['name' => 'reviews.create'])->syncRoles([$lector]);
 		Permission::create(['name' => 'bookshelves.access'])->syncRoles([$lector]);
-		//Permission::create(['name' => 'bookshelves.manage'])->syncRoles([$administrador]);
+		Permission::create(['name' => 'bookshelves.manage'])->syncRoles([$lector]);
 		Permission::create(['name' => 'reviews.manage'])->syncRoles([$administrador]);
 
 		// Permisos de gestión de ediciones (administrador y bibliotecario)
