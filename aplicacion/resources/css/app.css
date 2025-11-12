@@ -8,8 +8,28 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* @font-face {
+	font-family: 'Instrument Sans';
+	src:
+		url('../fonts/Instrument_Sans/InstrumentSans-VariableFont_wdth,wght.ttf') format('truetype-variations'),
+		url('../fonts/Instrument_Sans/static/InstrumentSans-Regular.ttf') format('truetype'),
+		url('../fonts/Instrument_Sans/static/InstrumentSans-Medium.ttf') format('truetype'),
+		url('../fonts/Instrument_Sans/static/InstrumentSans-SemiBold.ttf') format('truetype'),
+		url('../fonts/Instrument_Sans/static/InstrumentSans-Bold.ttf') format('truetype');
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+  } */
+
+  @font-face{
+	font-family: "Instrument Sans";
+	src:local("InstrumentSans-Regular"),
+	url('../fonts/Rubik_Scribble/static/InstrumentSans-Regular.ttf')
+  }
+
 @theme {
 	--font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
 
 	--color-zinc-50: #fafafa;
 	--color-zinc-100: #f5f5f5;
