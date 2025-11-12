@@ -22,7 +22,7 @@
 						Coñece máis
 					</a>
 				</div>
-				
+
 				<!-- card plan premium -->
 				<div
 					class="mx-auto max-w-3xl rounded-2xl border border-amber-200 bg-white p-6 text-left shadow-sm dark:border-amber-500/40 dark:bg-gray-900">
@@ -36,7 +36,7 @@
 						Acceso opcional cun período de proba. Non buscamos algo xigante, só engadir ferramentas útiles:
 					</p>
 					<ul class="mt-4 list-disc space-y-2 ps-5 text-sm text-gray-600 dark:text-gray-300" id="plans">
-						<li>Sin límite de andeis.</li>
+						<li>Sen límite de andeis.</li>
 						<li>Andeis personalizados para organizar as túas lecturas.</li>
 						<li>Resumo mensual coas lecturas e xéneros que máis che gustan.</li>
 					</ul>
@@ -83,8 +83,8 @@
 			<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
 				<figure class="space-y-6 text-left">
 					<blockquote class="text-base text-gray-600 dark:text-gray-300">
-						“Uso Bookbag Premium para levar un seguemento moi sinxelo do que leo. Gústame que podo engadir andeis para ordenar mellor as miñas lecturas,
-						e o resumo mensual descóbreme libros que non coñecía.”
+						“Uso Bookbag Premium para levar un seguimento do que vou lendo. Gústame a función de engadir andeis para ordenar mellor as miñas lecturas,
+						e a miudo o resumo mensual descóbreme libros que engado a Pendentes.”
 					</blockquote>
 					<figcaption class="flex items-center gap-4">
 						<div class="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-sm font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-200">
@@ -98,7 +98,7 @@
 				</figure>
 			</div>
 		</div>
-		
+
 	</div>
 
 </x-layouts.app>
