@@ -10,30 +10,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Bookshelf extends Model
 {
-	/** @use HasFactory<BookshelfFactory> */
-	use HasFactory;
+    /** @use HasFactory<BookshelfFactory> */
+    use HasFactory;
 
-	protected $fillable = [
-		'user_id',
-		'bookshelf_type_id',
-		'name'
-	];
+    protected $fillable = [
+        'user_id',
+        'bookshelf_type_id',
+        'name',
+    ];
 
-	/**
-	 * Relaciones
-	 */
-	public function user(): BelongsTo
-	{
-		return $this->belongsTo(User::class);
-	}
+    /**
+     * Relaciones
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
-	public function bookshelfType(): BelongsTo
-	{
-		return $this->belongsTo(BookshelfType::class);
-	}
+    public function bookshelfType(): BelongsTo
+    {
+        return $this->belongsTo(BookshelfType::class);
+    }
 
-	public function books(): BelongsToMany
-	{
-		return $this->belongsToMany(Book::class, 'book_bookshelf');
-	}
+    public function books(): BelongsToMany
+    {
+        return $this->belongsToMany(Book::class, 'book_bookshelf');
+    }
 }

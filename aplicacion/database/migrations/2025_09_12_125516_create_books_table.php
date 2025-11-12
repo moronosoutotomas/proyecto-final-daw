@@ -4,30 +4,31 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
-	/**
-	 * Run the migrations.
-	 */
-	public function up(): void
-	{
-		Schema::create('books', function (Blueprint $table) {
-			$table->id();
-			$table->string('isbn10')->unique();
-			$table->string('isbn13')->unique();
-			$table->string('title');
-			$table->string('author');
-			$table->timestamp('publication_date')->nullable();
-			$table->integer('avg_rating')->nullable();
-			$table->string('cover')->nullable();
-			$table->timestamps();
-		});
-	}
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->id();
+            $table->string('isbn10')->unique();
+            $table->string('isbn13')->unique();
+            $table->string('title');
+            $table->string('author');
+            $table->timestamp('publication_date')->nullable();
+            $table->integer('avg_rating')->nullable();
+            $table->string('cover')->nullable();
+            $table->timestamps();
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 */
-	public function down(): void
-	{
-		Schema::dropIfExists('books');
-	}
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('books');
+    }
 };

@@ -6,8 +6,8 @@ use Livewire\Component;
 
 class SearchBar extends Component
 {
-	public function render()
-	{
-		return view('livewire.search-bar');
-	}
+    public function render()
+    {
+        return view('livewire.search-bar');
+    }
 }

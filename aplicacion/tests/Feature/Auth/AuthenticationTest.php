@@ -7,45 +7,45 @@ use Livewire\Volt\Volt as LivewireVolt;
 uses(RefreshDatabase::class);
 
 test('login screen can be rendered', function () {
-	$response = $this->get('/login');
+    $response = $this->get('/login');
 
-	$response->assertStatus(200);
+    $response->assertStatus(200);
 });
 
 test('users can authenticate using the login screen', function () {
-	$user = User::factory()->create();
+    $user = User::factory()->create();
 
-	$response = LivewireVolt::test('auth.login')
-		->set('email', $user->email)
-		->set('password', 'password')
-		->call('login');
+    $response = LivewireVolt::test('auth.login')
+        ->set('email', $user->email)
+        ->set('password', 'password')
+        ->call('login');
 
-	$response
-		->assertHasNoErrors()
-		->assertRedirect(route('home', absolute: false));
+    $response
+        ->assertHasNoErrors()
+        ->assertRedirect(route('home', absolute: false));
 
-	$this->assertAuthenticated();
+    $this->assertAuthenticated();
 });
 
 test('users can not authenticate with invalid password', function () {
-	$user = User::factory()->create();
+    $user = User::factory()->create();
 
-	$response = LivewireVolt::test('auth.login')
-		->set('email', $user->email)
-		->set('password', 'wrong-password')
-		->call('login');
+    $response = LivewireVolt::test('auth.login')
+        ->set('email', $user->email)
+        ->set('password', 'wrong-password')
+        ->call('login');
 
-	$response->assertHasErrors('email');
+    $response->assertHasErrors('email');
 
-	$this->assertGuest();
+    $this->assertGuest();
 });
 
 test('users can logout', function () {
-	$user = User::factory()->create();
+    $user = User::factory()->create();
 
-	$response = $this->actingAs($user)->post('/logout');
+    $response = $this->actingAs($user)->post('/logout');
 
-	$response->assertRedirect('/');
+    $response->assertRedirect('/');
 
-	$this->assertGuest();
+    $this->assertGuest();
 });

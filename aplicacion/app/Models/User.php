@@ -13,65 +13,65 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-	/** @use HasFactory<UserFactory> */
-	use HasFactory, Notifiable, HasRoles;
+    /** @use HasFactory<UserFactory> */
+    use HasFactory, HasRoles, Notifiable;
 
-	/**
-	 * Atributos sujetos a asignación masica.
-	 *
-	 * @var list<string>
-	 */
-	protected $fillable = [
-		'name',
-		'email',
-		'password',
-	];
+    /**
+     * Atributos sujetos a asignación masica.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
-	/**
-	 * Atributos que deben ser ocultados en caso de serialización.
-	 *
-	 * @var list<string>
-	 */
-	protected $hidden = [
-		'password',
-		'remember_token',
-	];
+    /**
+     * Atributos que deben ser ocultados en caso de serialización.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	/**
-	 * Obtención de atributos que deben ser casteados.
-	 *
-	 * @return array<string, string>
-	 */
-	protected function casts(): array
-	{
-		return [
-			'email_verified_at' => 'datetime',
-			'password' => 'hashed',
-		];
-	}
+    /**
+     * Obtención de atributos que deben ser casteados.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 
-	/**
-	 * Obtención de las iniciales del usuario
-	 */
-	public function initials(): string
-	{
-		return Str::of($this->name)
-			->explode(' ')
-			->take(2)
-			->map(fn($word) => Str::substr($word, 0, 1))
-			->implode('');
-	}
+    /**
+     * Obtención de las iniciales del usuario
+     */
+    public function initials(): string
+    {
+        return Str::of($this->name)
+            ->explode(' ')
+            ->take(2)
+            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->implode('');
+    }
 
-	/**
-	 * Relaciones
-	 */
-	public function bookshelves(): User|HasMany
-	{
-		return $this->hasMany(Bookshelf::class);
-	}
+    /**
+     * Relaciones
+     */
+    public function bookshelves(): User|HasMany
+    {
+        return $this->hasMany(Bookshelf::class);
+    }
 
-	public function reviews(): User|HasMany
-	{
-		return $this->hasMany(Review::class);
-	}
+    public function reviews(): User|HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }

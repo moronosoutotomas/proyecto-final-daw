@@ -4,6 +4,9 @@
 	<div
 		class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+			<!-- flash messages -->
+			<x-flash-message />
+
 			<!-- Header -->
 			<div class="mb-8">
 				<div class="flex justify-between items-center">

@@ -7,36 +7,36 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-	/**
-	 * Almacena unha nova reseña na base de datos.
-	 */
-	public function store(Request $request)
-	{
-		$validated = $request->validate([
-			'book_id' => 'required|exists:books,id',
-			'rating' => 'required|integer|min:1|max:5',
-			'content' => 'nullable|string|max:1000',
-		]);
+    /**
+     * Almacena unha nova reseña na base de datos.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'book_id' => 'required|exists:books,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'content' => 'nullable|string|max:1000',
+        ]);
 
-		$validated['user_id'] = auth()->id();
+        $validated['user_id'] = auth()->id();
 
-		Review::create($validated);
+        Review::create($validated);
 
-		return redirect()->back()->with('success', 'Reseña publicada correctamente.');
-	}
+        return redirect()->back()->with('success', 'Reseña publicada correctamente.');
+    }
 
-	/**
-	 * Elimina unha reseña da base de datos.
-	 */
-	public function destroy(Review $review)
-	{
-		// Verificar que el usuario sea el propietario de la reseña
-		if ($review->user_id !== auth()->id()) {
-			return redirect()->back()->with('error', 'Non tes permiso para eliminar esta reseña.');
-		}
+    /**
+     * Elimina unha reseña da base de datos.
+     */
+    public function destroy(Review $review)
+    {
+        // Verificar que el usuario sea el propietario de la reseña
+        if ($review->user_id !== auth()->id()) {
+            return redirect()->back()->with('error', 'Non tes permiso para eliminar esta reseña.');
+        }
 
-		$review->delete();
+        $review->delete();
 
-		return redirect()->back()->with('success', 'Reseña eliminada correctamente.');
-	}
+        return redirect()->back()->with('success', 'Reseña eliminada correctamente.');
+    }
 }

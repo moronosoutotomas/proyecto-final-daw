@@ -6,14 +6,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 test('guests are redirected to the login page', function () {
-	$response = $this->get('admin.users.index');
-	$response->assertRedirect('/login');
+    $response = $this->get('admin.users.index');
+    $response->assertRedirect('/login');
 });
 
 test('authenticated users can visit the home page', function () {
-	$user = User::factory()->create();
-	$this->actingAs($user);
+    $user = User::factory()->create();
+    $this->actingAs($user);
 
-	$response = $this->get('home');
-	$response->assertStatus(200);
+    $response = $this->get('home');
+    $response->assertStatus(200);
 });
