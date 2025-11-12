@@ -1,5 +1,12 @@
 # Bookbag: atopa e rexistra as túas lecturas
 
+## Requisitos
+- Conexión a internet.
+- Ter instalado `docker`.
+- Ter instalado `docker compose`.
+- Un navegador (se usas un adblocker ten coidado que non bloquee JS e/ou CSS)
+xa que probablemente rompa a páxina.
+
 ## Instalación
 
 Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
