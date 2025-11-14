@@ -9,61 +9,43 @@ xa que probablemente rompa a páxina.
 
 ## Instalación
 
-Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
+Clonamos o proxecto na carpeta desexada (i.e.: proxecto-moronosoutotomas)
 ```
-git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" bookbag
+git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" proxecto-moronosoutotomas
 ```
 
 Por algún motivo é preciso dar permisos ó proxecto en par de evitar problemas de firewall
 ```
-chmod -R 777 bookbag
+sudo chmod -R 777 proxecto-moronosoutotomas/
 ```
 
 Entramos na carpeta onde foi clonado
 ```
-cd bookbag
+cd proxecto-moronosoutotomas
 ```
 
-Copiámolo contenido do .env.example no .env e cubrimo-los campos ca información que nos facilitase o vendor e cambiámo-lo UID e GID (abaixo de todo, por defecto 1000 e 1000)
-> neste caso temos o .env orixinal con tódala información xa de base por comodidade aínda que nun caso real nunca sería así
+No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso usuario e grupo (abaixo de todo, por defecto 1000 e 1000)
+> cd /aplicacion
+> nano .env
 
-Entramos en ./bookbag/aplicacion
+Executamolo script para levanta-los contedores e configuralos.
 ```
-cd bookbag/aplicacion
-```
-
-Lanzamos o compose de contenedores
-> Este proxecto dispón de 2 compose distintos, un para desenvolvemento que instalará certas ferramentas como Xdebug (i.e).
-> Se queremos lanza-lo de producción debemos cambiar .dev. por .prod.
-```
-docker compose -f compose.dev.yaml up -d
+make setup
 ```
 
-Accedemos ó contenedor "workspace"
-> Si cambiache-lo nome da aplicacion introduce o nome do contenedor que corre "workspace"
+En caso de error no script de setup, podes executar os comandos manualmente:
 ```
-docker exec -it aplicacion_tomasmorono-workspace bash # Acceso ó contenedor
-```
-Unha vez dentro, instalamo-las dependencias e compilamo-las vistas
-```
-composer install # Instalación dependencias backend
-npm i # Instalación dependencias frontend
-npm run build # Transpilación, construcción do /dist e minificación de código
+make launch # Levantámola aplicación
+make workspace # Accedemos ao contedor workspace
 ```
 
-Xeramo-las keys de encriptación (propias de Laravel)
+E unha vez dentro:
 ```
-php artisan key:generate
-```
-
-Corremo-las migracións e poblamo-las táboas con información de pega
-```
-php artisan migrate:fresh --seed
-```
-
-Corremos a transpilación, construcción do /dist e minificación de código e xa estaría
-```
+composer install
+npm install
 npm run build
+php artisan key:generate
+php artisan migrate:fresh --seed
 ```
 
 ## Listo! A ubicación da aplicación será localhost
@@ -73,5 +55,12 @@ Por defecto será [localhost](http://localhost) sin SSL
 ## Limpieza
 > Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `docker system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados parcial ou totalmente.
 ```
-sudo sh cleanup.sh
+make cleanup
 ```
+
+## Problemas comúns
+- Os permisos dan problemas se non se configura apropiadamente o UID e o GID no .env
+- Fallo na execución do script de setup na seccion de npm
+
+## Deprecated
+- A carpeta de /scripts está deprecated xa que hai unha implementación mais sinxela con Makefile asique será eliminada no futuro
