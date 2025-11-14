@@ -25,7 +25,7 @@
 
 				<!-- card plan premium -->
 				<div
-					class="mx-auto max-w-3xl rounded-2xl border border-amber-200 bg-white p-6 text-left shadow-sm dark:border-amber-500/40 dark:bg-gray-900">
+					class="mx-auto max-w-3xl rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm dark:border-gray-700 dark:bg-gray-900">
 					<p class="text-sm font-medium text-amber-600 dark:text-amber-400">
 						Premium para lectoras e lectores que queren un chisquiño máis
 					</p>
@@ -91,7 +91,7 @@
 							TI
 						</div>
 						<div>
-							<p class="text-sm font-semibold text-gray-900 dark:text-white">Lector premium dende 2025</p>
+							<p class="text-sm font-semibold text-gray-900 dark:text-white">Tipo de incógnito</p>
 							<p class="text-xs text-gray-500 dark:text-gray-400">Lector premium dende 2025</p>
 						</div>
 					</figcaption>
