@@ -9,14 +9,14 @@
 
 			<!-- Header -->
 			<div class="mb-8">
-				<div class="flex justify-between items-center">
+				<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
 					<div>
 						<h1 class="text-3xl font-bold text-gray-900 dark:text-white">Usuarios</h1>
 						<p class="mt-2 text-gray-600 dark:text-gray-400">Xestión de usuarios do sistema</p>
 					</div>
 					@can('admin.users.manage')
 						<a href="{{ route('admin.users.create') }}"
-							 class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
+							 class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500">
 							<flux:icon.plus-circle/>
 							<span class="mx-1">Novo usuario</span>
 						</a>
@@ -31,9 +31,80 @@
 				<livewire:users-search-bar/>
 			</div>
 
-			<!-- tabla -->
+			<!-- cards móvil -->
+			<div class="block md:hidden space-y-4">
+				@forelse($users as $user)
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4">
+						<div class="flex flex-col gap-3">
+							<!-- header con ID y acciones -->
+							<div class="flex justify-between items-start">
+								<div class="flex items-center gap-2">
+									<span class="text-xs font-medium text-gray-500 dark:text-gray-400">ID:</span>
+									<span class="text-sm font-medium text-gray-900 dark:text-white">{{ $user->id }}</span>
+								</div>
+								@role('administrador')
+								<div class="flex items-center gap-2">
+									<a href="{{ route('admin.users.edit', $user) }}"
+										 class="p-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors border border-gray-200 dark:border-gray-700 rounded">
+										<flux:icon.pencil-square class="w-4 h-4"/>
+									</a>
+									<form action="{{ route('admin.users.destroy', $user) }}" method="POST"
+												class="inline delete-form">
+										@csrf
+										@method('DELETE')
+										<button type="submit"
+														class="p-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors border border-gray-200 dark:border-gray-700 rounded">
+											<flux:icon.trash class="w-4 h-4"/>
+										</button>
+									</form>
+								</div>
+								@endrole
+							</div>
+
+							<!-- nome -->
+							<div>
+								<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Nome:</span>
+								<p class="mt-1 text-base font-semibold text-gray-900 dark:text-white capitalize">
+									{{ $user->name }}
+								</p>
+							</div>
+
+							<!-- email -->
+							<div>
+								<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Email:</span>
+								<p class="mt-1 text-sm text-gray-900 dark:text-white lowercase break-all">
+									{{ $user->email }}
+								</p>
+							</div>
+
+							<!-- rol y fecha -->
+							<div class="flex flex-col gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+								<div class="flex items-center gap-2">
+									<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Rol:</span>
+									<span
+										class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300 capitalize">
+										{{ $user->getRoleNames()->first() }}
+									</span>
+								</div>
+								<div class="flex items-center gap-2">
+									<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Membro dende:</span>
+									<span class="text-xs text-gray-600 dark:text-gray-400">
+										{{ date_format($user->created_at, 'j M Y') }}
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				@empty
+					<div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-8 text-center">
+						<p class="text-gray-500 dark:text-gray-400">Non se atoparon usuarios</p>
+					</div>
+				@endforelse
+			</div>
+
+			<!-- tabla desktop -->
 			<div
-				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+				class="hidden md:block bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="overflow-x-auto">
 					<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 						<thead class="bg-gray-50 dark:bg-gray-700">
@@ -94,10 +165,10 @@
 								</td>
 								@role('administrador')
 								<td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-									<div class="flex justify-center items-center">
+									<div class="flex justify-center items-center gap-2">
 										{{-- editar --}}
 										<a href="{{ route('admin.users.edit', $user) }}"
-											 class="px-2 py-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
+											 class="px-3 py-3 sm:px-2 sm:py-2 text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
 											<flux:icon.pencil-square/>
 										</a>
 
@@ -107,7 +178,7 @@
 											@csrf
 											@method('DELETE')
 											<button type="submit"
-															class="px-2 py-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
+															class="px-3 py-3 sm:px-2 sm:py-2 text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 transition-colors">
 												<flux:icon.trash/>
 											</button>
 										</form>
