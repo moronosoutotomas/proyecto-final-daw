@@ -17,7 +17,7 @@
 					</a>
 
 					{{-- Sección lectores --}}
-					@can('bookshelves.access')
+					@can('bookshelves.manage')
 						<a href="{{ url('bookshelves') }}"
 							 class="text-gray-700 hover:text-amber-600 px-3 py-2 text-sm font-medium transition duration-300 ease-in-out {{ request()->is('bookshelves') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 							Andeis
@@ -81,7 +81,7 @@
 								 x-transition:leave="transition ease-in duration-75"
 								 x-transition:leave-start="transform opacity-100 scale-100"
 								 x-transition:leave-end="transform opacity-0 scale-95"
-								 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 dark:bg-gray-900 dark:ring-white dark:ring-opacity-5"
+								 class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white border border-gray-200 dark:border-gray-700 z-50 dark:bg-gray-900"
 								 style="display: none;">
 							<div class="py-1">
 								<a href="{{ route('settings.profile') }}"
@@ -143,18 +143,17 @@
 					</a>
 				@endcan
 				{{-- Sección administradores --}}
-				@can('bookshelves.manage')
+				@role('administrador')
 					<a href="{{ url('/admin/users') }}"
 						 class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 						Xestión de usuarios
 					</a>
-				@endcan
-				@can('bookshelves.manage')
-					<a href="{{ url('/admin/users') }}"
+
+					<a href="{{ url('/admin/roles') }}"
 						 class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('admin/roles') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
 						Roles
 					</a>
-				@endcan
+				@endrole
 
 				{{-- Estáticas --}}
 				<a href="{{ url('/contact') }}"
