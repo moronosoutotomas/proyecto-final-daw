@@ -30,7 +30,7 @@ new class extends Component {
 			</label>
 
 			<div class="space-y-3">
-				<!-- Opción Light -->
+				<!-- light -->
 				<label
 					class="flex items-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors {{ $theme === 'light' ? 'bg-amber-50 border-amber-500 dark:bg-amber-900/20 dark:border-amber-500' : '' }}">
 					<input type="radio"
@@ -51,7 +51,7 @@ new class extends Component {
 					</div>
 				</label>
 
-				<!-- Opción Dark -->
+				<!-- dark -->
 				<label
 					class="flex items-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors {{ $theme === 'dark' ? 'bg-amber-50 border-amber-500 dark:bg-amber-900/20 dark:border-amber-500' : '' }}">
 					<input type="radio"
@@ -72,7 +72,7 @@ new class extends Component {
 					</div>
 				</label>
 
-				<!-- Opción System -->
+				<!-- system -->
 				<label
 					class="flex items-center p-4 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors {{ $theme === 'system' ? 'bg-amber-50 border-amber-500 dark:bg-amber-900/20 dark:border-amber-500' : '' }}">
 					<input type="radio"

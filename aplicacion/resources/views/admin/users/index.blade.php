@@ -7,7 +7,7 @@
 			<!-- flash messages -->
 			<x-flash-message />
 
-			<!-- Header -->
+			<!-- header -->
 			<div class="mb-8">
 				<div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
 					<div>

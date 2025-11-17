@@ -34,11 +34,9 @@
 <div class="relative grid flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:px-0">
 	<div class="w-full lg:p-8">
 		<div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-			<a href="{{ route('home') }}" class="z-20 flex flex-col items-center gap-2 font-medium lg:hidden"
+			<a href="{{ route('home') }}" class="z-20 flex items-center justify-center mb-6 transition-opacity hover:opacity-80"
 				 wire:navigate>
-                        <span class="flex h-9 w-9 items-center justify-center rounded-md">
-                            <img src="{{ asset('logo.png') }}" alt="Bookbag" class="size-9 rounded-md shadow-sm dark:shadow-white/10"/>
-                        </span>
+				<img src="{{ asset('logo.png') }}" alt="Bookbag" class="h-16 w-auto"/>
 				<span class="sr-only">Bookbag</span>
 			</a>
 			{{ $slot }}

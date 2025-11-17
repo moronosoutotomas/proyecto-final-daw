@@ -80,14 +80,17 @@
 
 		<!-- testimonio -->
 		<div class="mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
-			<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+			<div
+				class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
 				<figure class="space-y-6 text-left">
 					<blockquote class="text-base text-gray-600 dark:text-gray-300">
-						“Uso Bookbag Premium para levar un seguimento do que vou lendo. Gústame a función de engadir andeis para ordenar mellor as miñas lecturas,
+						“Uso Bookbag Premium para levar un seguimento do que vou lendo. Gústame a función de engadir andeis para
+						ordenar mellor as miñas lecturas,
 						e a miudo o resumo mensual descóbreme libros que engado a Pendentes.”
 					</blockquote>
 					<figcaption class="flex items-center gap-4">
-						<div class="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-sm font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-200">
+						<div
+							class="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-sm font-semibold text-amber-700 dark:bg-amber-500/20 dark:text-amber-200">
 							TI
 						</div>
 						<div>

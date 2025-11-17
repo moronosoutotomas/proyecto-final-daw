@@ -48,7 +48,7 @@
 				</div>
 			</div>
 
-			<!-- Botones perfil -->
+			<!-- login y register -->
 			<div class="hidden md:flex items-center space-x-4">
 				@guest
 					<a href="{{ route('login') }}"
@@ -64,7 +64,7 @@
 				@auth
 					<div class="relative" x-data="{ open: false }">
 						<button @click="open = !open" @click.away="open = false"
-										class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white">
+										class="flex items-center space-x-2 text-gray-700 hover:text-amber-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300 ease-in-out dark:text-white cursor-pointer">
 							<div
 								class="h-8 w-8 rounded-full bg-amber-600 flex items-center justify-center text-white font-semibold">
 								{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
@@ -96,7 +96,7 @@
 								<form method="POST" action="{{ route('logout') }}">
 									@csrf
 									<button type="submit"
-													class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white">
+													class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition duration-150 dark:text-white cursor-pointer">
 										Pechar sesión
 									</button>
 								</form>
@@ -106,14 +106,14 @@
 				@endauth
 			</div>
 
-			<!-- Menú móvil (hamburguesa) -->
+			<!-- menú móvil (hamburguesa) -->
 			<div class="md:hidden">
 				<button type="button"
 								class="bg-gray-100 inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-amber-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500 dark:bg-gray-900 dark:text-white dark:hover:text-amber-600 dark:hover:bg-gray-800"
 								aria-controls="mobile-menu"
 								aria-expanded="false">
 					<span class="sr-only">Abri-lo menú principal</span>
-					<!-- Icono hamburguesa -->
+					<!-- icono hamburguesa -->
 					<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 							 stroke="currentColor" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -123,7 +123,7 @@
 			</div>
 		</div>
 
-		<!-- Menú móvil (oculto por defecto) -->
+		<!-- menú móvil -->
 		<div class="md:hidden hidden" id="mobile-menu">
 			<div
 				class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200 dark:bg-gray-900 dark:border-gray-700">
@@ -204,7 +204,7 @@
 </nav>
 
 <script>
-	// Script para o menú móvil
+	// script para o menú móvil
 	document.addEventListener('DOMContentLoaded', function () {
 		const menuButton = document.querySelector('button[aria-controls="mobile-menu"]');
 		const mobileMenu = document.getElementById('mobile-menu');

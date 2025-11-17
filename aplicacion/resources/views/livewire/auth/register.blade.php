@@ -16,21 +16,37 @@ class extends Component {
 	public string $password_confirmation = '';
 
 	/**
-	 * Handle an incoming registration request.
+	 * Manejar el registro de nuevos usuarios.
 	 */
 	public function register(): void
 	{
+
 		$validated = $this->validate([
-			'name' => ['required', 'string', 'max:255'],
-			'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-			'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-		]);
+            'name' => 'required|string|min:3|max:30',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|max:255|confirmed',
+        ], [
+            'name.required' => 'O nome é obrigatorio.',
+            'name.string' => 'O nome debe ser un texto.',
+            'name.min' => 'O nome debe ter polo menos :min caracteres.',
+            'name.max' => 'O nome non pode ter máis de :max caracteres.',
+            'email.required' => 'O email é obrigatorio.',
+            'email.string' => 'O email debe ser un texto.',
+            'email.email' => 'O email debe ter un formato válido.',
+            'email.max' => 'O email non pode ter máis de :max caracteres.',
+            'email.unique' => 'Este email xa está rexistrado.',
+            'password.required' => 'O contrasinal é obrigatorio.',
+            'password.string' => 'O contrasinal debe ser un texto.',
+            'password.min' => 'O contrasinal debe ter polo menos :min caracteres.',
+            'password.max' => 'O contrasinal non pode ter máis de :max caracteres.',
+            'password.confirmed' => 'A confirmación do contrasinal non coincide.',
+        ]);
 
 		$validated['password'] = Hash::make($validated['password']);
 
 		event(new Registered(($user = User::create($validated))));
 
-		// Asignar rol "lector" por defecto a los nuevos usuarios
+		// asignamos rol por defecto
 		$user->assignRole('lector');
 
 		Auth::login($user);
@@ -55,7 +71,7 @@ class extends Component {
 	<form method="POST" wire:submit="register" class="flex flex-col gap-4">
 		@csrf
 
-		<!-- Name -->
+		<!-- name -->
 		<flux:input
 			wire:model="name"
 			label="Nome completo"
@@ -66,7 +82,7 @@ class extends Component {
 			placeholder="O teu nome completo"
 		/>
 
-		<!-- Email Address -->
+		<!-- email -->
 		<flux:input
 			wire:model="email"
 			label="Correo electrónico"
@@ -76,7 +92,7 @@ class extends Component {
 			placeholder="correo@exemplo.com"
 		/>
 
-		<!-- Password -->
+		<!-- password -->
 		<flux:input
 			wire:model="password"
 			label="Contrasinal"
@@ -87,7 +103,7 @@ class extends Component {
 			viewable
 		/>
 
-		<!-- Confirm Password -->
+		<!-- confirm password -->
 		<flux:input
 			wire:model="password_confirmation"
 			label="Confirmar contrasinal"
