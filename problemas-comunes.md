@@ -14,3 +14,8 @@
 - Los estilos tienen que compilarse para funcionar, se puede lanzar "npm run build" para hacer 1 compilación manteniendo los archivos con la cantidad mínima o se puede lanzar "npm run dev" para dejar abierto el server de Vite escuchando los nuevos cambios si los hubiera.
 
 - El problema con no ver el contenido de la DB en PHPStorm era "Database introspection is currently disabled".
+
+Conexion a contenedor Postgres:
+1. docker exec -it <contenedor> bash
+2. psql -U tomasmorono -d bookbag
+3. \dt 
