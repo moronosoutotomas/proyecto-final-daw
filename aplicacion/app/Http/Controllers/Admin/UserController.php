@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -102,9 +103,24 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|min:2|max:255',
+            'name' => 'required|string|min:3|max:30',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|max:255',
+            'password' => 'required|string|min:8|max:255|confirmed',
+        ], [
+            'name.required' => 'O nome é obrigatorio.',
+            'name.string' => 'O nome debe ser un texto.',
+            'name.min' => 'O nome debe ter polo menos :min caracteres.',
+            'name.max' => 'O nome non pode ter máis de :max caracteres.',
+            'email.required' => 'O email é obrigatorio.',
+            'email.string' => 'O email debe ser un texto.',
+            'email.email' => 'O email debe ter un formato válido.',
+            'email.max' => 'O email non pode ter máis de :max caracteres.',
+            'email.unique' => 'Este email xa está rexistrado.',
+            'password.required' => 'O contrasinal é obrigatorio.',
+            'password.string' => 'O contrasinal debe ser un texto.',
+            'password.min' => 'O contrasinal debe ter polo menos :min caracteres.',
+            'password.max' => 'O contrasinal non pode ter máis de :max caracteres.',
+            'password.confirmed' => 'A confirmación do contrasinal non coincide.',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
@@ -142,16 +158,35 @@ class UserController extends Controller
         // $user->roles()->sync($request->roles);
         // return redirect()->route('admin.users.edit', $user)->with('info', 'Asignáronse ditos roles correctamente.');
 
-        // TODO: revisar, 'email' no puede ser unique porque no podria conservar el que tenia
         $validated = $request->validate([
-            'name' => 'required|string|min:2|max:30,',
-            'email' => 'required|string|min:4|max:255|unique:users,email,',
-            'password' => 'required|string|max:255',
+            'name' => 'required|string|min:4|max:30',
+            'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
+            'password' => 'nullable|string|min:8|max:255|confirmed',
+        ], [
+            'name.required' => 'O nome é obrigatorio.',
+            'name.string' => 'O nome debe ser un texto.',
+            'name.min' => 'O nome debe ter polo menos :min caracteres.',
+            'name.max' => 'O nome non pode ter máis de :max caracteres.',
+            'email.required' => 'O email é obrigatorio.',
+            'email.string' => 'O email debe ser un texto.',
+            'email.email' => 'O email debe ter un formato válido.',
+            'email.max' => 'O email non pode ter máis de :max caracteres.',
+            'email.unique' => 'Este email xa está rexistrado.',
+            'password.string' => 'O contrasinal debe ser un texto.',
+            'password.min' => 'O contrasinal debe ter polo menos :min caracteres.',
+            'password.max' => 'O contrasinal non pode ter máis de :max caracteres.',
+            'password.confirmed' => 'A confirmación do contrasinal non coincide.',
         ]);
+
+        if (!empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
 
         $user->update($validated);
 
-        return redirect()->route('admin.users.show', $user)
+        return redirect()->route('admin.users.index', $user)
             ->with('success', 'Usuario actualizado correctamente.');
     }
 
