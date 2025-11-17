@@ -6,7 +6,7 @@
 	<div class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:from-blue-950 dark:to-amber-950 py-12">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="text-center py-16 space-y-10">
-				<h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+				<h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
 					Benvido a <span class="text-amber-600">Bookbag</span>
 				</h1>
 				<p class="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
@@ -25,7 +25,7 @@
 
 				<!-- card plan premium -->
 				<div
-					class="mx-auto max-w-3xl rounded-2xl border border-gray-200 bg-white p-6 text-left shadow-sm dark:border-gray-700 dark:bg-gray-900">
+					class="mx-auto max-w-3xl rounded-2xl border border-gray-200 bg-white p-4 sm:p-6 text-left shadow-sm dark:border-gray-700 dark:bg-gray-900">
 					<p class="text-sm font-medium text-amber-600 dark:text-amber-400">
 						Premium para lectoras e lectores que queren un chisquiño máis
 					</p>
@@ -58,7 +58,7 @@
 		<!-- descripcion plan premium -->
 		<div class="mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
 			<div
-				class="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+				class="rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
 				<div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
 					<div class="text-left">
 						<h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Plan sinxelo, sen letra pequena</h2>
@@ -80,7 +80,7 @@
 
 		<!-- testimonio -->
 		<div class="mx-auto mt-16 max-w-5xl px-4 sm:px-6 lg:px-8">
-			<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+			<div class="overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 sm:p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900">
 				<figure class="space-y-6 text-left">
 					<blockquote class="text-base text-gray-600 dark:text-gray-300">
 						“Uso Bookbag Premium para levar un seguimento do que vou lendo. Gústame a función de engadir andeis para ordenar mellor as miñas lecturas,

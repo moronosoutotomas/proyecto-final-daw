@@ -2,7 +2,7 @@
 	class="min-h-screen bg-gradient-to-bl from-blue-50 to-amber-100 dark:bg-gradient-to-bl dark:from-amber-950 dark:to-blue-950 dark:bg-gray-900"
 >
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-		<div class="flex gap-8 max-md:flex-col">
+		<div class="flex gap-4 md:gap-8 max-md:flex-col">
 			<!-- sidebar -->
 			<aside class="w-full md:w-64 flex-shrink-0">
 				<nav class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-2">

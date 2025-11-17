@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="" data-theme="{{ auth()->check() ? (auth()->user()->theme ?? 'system') : 'system' }}">
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,13 +13,10 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	@stack('css')
-
-	@vite(['resources/css/app.css'])
-
+	@vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body
-	class="min-h-screen h-dvh antialiased bg-gradient-to-bl from-blue-50 to-amber-100 dark:from-blue-950 dark:to-amber-950 py-20">
+	class="min-h-screen h-dvh antialiased bg-gradient-to-bl from-blue-50 to-amber-100 dark:from-blue-950 dark:to-amber-950 py-8 sm:py-20">
 
 @php
 	$quotes = [
