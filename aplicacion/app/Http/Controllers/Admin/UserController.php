@@ -101,13 +101,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        $validated = $request->validate([
+            'name' => 'required|string|min:2|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|max:255',
+        ]);
 
-        return redirect()->route('admin.users.index');
+        $validated['password'] = Hash::make($validated['password']);
+
+        User::create($validated);
+
+        return redirect()->route('admin.users.index')
+        ->with('success', 'Usuario creado correctamente');
     }
 
     /**
-     * Display the specified resource.
+     * Mostrar los detalles de un usuario.
      */
     public function show(User $user)
     {
