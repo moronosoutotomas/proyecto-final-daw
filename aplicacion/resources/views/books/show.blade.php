@@ -11,8 +11,8 @@
 			<x-flash-message />
 
 			<!-- breadcrumb -->
-			<nav class="mb-8">
-				<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+			<nav class="mb-8 overflow-x-auto">
+				<ol class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 min-w-max">
 					<li>
 						<a href="{{ route('home') }}" class="hover:text-gray-700 dark:hover:text-gray-300">
 							Inicio
@@ -44,7 +44,7 @@
 			<div
 				class="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 				<div class="px-6 py-8">
-					<div class="flex justify-between items-start mb-6">
+					<div class="sm:flex justify-between items-start mb-6">
 						<div class="flex-1 ">
 							<!-- title libro -->
 							<div>
@@ -74,79 +74,77 @@
 									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
 										Información do libro
 									</h3>
-									<dl class="space-y-3">
+									<div class="space-y-3">
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												ISBN-10
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
 												{{ $book->isbn10 ?: 'Non disponible' }}
-											</dd>
+											</div>
 										</div>
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												ISBN-13
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white font-mono">
 												{{ $book->isbn13 ?: 'Non disponible' }}
-											</dd>
+											</div>
 										</div>
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												Data de publicación
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white">
 												{{ $book->publication_date ? Carbon::parse($book->publication_date)->format('d/m/Y') : 'Non dispoñible' }}
-											</dd>
+											</div>
 										</div>
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												Número de reseñas
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white">
 												0
-											</dd>
+											</div>
 										</div>
-									</dl>
+									</div>
 								</div>
 
 								<div>
 									<h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Estatísticas</h3>
-									<dl class="space-y-3">
+									<div class="space-y-3">
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												Edicións dispoñibles
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white">
 												0
-											</dd>
+											</div>
 										</div>
 										<div>
-											<dt class="text-sm font-medium text-gray-500 dark:text-gray-400">
+											<span class="text-sm font-medium text-gray-500 dark:text-gray-400">
 												En andeis
-											</dt>
-											<dd class="mt-1 text-sm text-gray-900 dark:text-white">
+											</span>
+											<div class="mt-1 text-sm text-gray-900 dark:text-white">
 												0
-											</dd>
+											</div>
 										</div>
-									</dl>
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- cover -->
+						<!-- cover, si no carga saltará el placeholder -->
 						<div class="flex flex-col space-y-4">
 							<img src="https://covers.openlibrary.org/b/isbn/{{ $book->isbn13 }}-M.jpg"
 									 alt="portada de {{ $book->title }}"
-									 class="shadow-lg rounded-lg dark:shadow-white/10"
+									 class="shadow-lg rounded-lg dark:shadow-white/10 bg-gray-200 dark:bg-gray-700"
+									 onerror="this.onerror=null; this.src='https://placehold.co/200x300/e5e7eb/9ca3af?text=portada de {{ $book->title }}';"
 							>
 							@can('books.edit')
 								<a href="{{ route('books.edit', $book) }}"
-									 class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-									<svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-													d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-									</svg>
+									 class="inline-flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+									<flux:icon.pencil-square class="w-5 h-5 mr-2" />
 									Editar
 								</a>
 							@endcan
@@ -222,7 +220,7 @@
 										</a>
 
 										<a href="#"
-											 class="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600">
+											 class="ps-4 text-sm font-medium text-amber-600 hover:underline dark:text-amber-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600">
 											Denunciar abuso
 										</a>
 									</div>
