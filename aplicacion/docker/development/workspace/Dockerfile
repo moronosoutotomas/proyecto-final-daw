@@ -5,7 +5,7 @@ FROM php:8.4-cli
 # Set environment variables for user and group ID
 ARG UID=1000
 ARG GID=1000
-ARG NODE_VERSION=22.0.0
+ARG NODE_VERSION=22.12.0
 
 # Install system dependencies and build libraries
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libcurl4-openssl-dev \
     libicu-dev \
     libzip-dev \
+    nodejs \
+    npm \
     && docker-php-ext-install -j$(nproc) \
     pdo_mysql \
     pdo_pgsql \

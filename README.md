@@ -30,29 +30,24 @@ No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso u
 
 Executamolo script para levanta-los contedores e configuralos.
 ```
-make setup
-```
-
-En caso de error no script de setup, podes executar os comandos manualmente:
-```
-make launch # Levantámola aplicación
-make workspace # Accedemos ao contedor workspace
-```
-
-E unha vez dentro:
-```
-composer install
-npm install
-npm run build
-php artisan key:generate
-php artisan migrate:fresh --seed
+make launch # Lanza o compose de contedores
+make stop # Para o compose contedores
+make setup # Configura por completo á aplicación
+make workspace # Accede ó contedor 'workspace' do compose de dev
+make cleanup # Fai unha limpeza exhaustiva do compose (WARNING)
+make backup # Fai un backup da información do volume de persistencia da DB
 ```
 
 ## Listo! A ubicación da aplicación será localhost
 Por defecto será [localhost](http://localhost) sin SSL
 
 ---
-## Limpieza
+## Por comodidade, facilítase un Makefile cos seguintes comandos dispoñibles:
+```
+
+```
+
+## Limpeza
 > Se queremos facer unha limpieza exhaustiva de todo o que se crea para probar (ou corrixir) este proxecto, tes a man un script co proceso automatizado. Básicamente este deterá, eliminará tódo-los contenedores, imaxes, volumes e limpará finalmente cun `docker system prune` asique moito ollo xa que se tes outros despregamentos é potencialmente probable que sexan eliminados parcial ou totalmente.
 ```
 make cleanup

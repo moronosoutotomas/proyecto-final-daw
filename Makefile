@@ -13,16 +13,19 @@ VOL_PROD_DATA := aplicacion_tomasmorono-data-production
 VOL_PUBLIC := aplicacion_tomasmorono-public-assets
 VOL_STORAGE := aplicacion_tomasmorono-storage-production
 VOL_DEV_DATA := aplicacion_tomasmorono-data-development
+VOL_DEV_DATA_BACKUP := aplicacion_tomasmorono-data-development-backup
 
 # Lanzamos compose
 .PHONY: launch
 launch:
 	docker compose -f $(COMPOSE_FILE) up -d
+	@echo "[ SUCCESS ] Contenedores levantados"
 
 # Paramos compose
 .PHONY: stop
 stop:
 	docker compose -f $(COMPOSE_FILE) down
+	@echo "[ SUCCESS ] Contenedores tirados"
 
 # Accedemos al contenedor workspace
 .PHONY: workspace
@@ -35,11 +38,11 @@ workspace:
 setup:
 	make launch
 	sudo docker exec -it --user www $(WORKSPACE) composer install
-	# Esta mierda no deja de fallar carallo -.-
 	sudo docker exec -it --user www $(WORKSPACE) npm install
 	sudo docker exec -it --user www $(WORKSPACE) npm run build
 	sudo docker exec -it --user www $(WORKSPACE) php artisan key:generate
 	sudo docker exec -it --user www $(WORKSPACE) php artisan migrate:fresh --seed
+	@echo "[ SUCCESS ] Instalación completada"
 
 # Limpiamos el entorno
 .PHONY: cleanup
@@ -52,3 +55,21 @@ cleanup:
 	docker volume prune -f
 	docker builder prune -af
 	docker system prune -af
+	@echo "[ SUCCESS ] Limpieza completada"
+
+# Sistema simple de backup (de momento para dev)
+POSTGRES_DB := bookbag
+POSTGRES_USER := tomasmorono
+HOST_BACKUP_DIR := ./backups/bookbag
+DUMP_FILENAME := $(shell date +%Y%m%d-%H%M%S).dump
+
+.PHONY: backup
+backup:
+	mkdir -p $(HOST_BACKUP_DIR)
+	docker exec $(PGSQL) bash -c "pg_dump -U '$(POSTGRES_USER)' -d '$(POSTGRES_DB)' -F c -f '/var/lib/postgresql/data_backup/$(DUMP_FILENAME)'"
+	docker run --rm \
+		-v $(VOL_DEV_DATA_BACKUP):/from \
+		-v $(HOST_BACKUP_DIR):/to \
+		alpine \
+		sh -c "cp /from/$(DUMP_FILENAME) /to/"
+	@echo "[ SUCCESS ] Backup completado en: $(HOST_BACKUP_DIR)/$(DUMP_FILENAME)"

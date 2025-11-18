@@ -84,6 +84,7 @@ services:
       - POSTGRES_PASSWORD=abc123.
     volumes:
       - tomasmorono-data-development:/var/lib/postgresql/data
+      - tomasmorono-data-development-backup:/var/lib/postgresql/data_backup # Backup dos datos usando pg_dump
     networks:
       - tomasmorono-development
 
@@ -99,3 +100,4 @@ networks:
 
 volumes:
   tomasmorono-data-development:
+  tomasmorono-data-development-backup: # Volume dos datos

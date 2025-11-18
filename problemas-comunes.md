@@ -19,3 +19,5 @@ Conexion a contenedor Postgres:
 1. docker exec -it <contenedor> bash
 2. psql -U tomasmorono -d bookbag
 3. \dt 
+
+Solución pro para backups: https://hub.docker.com/r/offen/docker-volume-backup
