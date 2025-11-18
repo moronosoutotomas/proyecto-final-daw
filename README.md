@@ -30,12 +30,8 @@ No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso u
 
 Executamolo script para levanta-los contedores e configuralos.
 ```
-make launch # Lanza o compose de contedores
-make stop # Para o compose contedores
-make setup # Configura por completo á aplicación
-make workspace # Accede ó contedor 'workspace' do compose de dev
-make cleanup # Fai unha limpeza exhaustiva do compose (WARNING)
-make backup # Fai un backup da información do volume de persistencia da DB
+make setup
+
 ```
 
 ## Listo! A ubicación da aplicación será localhost
@@ -44,7 +40,12 @@ Por defecto será [localhost](http://localhost) sin SSL
 ---
 ## Por comodidade, facilítase un Makefile cos seguintes comandos dispoñibles:
 ```
-
+make launch # Lanza o compose de contedores
+make stop # Para o compose contedores
+make setup # Configura por completo á aplicación
+make workspace # Accede ó contedor 'workspace' do compose de dev
+make cleanup # Fai unha limpeza exhaustiva do compose (WARNING)
+make backup # Fai un backup da información do volume de persistencia da DB
 ```
 
 ## Limpeza
