@@ -31,7 +31,6 @@ No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso u
 Executamolo script para levanta-los contedores e configuralos.
 ```
 make setup
-
 ```
 
 ## Listo! A ubicación da aplicación será localhost
