@@ -128,7 +128,7 @@ class UserController extends Controller
         User::create($validated);
 
         return redirect()->route('admin.users.index')
-        ->with('success', 'Usuario creado correctamente');
+            ->with('success', 'Usuario creado correctamente');
     }
 
     /**
@@ -178,7 +178,7 @@ class UserController extends Controller
             'password.confirmed' => 'A confirmación do contrasinal non coincide.',
         ]);
 
-        if (!empty($validated['password'])) {
+        if (! empty($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);
         } else {
             unset($validated['password']);
