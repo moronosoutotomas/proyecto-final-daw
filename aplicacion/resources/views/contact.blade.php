@@ -153,7 +153,7 @@
 										atención</h3>
 									<p class="text-sm text-gray-400">
 										Lunes a Venres: 9:00 - 18:00<br>
-										Sábados e domingos: Pechado
+										Sábados e Domingos: Pechado
 									</p>
 								</div>
 							</div>
