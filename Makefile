@@ -78,8 +78,7 @@ backup:
 .PHONY: ci-testing
 ci-testing:
 	make launch
-	docker exec -T --user www $(WORKSPACE) composer install
-
+	docker exec --user www $(WORKSPACE) composer install
 	docker exec --user www $(WORKSPACE) npm install
 	docker exec --user www $(WORKSPACE) npm run build
 	docker exec --user www $(WORKSPACE) php artisan key:generate
