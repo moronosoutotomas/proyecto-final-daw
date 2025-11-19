@@ -74,6 +74,8 @@ class extends Component {
 	}
 }; ?>
 
+@section('title', 'Login')
+
 <div class="flex flex-col gap-6">
 	<div class="flex flex-col space-y-2 text-center">
 		<flux:heading size="xl" class="text-2xl font-semibold tracking-tight">
