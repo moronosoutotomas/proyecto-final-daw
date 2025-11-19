@@ -10,7 +10,7 @@ test('A pantalla para recupera-lo contrasinal pode renderizarse', function () {
     $response->assertStatus(200);
 });
 
-//test('reset password link can be requested', function () {
+// test('reset password link can be requested', function () {
 //    Notification::fake();
 //
 //    $user = User::factory()->create();
@@ -20,9 +20,9 @@ test('A pantalla para recupera-lo contrasinal pode renderizarse', function () {
 //        ->call('sendPasswordResetLink');
 //
 //    Notification::assertSentTo($user, ResetPassword::class);
-//});
+// });
 
-//test('reset password screen can be rendered', function () {
+// test('reset password screen can be rendered', function () {
 //    Notification::fake();
 //
 //    $user = User::factory()->create();
@@ -38,9 +38,9 @@ test('A pantalla para recupera-lo contrasinal pode renderizarse', function () {
 //
 //        return true;
 //    });
-//});
+// });
 
-//test('password can be reset with valid token', function () {
+// test('password can be reset with valid token', function () {
 //    Notification::fake();
 //
 //    $user = User::factory()->create();
@@ -62,4 +62,4 @@ test('A pantalla para recupera-lo contrasinal pode renderizarse', function () {
 //
 //        return true;
 //    });
-//});
+// });

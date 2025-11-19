@@ -1,7 +1,7 @@
 <?php
 
-use Livewire\Volt\Volt;
 use App\Models\User;
+use Livewire\Volt\Volt;
 
 test('A páxina de perfil pode renderizarse', function () {
     $user = User::factory()->create();
@@ -28,8 +28,8 @@ test('A información do perfil pode actualizarse', function () {
     $user->refresh();
 
     expect($user->name)->toEqual('Test User')
-			->and($user->email)->toEqual('test@example.com')
-			->and($user->email_verified_at)->toBeNull();
+        ->and($user->email)->toEqual('test@example.com')
+        ->and($user->email_verified_at)->toBeNull();
 });
 
 /*test('O estado de verificación de email non cambia cando o enderezo de email non cambia', function () {
@@ -61,7 +61,7 @@ test('A información do perfil pode actualizarse', function () {
         ->assertRedirect('/');
 
     expect($user->fresh())->toBeNull()
-		->and(auth()->check())->toBeFalse();
+        ->and(auth()->check())->toBeFalse();
 });*/
 
 /*test('O contrasinal correcto debe ser proporcionado para eliminar a conta', function () {

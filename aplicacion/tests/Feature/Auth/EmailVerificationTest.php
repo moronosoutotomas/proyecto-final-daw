@@ -3,11 +3,11 @@
 use App\Models\User;
 
 test('A pantalla de verificación de email pode renderizarse', function () {
-	$user = User::factory()->create();
+    $user = User::factory()->create();
 
-	$response = $this->actingAs($user)->get('/verify-email');
+    $response = $this->actingAs($user)->get('/verify-email');
 
-	$response->assertOk();
+    $response->assertOk();
 });
 
 /*test('email can be verified', function () {

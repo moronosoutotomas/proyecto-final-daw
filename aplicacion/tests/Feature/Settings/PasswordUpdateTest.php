@@ -7,8 +7,8 @@ use Livewire\Volt\Volt;
 test('O contrasinal pode editarse', function () {
     $user = User::factory()->create([
         'name' => 'Test',
-		'email' => 'test@bookbag.com',
-		'password' => bcrypt('abc123.'),
+        'email' => 'test@bookbag.com',
+        'password' => bcrypt('abc123.'),
     ]);
 
     $this->actingAs($user);
@@ -25,11 +25,11 @@ test('O contrasinal pode editarse', function () {
 });
 
 test('O contrasinal debe ser correcto para ser editado', function () {
-	$user = User::factory()->create([
-		'name' => 'Test',
-		'email' => 'test@bookbag.com',
-		'password' => bcrypt('abc123.'),
-	]);
+    $user = User::factory()->create([
+        'name' => 'Test',
+        'email' => 'test@bookbag.com',
+        'password' => bcrypt('abc123.'),
+    ]);
 
     $this->actingAs($user);
 
