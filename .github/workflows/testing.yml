@@ -21,5 +21,5 @@ jobs:
     - name: Configuración dos permisos
       run: chmod -R 777 .
 
-    - name: Acceder ó workspace
+    - name: Testing
       run: make ci-testing
