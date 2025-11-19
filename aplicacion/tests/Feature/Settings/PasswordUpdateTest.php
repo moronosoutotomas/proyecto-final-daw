@@ -1,21 +1,20 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Volt\Volt;
 
-uses(RefreshDatabase::class);
-
-test('password can be updated', function () {
+test('O contrasinal pode editarse', function () {
     $user = User::factory()->create([
-        'password' => Hash::make('password'),
+        'name' => 'Test',
+		'email' => 'test@bookbag.com',
+		'password' => bcrypt('abc123.'),
     ]);
 
     $this->actingAs($user);
 
     $response = Volt::test('settings.password')
-        ->set('current_password', 'password')
+        ->set('current_password', 'abc123.')
         ->set('password', 'new-password')
         ->set('password_confirmation', 'new-password')
         ->call('updatePassword');
@@ -25,10 +24,12 @@ test('password can be updated', function () {
     expect(Hash::check('new-password', $user->refresh()->password))->toBeTrue();
 });
 
-test('correct password must be provided to update password', function () {
-    $user = User::factory()->create([
-        'password' => Hash::make('password'),
-    ]);
+test('O contrasinal debe ser correcto para ser editado', function () {
+	$user = User::factory()->create([
+		'name' => 'Test',
+		'email' => 'test@bookbag.com',
+		'password' => bcrypt('abc123.'),
+	]);
 
     $this->actingAs($user);
 

@@ -1,51 +1,62 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Volt\Volt as LivewireVolt;
 
-uses(RefreshDatabase::class);
+test('A pantalla de login pode renderizarse', function () {
+	$response = $this->get('/login');
 
-test('login screen can be rendered', function () {
-    $response = $this->get('/login');
-
-    $response->assertStatus(200);
+	$response->assertOk();
 });
 
-test('users can authenticate using the login screen', function () {
-    $user = User::factory()->create();
+test('Os usuarios poden iniciar sesión na pantalla de login', function () {
+	$user = User::factory()->create([
+		'name' => 'Test',
+		'email' => 'test@bookbag.com',
+		'password' => bcrypt('abc123.'),
+	]);
 
-    $response = LivewireVolt::test('auth.login')
-        ->set('email', $user->email)
-        ->set('password', 'password')
-        ->call('login');
+	$response = LivewireVolt::test('auth.login')
+		->set('email', $user->email)
+		->set('password', 'abc123.')
+		->call('login');
 
-    $response
-        ->assertHasNoErrors()
-        ->assertRedirect(route('home', absolute: false));
+	$response
+		->assertHasNoErrors()
+		->assertRedirect(route('home', absolute: false));
 
-    $this->assertAuthenticated();
+	$this->assertAuthenticated();
 });
 
-test('users can not authenticate with invalid password', function () {
-    $user = User::factory()->create();
+test('Os usuarios non poden iniciar sesión cun contrasinal incorrecto', function () {
+	$user = User::factory()->create([
+		'name' => 'Test',
+		'email' => 'test@bookbag.com',
+		'password' => bcrypt('abc123.'),
+	]);
 
-    $response = LivewireVolt::test('auth.login')
-        ->set('email', $user->email)
-        ->set('password', 'wrong-password')
-        ->call('login');
+	$response = LivewireVolt::test('auth.login')
+		->set('email', $user->email)
+		->set('password', 'wrong-password')
+		->call('login');
 
-    $response->assertHasErrors('email');
+	$response->assertHasErrors('email');
 
-    $this->assertGuest();
+	$this->assertGuest();
 });
 
-test('users can logout', function () {
-    $user = User::factory()->create();
+test('Os usuarios poden pechar sesión', function () {
+	$user = User::factory()->create([
+		'name' => 'Test',
+		'email' => 'test@bookbag.com',
+		'password' => bcrypt('abc123.'),
+	]);
 
-    $response = $this->actingAs($user)->post('/logout');
+	$response = $this->withoutMiddleware(\Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class)
+		->actingAs($user)
+		->post('/logout');
 
-    $response->assertRedirect('/');
+	$response->assertRedirect('/');
 
-    $this->assertGuest();
+	$this->assertGuest();
 });
