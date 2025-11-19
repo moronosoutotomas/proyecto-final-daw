@@ -1,3 +1,5 @@
+<img src="./logos/logo.png" alt="Bookbag logo" width="200"/>
+
 # Bookbag: atopa e rexistra as túas lecturas
 
 ## Requisitos
