@@ -21,17 +21,8 @@ jobs:
     - name: Configuración dos permisos
       run: chmod -R 777 .
 
-    - name: Instalación de docker(?)
-      run: apt install docker docker-compose
-
-    - name: Acceso a workspace
-      run: make workspace
-
-    - name: Instalación das dependencias
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-
-    - name: Xeración da key
-      run: php artisan key:generate
+    - name: Acceder ó workspace
+      run: make setup
 
     - name: Execución dos tests (Unit e Feature) via Pest
       run: php artisan test
