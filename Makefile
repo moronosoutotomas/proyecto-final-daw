@@ -73,3 +73,15 @@ backup:
 		alpine \
 		sh -c "cp /from/$(DUMP_FILENAME) /to/"
 	@echo "[ SUCCESS ] Backup completado en: $(HOST_BACKUP_DIR)/$(DUMP_FILENAME)"
+
+# Entorno específico para testing en CI
+.PHONY: ci-testing
+ci-testing:
+	make launch
+	docker exec -T --user www $(WORKSPACE) composer install
+
+	docker exec -T --user www $(WORKSPACE) npm install
+	docker exec -T --user www $(WORKSPACE) npm run build
+	docker exec -T --user www $(WORKSPACE) php artisan key:generate
+	docker exec -T --user www $(WORKSPACE) php artisan test
+	@echo "[ SUCCESS ] Testing completado"
