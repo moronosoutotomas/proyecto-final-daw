@@ -80,8 +80,8 @@ ci-testing:
 	make launch
 	docker exec -T --user www $(WORKSPACE) composer install
 
-	docker exec -T --user www $(WORKSPACE) npm install
-	docker exec -T --user www $(WORKSPACE) npm run build
-	docker exec -T --user www $(WORKSPACE) php artisan key:generate
-	docker exec -T --user www $(WORKSPACE) php artisan test
+	docker exec --user www $(WORKSPACE) npm install
+	docker exec --user www $(WORKSPACE) npm run build
+	docker exec --user www $(WORKSPACE) php artisan key:generate
+	docker exec --user www $(WORKSPACE) php artisan test
 	@echo "[ SUCCESS ] Testing completado"
