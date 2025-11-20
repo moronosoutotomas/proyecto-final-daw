@@ -88,7 +88,8 @@
 						<div>
 							<button
 								type="submit"
-								class="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-4 rounded-md duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+								class="inline-flex items-center gap-2 justify-center w-full bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-4 rounded-md duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2">
+								<flux:icon.paper-airplane class="h-5 w-5"/>
 								Enviar mensaxe
 							</button>
 						</div>
