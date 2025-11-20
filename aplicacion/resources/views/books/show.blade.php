@@ -198,7 +198,7 @@
 											@endfor
 										</div>
 									@endif
-									<h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">Muy fino</h3>
+									<h3 class="ms-2 text-sm font-semibold text-gray-900 dark:text-white">Moi fino</h3>
 								</div>
 								<footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
 									<p>
