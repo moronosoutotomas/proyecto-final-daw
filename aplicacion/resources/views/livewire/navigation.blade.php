@@ -146,7 +146,7 @@
 				@role('administrador')
 					<a href="{{ url('/admin/users') }}"
 						 class="text-gray-700 hover:text-amber-600 block px-3 py-2 text-base font-medium {{ request()->is('admin/users') ? 'text-amber-600 border-b-2 border-amber-600' : '' }} dark:text-white">
-						Xestión de usuarios
+						Usuarios
 					</a>
 
 					<a href="{{ url('/admin/roles') }}"
