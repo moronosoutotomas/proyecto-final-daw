@@ -14,12 +14,12 @@
 				</p>
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">
 					<a href="{{ route('books.index') }}"
-						 class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 transform hover:scale-105">
+						 class="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 transform hover:scale-105 w-full sm:w-auto">
 						 <flux:icon.book-open class="h-5 w-5"/>
 						Explorar libros
 					</a>
 					<a href="{{ route('about') }}"
-						 class="border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-medium transition duration-300">
+						 class="inline-flex items-center justify-center border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-8 py-3 rounded-lg font-medium transition duration-300 w-full sm:w-auto">
 						Coñece máis
 					</a>
 				</div>

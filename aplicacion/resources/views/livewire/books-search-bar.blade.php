@@ -1,7 +1,7 @@
 <form method="GET" action="{{ route('books.index') }}" class="p-6">
 	<div class="flex flex-col sm:flex-row gap-3 items-center justify-center">
 		{{-- por isbn13 --}}
-		<div class="relative">
+		<div class="relative w-full sm:w-auto">
 			<flux:icon.funnel class="absolute left-3 top-3 text-gray-400 dark:text-gray-500 w-5 h-5"/>
 			<input
 				type="text"
@@ -13,7 +13,7 @@
 		</div>
 
 		{{-- por title --}}
-		<div class="relative">
+		<div class="relative w-full sm:w-auto">
 			<flux:icon.funnel class="absolute left-3 top-3 text-gray-400 dark:text-gray-500 w-5 h-5"/>
 			<input
 				type="text"
@@ -25,7 +25,7 @@
 		</div>
 
 		{{-- por author --}}
-		<div class="relative">
+		<div class="relative w-full sm:w-auto">
 			<flux:icon.funnel class="absolute left-3 top-3 text-gray-400 dark:text-gray-500 w-5 h-5"/>
 			<input
 				type="text"
@@ -37,7 +37,7 @@
 		</div>
 
 		{{-- por rating --}}
-		<div>
+		<div class="w-full sm:w-auto">
 			<select
 				name="rating"
 				class="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all"
@@ -57,10 +57,10 @@
 
 		{{-- order y sentido --}}
 		<div
-			class="flex items-center gap-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-white">
+			class="flex items-center justify-between sm:justify-start gap-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 px-3 py-2 text-sm text-gray-900 dark:text-white w-full sm:w-auto">
 			<select
 				name="order"
-				class="bg-transparent focus:ring-0 focus:outline-none"
+				class="bg-transparent focus:ring-0 focus:outline-none flex-1 sm:flex-none"
 				onchange="this.form.submit()"
 			>
 				<option
@@ -78,7 +78,7 @@
 				</option>
 			</select>
 
-			<div class="flex items-center gap-1 ml-3">
+			<div class="flex items-center gap-1 sm:ml-3">
 				<label class="flex items-center gap-1 cursor-pointer">
 					<input type="radio" name="sort" value="asc" {{ request('sort', 'asc') == 'asc' ? 'checked' : '' }}
 					class="hidden"
@@ -100,10 +100,10 @@
 		</div>
 
 		{{-- botones --}}
-		<div class="flex gap-2">
+		<div class="flex gap-2 w-full sm:w-auto">
 			<button
 				type="submit"
-				class="flex space-x-2 items-center px-4 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-all text-sm font-medium"
+				class="flex-1 sm:flex-none flex space-x-2 items-center justify-center px-4 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-all text-sm font-medium"
 			>
 				<flux:icon.magnifying-glass/>
 				Buscar
