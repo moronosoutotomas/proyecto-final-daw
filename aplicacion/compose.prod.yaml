@@ -15,7 +15,7 @@ services:
       - tomasmorono-storage-production:/var/www/storage:ro
       - tomasmorono-public-assets:/var/www/public/build:ro
     networks:
-      - tomasmorono-production
+      - tomasmorono-network-production
     ports:
       # Map port 80 inside the container to the port specified by 'NGINX_PORT' on the host machine.
       # -----------------------------------------------------------
@@ -40,7 +40,7 @@ services:
     env_file:
       - .env
     networks:
-      - tomasmorono-production
+      - tomasmorono-network-production
     healthcheck:
       test: [ "CMD-SHELL", "php-fpm-healthcheck || exit 1" ]
       interval: 10s
@@ -67,7 +67,7 @@ services:
     volumes:
       - tomasmorono-data-production:/var/lib/postgresql/data
     networks:
-      - tomasmorono-production
+      - tomasmorono-network-production
     # Health check for PostgreSQL
     # -----------------------------------------------------------
     # Health checks allow Docker to determine if a service is operational.
@@ -86,7 +86,7 @@ services:
 #    image: redis:alpine
 #    restart: unless-stopped  # Automatically restart unless the service is explicitly stopped
 #    networks:
-#      - tomasmorono-production
+#      - tomasmorono-network-production
 #    # Health check for Redis
 #    # -----------------------------------------------------------
 #    # Checks if Redis is responding to the 'PING' command.
@@ -104,7 +104,7 @@ networks:
   # This custom network allows all services within it to communicate using their service names as hostnames.
   # For example, 'php-fpm' can connect to 'postgres' by using 'postgres' as the hostname.
   # -----------------------------------------------------------
-  tomasmorono-production:
+  tomasmorono-network-production:
 
 volumes:
   tomasmorono-data-production:
