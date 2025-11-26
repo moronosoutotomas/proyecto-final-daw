@@ -1,4 +1,4 @@
-<img src="./logos/logo.png" alt="Bookbag logo" width="200"/>
+<img src="./logos/logo-readme.png" alt="Bookbag logo" width="200"/>
 
 # Bookbag: atopa e rexistra as túas lecturas
 
@@ -11,19 +11,19 @@ xa que probablemente rompa a páxina.
 
 ## Instalación
 
-Clonamos o proxecto na carpeta desexada (i.e.: proxecto-moronosoutotomas)
+Clonamos o proxecto na carpeta desexada (i.e.: bookbag)
 ```
-git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" proxecto-moronosoutotomas
+git clone "https://github.com/moronosoutotomas/proyecto-final-daw.git" bookbag
 ```
 
 Por algún motivo é preciso dar permisos ó proxecto en par de evitar problemas de firewall
 ```
-sudo chmod -R 777 proxecto-moronosoutotomas/
+sudo chmod -R 777 bookbag/
 ```
 
 Entramos na carpeta onde foi clonado
 ```
-cd proxecto-moronosoutotomas
+cd bookbag
 ```
 
 No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso usuario e grupo (abaixo de todo, por defecto 1000 e 1000)
@@ -55,9 +55,6 @@ make backup # Fai un backup da información do volume de persistencia da DB
 make cleanup
 ```
 
-## :construction: Problemas comúns
+## Problemas comúns
 - Os permisos dan problemas se non se configura apropiadamente o UID e o GID no .env
 - Fallo na execución do script de setup na seccion de npm
-
-## Deprecated
-- A carpeta de /scripts está deprecated xa que hai unha implementación mais sinxela con Makefile asique será eliminada no futuro
