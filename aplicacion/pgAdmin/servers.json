@@ -1,0 +1,15 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "Bookbag",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "bookbag",
+      "Username": "tomasmorono",
+      "Password": "abc123.",
+      "SSLMode": "prefer",
+      "Favourite": true
+    }
+  }
+}

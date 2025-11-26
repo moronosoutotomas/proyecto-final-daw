@@ -13,7 +13,7 @@ services:
     environment:
       - NGINX_HOST=localhost
     networks:
-      - tomasmorono-development
+      - tomasmorono-network-development
     depends_on:
       php-fpm:
         condition: service_started  # Wait for php-fpm to start
@@ -42,7 +42,7 @@ services:
       # Mount the application code for live updates
       - ./:/var/www
     networks:
-      - tomasmorono-development
+      - tomasmorono-network-development
     depends_on:
       postgres:
         condition: service_started  # Wait for postgres to start
@@ -71,7 +71,7 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - tomasmorono-development
+      - tomasmorono-network-development
 
   postgres:
     container_name: aplicacion_tomasmorono-pgsql
@@ -86,17 +86,36 @@ services:
       - tomasmorono-data-development:/var/lib/postgresql/data
       - tomasmorono-data-development-backup:/var/lib/postgresql/data_backup # Backup dos datos usando pg_dump
     networks:
-      - tomasmorono-development
+      - tomasmorono-network-development
+
+  pgadmin:
+    container_name: aplicacion_tomasmorono-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: administrador@bookbag.com
+      PGADMIN_DEFAULT_PASSWORD: abc123.
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    volumes:
+      - ./pgAdmin/servers.json:/pgadmin4/servers.json
+      - ./pgAdmin/pgpass:/var/lib/pgadmin/.pgpass:ro
+    networks:
+      - tomasmorono-network-development
+      
 
 # En caso de querer escalar la aplicación hacia un modelo de alta concurrencia
 # sería recomendable cachear en Redis en lugar de en la BBDD (habría que ajustar el .env)
 #  redis:
 #    image: redis:alpine
 #    networks:
-#      - tomasmorono-development
+#      - tomasmorono-network-development
 
 networks:
-  tomasmorono-development:
+  tomasmorono-network-development:
 
 volumes:
   tomasmorono-data-development:
