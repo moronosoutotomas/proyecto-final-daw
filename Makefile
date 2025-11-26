@@ -21,6 +21,14 @@ launch:
 	docker compose -f $(COMPOSE_FILE) up -d
 	@echo "[ SUCCESS ] Contenedores levantados"
 
+# Refrescamos compose
+.PHONY: refresh
+refresh:
+	make stop
+	docker compose -f $(COMPOSE_FILE) build --no-cache
+	docker compose -f $(COMPOSE_FILE) up -d --force-recreate
+	@echo "[ SUCCESS ] Contenedores refrescados"
+
 # Paramos compose
 .PHONY: stop
 stop:
