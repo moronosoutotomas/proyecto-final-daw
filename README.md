@@ -57,4 +57,5 @@ make cleanup
 
 ## Problemas comúns
 - Os permisos dan problemas se non se configura apropiadamente o UID e o GID no .env
-- Fallo na execución do script de setup na seccion de npm
+- Pantallazo blanco nas primeiras cargas antes de cachear
+- Fallo de carga de modo en certas pantallas ó cargar, modo claro en lugar de modo oscuro
