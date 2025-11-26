@@ -14,17 +14,17 @@ class BookshelfTypeSeeder extends Seeder
     {
         BookshelfType::create([
             'id' => 1,
-            'name' => 'leídos',
+            'name' => 'lidos',
         ]);
 
         BookshelfType::create([
             'id' => 2,
-            'name' => 'leyendo',
+            'name' => 'lendo',
         ]);
 
         BookshelfType::create([
             'id' => 3,
-            'name' => 'pendientes',
+            'name' => 'pendentes',
         ]);
     }
 }
