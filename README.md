@@ -1,4 +1,4 @@
-<img src="./logos/logo-readme.png" alt="Bookbag logo" width="200"/>
+<img src="./logo-readme.png" alt="Bookbag logo" width="200"/>
 
 # Bookbag: atopa e rexistra as túas lecturas
 
