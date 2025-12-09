@@ -65,5 +65,5 @@ make cleanup
 ## Solucións
 1. Comprobar o UID:GID do teu usuario mediante o comando `id` nun terminal e configura-lo .env acorde.
 2. Entrar ó contenedor con `make workspace` e executando a instalación manualmente. 
-3. TODO: Revisar JS
-4. TODO: Revisar JS
+3. TODO: Revisar JS nas vistas
+4. TODO: Revisar JS nas vistas
