@@ -30,13 +30,13 @@ No .env (dentro de /aplicacion) cambiámo-lo UID e o GID polos valores do noso u
 > cd /aplicacion
 > nano .env
 
-Executamos o script para levantar os contedores e configuralos.
+Executamos o script para levantar os contedores e configuralos (require ter 'make' instalado).
 ```
 make setup
 ```
 
 ## Listo! A ubicación da aplicación será localhost
-Por defecto será [localhost](http://localhost) sin SSL
+Por defecto será [localhost](http://localhost) (sin SSL)
 
 ---
 ## Por comodidade, facilítase un Makefile cos seguintes comandos dispoñibles:
@@ -57,6 +57,13 @@ make cleanup
 ```
 
 ## Problemas comúns
-- Os permisos dan problemas se non se configura apropiadamente o UID e o GID no .env
-- Pantallazo branco nas primeiras cargas antes de cachear
-- Fallo de carga de modo en certas pantallas ó cargar, modo claro en lugar de modo oscuro
+1. Os permisos dan problemas se non se configura apropiadamente o UID e o GID no .env
+2. Problema na instalación de dependencias con NPM (npm install).
+3. Pantallazo branco nas primeiras cargas antes de cachear
+4. Fallo de carga de modo en certas pantallas ó cargar, modo claro en lugar de modo oscuro
+
+## Solucións
+1. Comprobar o UID:GID do teu usuario mediante o comando `id` nun terminal e configura-lo .env acorde.
+2. Entrar ó contenedor con `make workspace` e executando a instalación manualmente. 
+3. TODO: Revisar JS
+4. TODO: Revisar JS
